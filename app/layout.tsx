@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import "@radix-ui/themes/styles.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
+import { Footer } from "./footer";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -21,36 +22,72 @@ const poppins = Poppins({
 });
 
 export const metadata: Metadata = {
-  title: "herdoydev | Custom Web Development Agency",
+  title: {
+    default: "herdoydev | Premium Web Development Solutions",
+    template: "%s | herdoydev",
+  },
   description:
-    "herdoydev is a professional web development agency offering custom websites, e-commerce, web apps, CMS, and SEO optimization services.",
+    "Transform your digital presence with herdoydev - a leading web development agency specializing in high-performance websites, e-commerce solutions, and custom web applications.",
   keywords: [
-    "web development",
-    "custom website",
-    "e-commerce development",
-    "react development",
-    "next.js agency",
-    "seo optimization",
-    "web apps",
-    "wordpress",
-    "webflow",
+    "web development agency",
+    "custom website development",
+    "e-commerce solutions",
+    "react next.js experts",
+    "seo optimized websites",
+    "enterprise web applications",
+    "headless CMS development",
+    "responsive web design",
+    "performance optimization",
+    "web development consultancy",
   ],
   openGraph: {
-    title: "herdoydev | Custom Web Development Agency",
+    title: "herdoydev | Premium Web Development Solutions",
     description:
-      "Professional web development agency delivering custom websites, e-commerce stores, modern web apps, CMS, and SEO services.",
+      "Partner with herdoydev for cutting-edge web development services that drive results. From concept to deployment, we deliver exceptional digital experiences.",
     url: "https://herdoydev.com",
     siteName: "herdoydev",
     type: "website",
+    images: [
+      {
+        url: "https://herdoydev.com/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "herdoydev - Web Development Agency",
+      },
+    ],
+    locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "herdoydev | Custom Web Development Agency",
+    title: "herdoydev | Premium Web Development Solutions",
     description:
-      "Professional web development agency delivering custom websites, e-commerce stores, modern web apps, CMS, and SEO services.",
+      "Expert web development services tailored to your business needs. Let's build something remarkable together.",
+    creator: "@herdoydev",
+    images: ["https://herdoydev.com/twitter-image.jpg"],
   },
   icons: {
     icon: "/favicon.ico",
+    shortcut: "/favicon-16x16.png",
+    apple: "/apple-touch-icon.png",
+  },
+  metadataBase: new URL("https://herdoydev.com"),
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: "your-google-verification-code",
+    yandex: "your-yandex-verification-code",
   },
 };
 
@@ -60,12 +97,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased bg-white text-gray-900`}
       >
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );
