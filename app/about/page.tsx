@@ -40,16 +40,16 @@ const stats = [
 
 const teamMembers = [
   {
-    name: "John Herdoy",
+    name: "Herdoy Almamun",
     role: "Founder & Lead Developer",
-    bio: "With over 10 years of experience in web development, John specializes in React and Node.js architectures.",
-    image: "/testimonials/david.jpg",
+    bio: "With over 5 years of experience in web development, Herdoy specializes in React and Node.js architectures.",
+    image: "/herdoy.jpg",
   },
   {
-    name: "Sarah Chen",
+    name: "Kawsar Ahamad",
     role: "UX/UI Designer",
-    bio: "Sarah transforms complex user flows into intuitive interfaces with a focus on accessibility.",
-    image: "/testimonials/sarah.png",
+    bio: "Kawsar transforms complex user flows into intuitive interfaces with a focus on accessibility.",
+    image: "/kawsar.jpg",
   },
   {
     name: "Michael Rodriguez",
