@@ -1,6 +1,17 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Cpu, Database, Lock, Server, Zap, GitBranch } from "lucide-react";
+import { Cpu, Database, GitBranch, Lock, Server, Zap } from "lucide-react";
+import {
+  SiAmazon,
+  SiDocker,
+  SiKubernetes,
+  SiMongodb,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiPostgresql,
+  SiReact,
+} from "react-icons/si";
+
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
@@ -82,14 +93,14 @@ const services = [
 ];
 
 const technologies = [
-  { name: "React", logo: "/tech/react.svg" },
-  { name: "Next.js", logo: "/tech/nextjs.svg" },
-  { name: "Node.js", logo: "/tech/nodejs.svg" },
-  { name: "PostgreSQL", logo: "/tech/postgresql.svg" },
-  { name: "MongoDB", logo: "/tech/mongodb.svg" },
-  { name: "AWS", logo: "/tech/aws.svg" },
-  { name: "Docker", logo: "/tech/docker.svg" },
-  { name: "Kubernetes", logo: "/tech/kubernetes.svg" },
+  { name: "React", icon: SiReact, color: "#61DAFB" },
+  { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
+  { name: "Node.js", icon: SiNodedotjs, color: "#3C873A" },
+  { name: "PostgreSQL", icon: SiPostgresql, color: "#336791" },
+  { name: "MongoDB", icon: SiMongodb, color: "#47A248" },
+  { name: "AWS", icon: SiAmazon, color: "#FF9900" },
+  { name: "Docker", icon: SiDocker, color: "#2496ED" },
+  { name: "Kubernetes", icon: SiKubernetes, color: "#326CE5" },
 ];
 
 const processSteps = [
@@ -229,20 +240,22 @@ export default function WebApplicationsPage() {
             </div>
 
             <div className="flex flex-wrap justify-center gap-8">
-              {technologies.map((tech) => (
-                <div key={tech.name} className="flex flex-col items-center">
-                  <div className="bg-white p-4 rounded-lg shadow-sm w-24 h-24 flex items-center justify-center">
-                    <Image
-                      src={tech.logo}
-                      alt={tech.name}
-                      width={80}
-                      height={80}
-                      className="object-contain"
-                    />
+              {technologies.map((tech) => {
+                const Icon = tech.icon;
+                return (
+                  <div key={tech.name} className="flex flex-col items-center">
+                    <div className="bg-white p-4 rounded-lg shadow-sm w-24 h-24 flex items-center justify-center">
+                      <Icon
+                        className="text-5xl"
+                        style={{ color: tech.color }}
+                      />
+                    </div>
+                    <span className="mt-3 text-sm font-medium">
+                      {tech.name}
+                    </span>
                   </div>
-                  <span className="mt-3 text-sm font-medium">{tech.name}</span>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             <div className="mt-16 grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
@@ -305,7 +318,7 @@ export default function WebApplicationsPage() {
               <div className="grid md:grid-cols-2">
                 <div className="relative aspect-square">
                   <Image
-                    src="/case-studies/web-app-showcase.jpg"
+                    src="/projects/portfolio3.jpeg"
                     alt="Web application case study"
                     fill
                     className="object-cover"

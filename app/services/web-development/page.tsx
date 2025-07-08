@@ -1,5 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  SiGraphql,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiReact,
+  SiTailwindcss,
+  SiTypescript,
+} from "react-icons/si";
+
 import { Globe, LayoutTemplate, Smartphone, Zap } from "lucide-react";
 import Head from "next/head";
 import Image from "next/image";
@@ -81,12 +90,12 @@ const services = [
 ];
 
 const technologies = [
-  { name: "React", logo: "/tech/react.svg" },
-  { name: "Next.js", logo: "/tech/nextjs.svg" },
-  { name: "TypeScript", logo: "/tech/typescript.svg" },
-  { name: "Tailwind CSS", logo: "/tech/tailwind.svg" },
-  { name: "Node.js", logo: "/tech/nodejs.svg" },
-  { name: "GraphQL", logo: "/tech/graphql.svg" },
+  { name: "React", icon: SiReact },
+  { name: "Next.js", icon: SiNextdotjs },
+  { name: "TypeScript", icon: SiTypescript },
+  { name: "Tailwind CSS", icon: SiTailwindcss },
+  { name: "Node.js", icon: SiNodedotjs },
+  { name: "GraphQL", icon: SiGraphql },
 ];
 
 const processSteps = [
@@ -226,20 +235,19 @@ export default function WebDevelopmentPage() {
             </div>
 
             <div className="flex flex-wrap justify-center gap-8">
-              {technologies.map((tech) => (
-                <div key={tech.name} className="flex flex-col items-center">
-                  <div className="bg-white p-4 rounded-lg shadow-sm w-24 h-24 flex items-center justify-center">
-                    <Image
-                      src={tech.logo}
-                      alt={tech.name}
-                      width={80}
-                      height={80}
-                      className="object-contain"
-                    />
+              {technologies.map((tech) => {
+                const Icon = tech.icon;
+                return (
+                  <div key={tech.name} className="flex flex-col items-center">
+                    <div className="bg-white p-4 rounded-lg shadow-sm w-24 h-24 flex items-center justify-center">
+                      <Icon className="text-5xl text-blue-500" />
+                    </div>
+                    <span className="mt-3 text-sm font-medium">
+                      {tech.name}
+                    </span>
                   </div>
-                  <span className="mt-3 text-sm font-medium">{tech.name}</span>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
@@ -278,7 +286,7 @@ export default function WebDevelopmentPage() {
               <div className="grid md:grid-cols-2">
                 <div className="relative aspect-square">
                   <Image
-                    src="/case-studies/web-dev-showcase.jpg"
+                    src="/about/team-working.jpeg"
                     alt="Web development case study"
                     fill
                     className="object-cover"

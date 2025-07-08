@@ -331,7 +331,7 @@ export default function TermsOfService() {
             <br />
             18 Sonar Bangla Road
             <br />
-            Peyaratola, Kushtia Sadar, 7000
+            Peyaratola, Kushtia Sadar, Kushtia 7000
             <br />
             Email:{" "}
             <a
@@ -341,7 +341,7 @@ export default function TermsOfService() {
               herdoy.dev@gmail.com
             </a>
             <br />
-            Phone: +18801408127781
+            Phone: +18801622465404
           </address>
         </section>
       </div>

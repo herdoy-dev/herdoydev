@@ -1,4 +1,5 @@
-import Head from "next/head";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Code,
   Cpu,
@@ -7,8 +8,7 @@ import {
   Smartphone,
   Zap,
 } from "lucide-react";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
+import Head from "next/head";
 import Link from "next/link";
 
 export const metadata = {

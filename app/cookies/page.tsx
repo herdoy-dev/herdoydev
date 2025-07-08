@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 export const metadata = {
   title: "Cookies Policy | herdoydev - Web Development Agency",
   description:
@@ -52,11 +54,17 @@ export default function CookiesPolicy() {
             1. Introduction
           </h2>
           <p className="mb-6">
-            This Cookies Policy explains how <strong>herdoydev</strong>{" "}
-            (&quot;we,&quot; &quot;us,&quot; or &quot;our&quot;) uses cookies
-            and similar tracking technologies when you visit our website
-            (herdoydev.com). By using our website, you consent to the use of
-            cookies in accordance with this policy.
+            This Cookies Policy explains how <strong>herdoydev</strong> uses
+            cookies and similar tracking technologies when you visit our website{" "}
+            <Link
+              href="www.herdoydev.com"
+              target="_blank"
+              className="font-semibold text-primary"
+            >
+              herdoydev.com
+            </Link>{" "}
+            By using our website, you consent to the use of cookies in
+            accordance with this policy.
           </p>
           <p>
             We may update this policy from time to time. The &quot;Last
@@ -360,7 +368,7 @@ export default function CookiesPolicy() {
             <br />
             18 Sonar Bangla Road
             <br />
-            Peyaratola, Kushtia Sadar, 7000
+            Peyaratola, Kushtia Sadar, Kushtia 7000
             <br />
             Email:{" "}
             <a
@@ -370,7 +378,7 @@ export default function CookiesPolicy() {
               herdoy.dev@gmail.com
             </a>
             <br />
-            Phone: +18801408127781
+            Phone: +18801622465404
           </address>
         </section>
       </div>

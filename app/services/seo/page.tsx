@@ -1,12 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Icon } from "@iconify/react";
 import {
-  Search,
   BarChart,
-  TrendingUp,
-  Globe,
   ClipboardCheck,
+  Globe,
   Link2,
+  Search,
+  TrendingUp,
 } from "lucide-react";
 import Head from "next/head";
 import Image from "next/image";
@@ -90,12 +91,36 @@ const services = [
 ];
 
 const technologies = [
-  { name: "Google Search Console", logo: "/tech/google-search-console.svg" },
-  { name: "Google Analytics", logo: "/tech/google-analytics.svg" },
-  { name: "Ahrefs", logo: "/tech/ahrefs.svg" },
-  { name: "SEMrush", logo: "/tech/semrush.svg" },
-  { name: "Screaming Frog", logo: "/tech/screaming-frog.svg" },
-  { name: "Moz", logo: "/tech/moz.svg" },
+  {
+    name: "Google Search Console",
+    icon: "fa6-brands:google",
+    color: "#4285F4", // Google blue
+  },
+  {
+    name: "Google Analytics",
+    icon: "fa6-solid:chart-line",
+    color: "#FF7043", // Orange
+  },
+  {
+    name: "Ahrefs",
+    icon: "fa6-solid:magnifying-glass-chart",
+    color: "#193153", // Ahrefs navy blue
+  },
+  {
+    name: "SEMrush",
+    icon: "fa6-solid:arrow-trend-up",
+    color: "#FF6B3D", // SEMrush orange
+  },
+  {
+    name: "Screaming Frog",
+    icon: "fa6-solid:frog",
+    color: "#4CAF50", // Green
+  },
+  {
+    name: "Moz",
+    icon: "fa6-solid:globe",
+    color: "#00A1B1", // Moz teal
+  },
 ];
 
 const processSteps = [
@@ -240,12 +265,11 @@ export default function SEOPage() {
               {technologies.map((tech) => (
                 <div key={tech.name} className="flex flex-col items-center">
                   <div className="bg-white p-4 rounded-lg shadow-sm w-24 h-24 flex items-center justify-center">
-                    <Image
-                      src={tech.logo}
-                      alt={tech.name}
-                      width={80}
-                      height={80}
-                      className="object-contain"
+                    <Icon
+                      icon={tech.icon}
+                      width={48}
+                      height={48}
+                      style={{ color: tech.color }}
                     />
                   </div>
                   <span className="mt-3 text-sm font-medium">{tech.name}</span>
@@ -317,7 +341,7 @@ export default function SEOPage() {
               <div className="grid md:grid-cols-2">
                 <div className="relative aspect-square">
                   <Image
-                    src="/case-studies/seo-showcase.jpg"
+                    src="/projects/portfolio3.jpeg"
                     alt="SEO case study"
                     fill
                     className="object-cover"

@@ -304,7 +304,7 @@ export default function PrivacyPolicy() {
             <br />
             18 Sonar Bangla Road
             <br />
-            Peyaratola, Kushtia Sadar, 7000
+            Peyaratola, Kushtia Sadar, Kushtia 7000
             <br />
             Email:{" "}
             <a
@@ -314,7 +314,7 @@ export default function PrivacyPolicy() {
               herdoy.dev@gmail.com
             </a>
             <br />
-            Phone: +18801408127781
+            Phone: +18801622465404
           </address>
           <p>
             For EU/UK residents, you may also lodge a complaint with your local

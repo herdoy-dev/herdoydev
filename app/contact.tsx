@@ -1,32 +1,8 @@
+import Address from "@/components/Address";
 import { ContactForm } from "@/components/ContactForm";
 import { Button } from "@/components/ui/button";
-import { Mail, MapPin, Phone } from "lucide-react";
-import { FaFacebookF, FaLinkedinIn, FaGithub, FaYoutube } from "react-icons/fa";
 import Link from "next/link";
-
-const contactMethods = [
-  {
-    icon: <Mail className="h-6 w-6 text-blue-600" />,
-    title: "Email Us",
-    description: "Our team will respond within 24 hours",
-    value: "herdoy.dev@gmail.com",
-    link: "mailto:herdoy.dev@gmail.com",
-  },
-  {
-    icon: <Phone className="h-6 w-6 text-blue-600" />,
-    title: "Call Us",
-    description: "Mon-Fri from 9am to 5pm",
-    value: "+8801622465404",
-    link: "tel:+8801622465404",
-  },
-  {
-    icon: <MapPin className="h-6 w-6 text-blue-600" />,
-    title: "Visit Us",
-    description: "Come say hello at our office",
-    value: "123 Web Dev Avenue, San Francisco, CA 94107",
-    link: "https://maps.google.com",
-  },
-];
+import { FaFacebookF, FaGithub, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 
 export function Contact() {
   return (
@@ -46,30 +22,9 @@ export function Contact() {
         </div>
 
         <div className="grid gap-12 lg:grid-cols-2">
-          {/* Contact Methods */}
           <div className="space-y-8">
-            {contactMethods.map((method, index) => (
-              <div key={index} className="flex items-start gap-6">
-                <div className="rounded-lg bg-blue-50 p-3 flex-shrink-0">
-                  {method.icon}
-                </div>
-                <div>
-                  <h3 className="text-lg font-semibold text-gray-900">
-                    {method.title}
-                  </h3>
-                  <p className="mt-1 text-gray-600">{method.description}</p>
-                  <Button
-                    variant="link"
-                    className="mt-2 p-0 text-blue-600 hover:text-blue-800"
-                    asChild
-                  >
-                    <Link href={method.link}>{method.value}</Link>
-                  </Button>
-                </div>
-              </div>
-            ))}
+            <Address />
 
-            {/* Social Links */}
             <div className="pt-8">
               <h3 className="text-lg font-semibold text-gray-900 mb-4">
                 Follow Us

@@ -1,15 +1,23 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
-  ShoppingCart,
-  CreditCard,
   Box,
-  TrendingUp,
+  CreditCard,
   ShieldCheck,
+  ShoppingCart,
+  TrendingUp,
 } from "lucide-react";
 import Head from "next/head";
 import Image from "next/image";
 import Link from "next/link";
+import {
+  SiBigcommerce,
+  SiNextdotjs,
+  SiReact,
+  SiShopify,
+  SiStripe,
+  SiWoocommerce,
+} from "react-icons/si";
 
 export const metadata = {
   title: "E-Commerce Development Services | herdoydev",
@@ -90,12 +98,12 @@ const services = [
 ];
 
 const technologies = [
-  { name: "Shopify", logo: "/tech/shopify.svg" },
-  { name: "WooCommerce", logo: "/tech/woocommerce.svg" },
-  { name: "BigCommerce", logo: "/tech/bigcommerce.svg" },
-  { name: "Next.js", logo: "/tech/nextjs.svg" },
-  { name: "React", logo: "/tech/react.svg" },
-  { name: "Stripe", logo: "/tech/stripe.svg" },
+  { name: "Shopify", icon: SiShopify },
+  { name: "WooCommerce", icon: SiWoocommerce },
+  { name: "BigCommerce", icon: SiBigcommerce },
+  { name: "Next.js", icon: SiNextdotjs },
+  { name: "React", icon: SiReact },
+  { name: "Stripe", icon: SiStripe },
 ];
 
 const processSteps = [
@@ -236,20 +244,19 @@ export default function ECommercePage() {
             </div>
 
             <div className="flex flex-wrap justify-center gap-8">
-              {technologies.map((tech) => (
-                <div key={tech.name} className="flex flex-col items-center">
-                  <div className="bg-white p-4 rounded-lg shadow-sm w-24 h-24 flex items-center justify-center">
-                    <Image
-                      src={tech.logo}
-                      alt={tech.name}
-                      width={80}
-                      height={80}
-                      className="object-contain"
-                    />
+              {technologies.map((tech) => {
+                const Icon = tech.icon;
+                return (
+                  <div key={tech.name} className="flex flex-col items-center">
+                    <div className="bg-white p-4 rounded-lg shadow-sm w-24 h-24 flex items-center justify-center">
+                      <Icon className="text-5xl text-primary" />
+                    </div>
+                    <span className="mt-3 text-sm font-medium">
+                      {tech.name}
+                    </span>
                   </div>
-                  <span className="mt-3 text-sm font-medium">{tech.name}</span>
-                </div>
-              ))}
+                );
+              })}
             </div>
 
             <div className="mt-16 bg-white rounded-xl p-8 shadow-sm max-w-4xl mx-auto">
@@ -303,7 +310,7 @@ export default function ECommercePage() {
               <div className="grid md:grid-cols-2">
                 <div className="relative aspect-square">
                   <Image
-                    src="/case-studies/ecommerce-showcase.jpg"
+                    src="/projects/portfolio1.jpeg"
                     alt="E-commerce case study"
                     fill
                     className="object-cover"

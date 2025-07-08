@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Icon } from "@iconify/react";
 import {
   Database,
   LayoutTemplate,
@@ -88,13 +89,15 @@ const services = [
   },
 ];
 
-const technologies = [
-  { name: "WordPress", logo: "/tech/wordpress.svg" },
-  { name: "Strapi", logo: "/tech/strapi.svg" },
-  { name: "Sanity", logo: "/tech/sanity.svg" },
-  { name: "Contentful", logo: "/tech/contentful.svg" },
-  { name: "Drupal", logo: "/tech/drupal.svg" },
-  { name: "Next.js", logo: "/tech/nextjs.svg" },
+type Tech = { name: string; iconName: string; color?: string };
+
+const technologies: Tech[] = [
+  { name: "WordPress", iconName: "mdi:wordpress", color: "#21759b" },
+  { name: "Strapi", iconName: "simple-icons:strapi", color: "#2F855A" },
+  { name: "Sanity", iconName: "simple-icons:sanity", color: "#FF0000" },
+  { name: "Contentful", iconName: "simple-icons:contentful", color: "#00CCFF" },
+  { name: "Drupal", iconName: "mdi:drupal", color: "#0678BE" },
+  { name: "Next.js", iconName: "simple-icons:nextdotjs", color: "#000000" },
 ];
 
 const processSteps = [
@@ -238,12 +241,11 @@ export default function CMSDevelopmentPage() {
               {technologies.map((tech) => (
                 <div key={tech.name} className="flex flex-col items-center">
                   <div className="bg-white p-4 rounded-lg shadow-sm w-24 h-24 flex items-center justify-center">
-                    <Image
-                      src={tech.logo}
-                      alt={tech.name}
-                      width={80}
-                      height={80}
-                      className="object-contain"
+                    <Icon
+                      icon={tech.iconName}
+                      width="64"
+                      height="64"
+                      style={{ color: tech.color }}
                     />
                   </div>
                   <span className="mt-3 text-sm font-medium">{tech.name}</span>
@@ -304,10 +306,11 @@ export default function CMSDevelopmentPage() {
               <div className="grid md:grid-cols-2">
                 <div className="relative aspect-square">
                   <Image
-                    src="/case-studies/cms-showcase.jpg"
+                    src="/projects/portfolio3.jpeg"
                     alt="CMS development case study"
                     fill
                     className="object-cover"
+                    priority
                   />
                 </div>
                 <div className="p-8">
