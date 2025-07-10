@@ -1,6 +1,7 @@
+import { Mail, MapPin, Phone } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
-import { FaFacebookF, FaLinkedinIn, FaGithub, FaYoutube } from "react-icons/fa";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { FaFacebookF, FaGithub, FaLinkedinIn, FaYoutube } from "react-icons/fa";
 
 export function Footer() {
   const currentYear = new Date().getFullYear();
@@ -11,7 +12,7 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-12 md:grid-cols-2 lg:grid-cols-4">
           {/* Company Info */}
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-white">herdoydev</h3>
+            <Image src="/logo_light.png" alt="logo" width={180} height={30} />
             <p className="text-gray-400">
               A premium web development agency crafting digital experiences that
               drive results.
