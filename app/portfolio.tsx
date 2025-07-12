@@ -1,68 +1,68 @@
-import { ArrowRight, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { ArrowRight, ExternalLink } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 
 const projects = [
   {
     id: 1,
-    title: "E-Commerce Platform",
+    title: "Talentz Freelance Platform",
     description:
       "A high-performance online store with custom checkout flow and inventory management.",
     tags: ["Next.js", "Shopify", "Tailwind CSS"],
     image: "/projects/portfolio1.jpeg",
-    link: "https://example.com",
-    category: "E-Commerce",
+    link: "https://findtalentz.com/",
+    category: "Freelance Platform",
   },
   {
     id: 2,
-    title: "SaaS Dashboard",
+    title: "E-commerce platform",
     description:
       "Data-rich analytics dashboard with real-time updates and custom visualizations.",
     tags: ["React", "Node.js", "D3.js"],
     image: "/projects/portfolio2.jpeg",
-    link: "https://example.com",
-    category: "Web Application",
+    link: "https://herdoydev.xyz",
+    category: "E-commerce",
   },
   {
     id: 3,
-    title: "Corporate Website",
+    title: "Web Application",
     description:
       "Modern, content-driven website with CMS integration for easy updates.",
     tags: ["Next.js", "Contentful", "Framer Motion"],
     image: "/projects/portfolio3.jpeg",
-    link: "https://example.com",
-    category: "Website",
+    link: "https://hk-issue-tracker.netlify.app",
+    category: "Web App",
   },
   {
     id: 4,
-    title: "Mobile Web App",
+    title: "Website Game Hub",
     description:
       "Progressive web app with offline capabilities and push notifications.",
     tags: ["PWA", "Firebase", "Service Workers"],
-    image: "/projects/portfolio1.jpeg",
-    link: "https://example.com",
-    category: "Mobile",
+    image: "/projects/portfolio4.jpeg",
+    link: "https://hk-game-hub.netlify.app",
+    category: "Website",
   },
   {
     id: 5,
-    title: "Headless CMS Implementation",
+    title: "Web Application",
     description:
       "Decoupled frontend with Strapi CMS backend for omnichannel content delivery.",
     tags: ["Strapi", "GraphQL", "React"],
-    image: "/projects/portfolio2.jpeg",
-    link: "https://example.com",
-    category: "Architecture",
+    image: "/projects/portfolio5.jpeg",
+    link: "https://hy-shifts.netlify.app",
+    category: "Web App",
   },
   {
     id: 6,
-    title: "Web Performance Overhaul",
+    title: "Pet Shipping Website",
     description:
       "Optimized existing website achieving 95+ Lighthouse scores across all metrics.",
     tags: ["Performance", "Optimization", "Core Web Vitals"],
-    image: "/projects/portfolio3.jpeg",
-    link: "https://example.com",
-    category: "Optimization",
+    image: "/projects/portfolio6.jpeg",
+    link: "https://pet-shipping.netlify.app",
+    category: "Web App",
   },
 ];
 
