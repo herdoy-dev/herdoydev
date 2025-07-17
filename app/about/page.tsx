@@ -5,27 +5,29 @@ import Image from "next/image";
 import Link from "next/link";
 
 export const metadata = {
-  title: "About Us | herdoydev - Web Development Agency",
+  title:
+    "About Our Web Development Agency | herdoydev - React & Next.js Experts",
   description:
-    "Learn about herdoydev - our mission, values, and the team behind your premium web development solutions.",
+    "Meet the team behind 100+ successful web projects. We combine technical excellence with business strategy to deliver results.",
   keywords: [
-    "web development agency",
-    "about our company",
-    "development team",
-    "herdoydev story",
-    "web design experts",
+    "web development team",
+    "about our developers",
+    "React.js experts",
+    "Next.js specialists",
+    "web agency story",
+    "herdoydev founders",
   ],
   openGraph: {
-    title: "About Us | herdoydev - Web Development Agency",
+    title: "About Our Web Development Team | herdoydev",
     description:
-      "Meet the team and learn what makes herdoydev different in the web development industry.",
+      "5+ years building high-performance websites with React, Next.js and Node.js. 98% client satisfaction rate.",
     url: "https://herdoydev.com/about",
     images: [
       {
         url: "https://herdoydev.com/og-about.jpg",
         width: 1200,
         height: 630,
-        alt: "herdoydev Team",
+        alt: "herdoydev development team at work",
       },
     ],
   },
@@ -33,9 +35,9 @@ export const metadata = {
 
 const stats = [
   { id: 1, name: "Projects delivered", value: "100+", icon: Briefcase },
-  { id: 2, name: "Satisfied clients", value: "85+", icon: Users },
+  { id: 2, name: "Client satisfaction", value: "98%", icon: Users },
   { id: 3, name: "Countries served", value: "15+", icon: Globe },
-  { id: 4, name: "Industry awards", value: "5", icon: Award },
+  { id: 4, name: "Tech certifications", value: "12", icon: Award },
 ];
 
 const teamMembers = [
@@ -43,43 +45,48 @@ const teamMembers = [
     name: "Herdoy Almamun",
     role: "Founder & Lead Developer",
     linkedin: "https://www.linkedin.com/in/herdoydev",
-    bio: "With over 5 years of experience in web development, Herdoy specializes in React and Node.js architectures.",
+    bio: "React/Next.js specialist with 5+ years building scalable web applications. Focused on performance optimization and clean architecture.",
     image: "/herdoy.jpg",
+    expertise: ["React", "Node.js", "AWS", "Performance"],
   },
   {
     name: "Kawsar Ahamad",
     role: "UX/UI Designer",
-    bio: "Kawsar transforms complex user flows into intuitive interfaces with a focus on accessibility.",
+    bio: "Transforms complex workflows into intuitive interfaces. Specializes in conversion-focused design systems.",
     linkedin: "https://www.linkedin.com/in/kawsar-ahamad-918468188",
     image: "/kawsar.jpg",
+    expertise: ["Figma", "UI Design", "UX Research", "Prototyping"],
   },
   {
     name: "Anichur Rahman",
     role: "Full Stack Developer",
-    bio: "Anichur Rahman robust backend systems and seamless API integrations.",
+    bio: "Builds robust backend systems with TypeScript and Node.js. Database optimization expert.",
     linkedin: "https://www.linkedin.com/in/anichur-rahman-shamim-604400293",
     image: "/shamim.jpg",
+    expertise: ["Node.js", "PostgreSQL", "API Design", "DevOps"],
   },
 ];
 
 const values = [
   {
-    title: "Innovation",
-    description:
-      "We stay ahead of industry trends to deliver cutting-edge solutions.",
+    title: "Technical Excellence",
+    description: "We obsess over clean code, performance, and scalability.",
+    icon: "💻",
   },
   {
-    title: "Transparency",
-    description: "Clear communication and honest advice guide every project.",
+    title: "Business Alignment",
+    description: "Every line of code serves your strategic goals.",
+    icon: "📈",
   },
   {
-    title: "Excellence",
-    description: "We're committed to the highest standards in code and design.",
+    title: "Transparent Process",
+    description: "Weekly demos, no hidden fees, clear communication.",
+    icon: "🔍",
   },
   {
-    title: "Collaboration",
-    description:
-      "Your vision combined with our expertise creates exceptional results.",
+    title: "Continuous Learning",
+    description: "We stay ahead of industry trends so you don't have to.",
+    icon: "🎓",
   },
 ];
 
@@ -90,29 +97,35 @@ export default function AboutPage() {
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
         <meta name="keywords" content={metadata.keywords.join(", ")} />
+        <link rel="canonical" href="https://herdoydev.com/about" />
       </Head>
 
       <main>
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-b from-blue-50 to-white py-24">
+        <section className="relative bg-gradient-to-b from-blue-50 to-white py-28">
           <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl text-center">
+            <div className="mx-auto max-w-4xl text-center">
               <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-                Our Story
+                Since 2018
               </span>
               <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
-                Building Digital Excellence Since 2018
+                <span className="block">Web Development</span>
+                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                  Done Right
+                </span>
               </h1>
-              <p className="mt-4 text-lg text-gray-600">
-                Combining technical expertise with creative vision to deliver
-                exceptional web solutions.
+              <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
+                We&apos;re a team of React and Next.js specialists building
+                websites that <strong>load faster</strong>,{" "}
+                <strong>convert better</strong>, and{" "}
+                <strong>scale effortlessly</strong>.
               </p>
             </div>
           </div>
         </section>
 
         {/* About Content */}
-        <section className="py-16 bg-white">
+        <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
               {/* Image Column */}
@@ -120,16 +133,17 @@ export default function AboutPage() {
                 <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-gray-100">
                   <Image
                     src="/about/team-working.jpeg"
-                    alt="herdoydev team working together"
+                    alt="herdoydev development team collaborating on code review"
                     width={800}
                     height={600}
                     className="h-full w-full object-cover"
+                    priority
                   />
                 </div>
                 <div className="absolute -bottom-8 -right-8 hidden lg:block">
                   <div className="rounded-2xl bg-blue-600 p-6 text-white shadow-xl">
                     <h3 className="text-2xl font-bold">5+ Years</h3>
-                    <p className="mt-1 text-sm">Industry Experience</p>
+                    <p className="mt-1 text-sm">Building Web Excellence</p>
                   </div>
                 </div>
               </div>
@@ -137,20 +151,25 @@ export default function AboutPage() {
               {/* Content Column */}
               <div>
                 <h2 className="text-3xl font-bold tracking-tight mb-6">
-                  Who We Are
+                  More Than Just Developers
                 </h2>
                 <div className="space-y-6">
                   <p className="text-lg text-gray-600">
-                    Founded by a team of passionate developers and designers,
-                    herdoydev has grown from a small studio to a trusted partner
-                    for businesses worldwide. Our approach blends cutting-edge
-                    technology with user-centered design principles.
+                    Founded in 2018, we&apos;ve evolved from a freelance
+                    collective to a trusted web development partner for startups
+                    and enterprises worldwide. What began as a passion for
+                    coding has grown into a full-service agency with one goal:{" "}
+                    <strong>
+                      delivering measurable business results through technology
+                    </strong>
+                    .
                   </p>
                   <p className="text-lg text-gray-600">
-                    What sets us apart is our commitment to understanding your
-                    unique challenges before writing a single line of code. We
-                    believe great digital products emerge from collaboration,
-                    transparency, and shared goals.
+                    Unlike typical agencies, we combine{" "}
+                    <strong>deep technical expertise</strong> with{" "}
+                    <strong>business strategy</strong>. Every project starts
+                    with understanding your KPIs, competitive landscape, and
+                    growth objectives.
                   </p>
                 </div>
 
@@ -177,9 +196,9 @@ export default function AboutPage() {
                 </div>
 
                 <div className="mt-12">
-                  <Button size="lg" asChild>
-                    <Link href="/contact" className="group">
-                      Get to Know Us
+                  <Button size="lg" asChild className="group">
+                    <Link href="/case-studies" className="group">
+                      See Our Client Results
                       <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                     </Link>
                   </Button>
@@ -190,27 +209,28 @@ export default function AboutPage() {
         </section>
 
         {/* Our Values */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-20 bg-gray-50">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl text-center mb-16">
               <span className="inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-                Our Principles
+                How We Work
               </span>
               <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
-                Core Values That Drive Us
+                Our Core Principles
               </h2>
               <p className="mt-4 text-lg text-gray-600">
-                These fundamental beliefs shape everything we do at herdoydev.
+                The foundation of every project we undertake
               </p>
             </div>
 
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
               {values.map((value, index) => (
-                <div key={index} className="bg-white p-6 rounded-xl shadow-sm">
-                  <div className="text-4xl font-bold text-blue-600 mb-4">
-                    0{index + 1}
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{value.title}</h3>
+                <div
+                  key={index}
+                  className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
+                >
+                  <div className="text-3xl mb-4">{value.icon}</div>
+                  <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
                   <p className="text-gray-600">{value.description}</p>
                 </div>
               ))}
@@ -219,87 +239,87 @@ export default function AboutPage() {
         </section>
 
         {/* Team Section */}
-        <section className="py-16 bg-white">
+        <section className="py-20 bg-white">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl text-center mb-16">
               <span className="inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
                 Meet The Team
               </span>
               <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
-                The Minds Behind Your Digital Success
+                The Experts Behind Your Project
               </h2>
               <p className="mt-4 text-lg text-gray-600">
-                Our diverse team brings together expertise in development,
-                design, and strategy.
+                Senior-level talent dedicated to your success
               </p>
             </div>
 
-            <div className="flex items-center justify-center">
-              <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3 max-w-[900px]">
-                {teamMembers.map((member) => (
-                  <div
-                    key={member.name}
-                    className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl"
-                  >
-                    <div className="relative aspect-[4/5] overflow-hidden">
-                      <Image
-                        src={member.image}
-                        alt={member.name}
-                        width={400}
-                        height={500}
-                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                      />
-                      {/* Permanent dark overlay with reduced opacity */}
-                      <div className="absolute inset-0 bg-black/20" />
-                      {/* Additional overlay on hover */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    </div>
-                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <h3 className="text-xl font-bold">{member.name}</h3>
-                      <p className="text-primary font-semibold">
-                        {member.role}
-                      </p>
-                    </div>
-                    <div className="absolute inset-0 flex items-end p-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                      <div className="bg-white/90 backdrop-blur-sm p-4 rounded-lg">
-                        <p className="text-gray-800 text-sm">{member.bio}</p>
-                        <div className="mt-3 flex space-x-3">
-                          <Link
-                            href={member.linkedin}
-                            target="_blank"
-                            className="text-blue-600 hover:text-blue-800"
-                          >
-                            <svg
-                              className="h-5 w-5"
-                              fill="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
-                            </svg>
-                          </Link>
-                        </div>
-                      </div>
-                    </div>
+            <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
+              {teamMembers.map((member) => (
+                <div
+                  key={member.name}
+                  className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl"
+                >
+                  <div className="relative aspect-square overflow-hidden">
+                    <Image
+                      src={member.image}
+                      alt={member.name}
+                      width={400}
+                      height={400}
+                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/10 to-transparent" />
                   </div>
-                ))}
-              </div>
+                  <div className="p-6">
+                    <h3 className="text-xl font-bold">{member.name}</h3>
+                    <p className="text-blue-600 font-semibold mb-3">
+                      {member.role}
+                    </p>
+                    <p className="text-gray-600 mb-4">{member.bio}</p>
+
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {member.expertise.map((skill) => (
+                        <span
+                          key={skill}
+                          className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700"
+                        >
+                          {skill}
+                        </span>
+                      ))}
+                    </div>
+
+                    <Link
+                      href={member.linkedin}
+                      target="_blank"
+                      className="inline-flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium"
+                    >
+                      Connect on LinkedIn
+                      <ArrowRight className="ml-1 h-4 w-4" />
+                    </Link>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-blue-600 text-white">
+        <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-500 text-white">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6">
-              Ready to Work With Us?
+              Ready to Build Something Great?
             </h2>
             <p className="text-xl mb-8 max-w-3xl mx-auto">
-              Let&apos;s discuss how we can help you achieve your business goals
-              through exceptional web solutions.
+              Get a free 30-minute consultation with our technical lead to
+              discuss your project.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button asChild variant="secondary" size="lg">
-                <Link href="/contact">Get in Touch</Link>
+              <Button
+                asChild
+                variant="secondary"
+                size="lg"
+                className="bg-white text-blue-600 hover:bg-gray-100"
+              >
+                <Link href="/contact">Schedule Call</Link>
               </Button>
               <Button
                 asChild
@@ -307,7 +327,7 @@ export default function AboutPage() {
                 size="lg"
                 className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600"
               >
-                <Link href="/portfolio">See Our Work</Link>
+                <Link href="/process">Our Process</Link>
               </Button>
             </div>
           </div>

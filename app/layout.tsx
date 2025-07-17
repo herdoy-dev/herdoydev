@@ -1,19 +1,9 @@
 import Navbar from "@/components/Navbar";
 import "@radix-ui/themes/styles.css";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Poppins } from "next/font/google";
+import { Poppins } from "next/font/google";
 import { Footer } from "./footer";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -21,29 +11,46 @@ const poppins = Poppins({
   weight: ["400", "600", "700"],
 });
 
+// SEO Metadata
 export const metadata: Metadata = {
   title: {
-    default: "herdoydev | Premium Web Development Solutions",
-    template: "%s | herdoydev",
+    default: "Hire Web Developer | Custom Websites & Apps | herdoydev",
+    template: "%s | herdoydev - Web Development Experts",
   },
   description:
-    "Transform your digital presence with herdoydev - a leading web development agency specializing in high-performance websites, e-commerce solutions, and custom web applications.",
+    "Top-rated web development agency. Hire expert developers for React, Next.js, Node.js, and custom web applications. 100% client satisfaction.",
   keywords: [
-    "web development agency",
-    "custom website development",
-    "e-commerce solutions",
-    "react next.js experts",
-    "seo optimized websites",
-    "enterprise web applications",
-    "headless CMS development",
+    // Hiring Intent
+    "hire web developer",
+    "freelance web developer",
+    "web developer for hire",
+
+    // Technologies
+    "React developer",
+    "Next.js expert",
+    "Node.js developer",
+    "full-stack developer",
+    "JavaScript developer",
+    "TypeScript developer",
+    "Python web developer",
+
+    // Services
+    "e-commerce development",
+    "custom web application",
+    "website redesign",
     "responsive web design",
-    "performance optimization",
-    "web development consultancy",
+    "CMS development",
+    "headless CMS",
+
+    // Business Keywords
+    "web development agency",
+    "offshore developers",
+    "affordable web development",
   ],
   openGraph: {
-    title: "herdoydev | Premium Web Development Solutions",
+    title: "Hire Expert Web Developers | Premium Development Services",
     description:
-      "Partner with herdoydev for cutting-edge web development services that drive results. From concept to deployment, we deliver exceptional digital experiences.",
+      "Need a professional web developer? We specialize in React, Next.js, and scalable web solutions. Free consultation available.",
     url: "https://herdoydev.com",
     siteName: "herdoydev",
     type: "website",
@@ -52,18 +59,18 @@ export const metadata: Metadata = {
         url: "https://herdoydev.com/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "herdoydev - Web Development Agency",
+        alt: "herdoydev team building modern web applications",
       },
     ],
     locale: "en_US",
   },
   twitter: {
     card: "summary_large_image",
-    title: "herdoydev | Premium Web Development Solutions",
+    title: "herdoydev | Web Development Experts",
     description:
-      "Expert web development services tailored to your business needs. Let's build something remarkable together.",
+      "Building fast, scalable web applications with React, Next.js, and modern tech stacks.",
     creator: "@herdoydev",
-    images: ["https://herdoydev.com/twitter-image.jpg"],
+    images: ["https://herdoydev.com/twitter-card.jpg"],
   },
   icons: {
     icon: "/favicon.ico",
@@ -85,25 +92,49 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  verification: {
-    google: "your-google-verification-code",
-    yandex: "your-yandex-verification-code",
-  },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" className="scroll-smooth">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased bg-white text-gray-900`}
+        className={`${poppins.variable} antialiased bg-white text-gray-900`}
       >
         <Navbar />
-        {children}
+        <main className="min-h-[calc(100vh-140px)]">{children}</main>
         <Footer />
+
+        {/* Schema.org JSON-LD for SEO */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "WebDevelopmentCompany",
+              name: "herdoydev",
+              url: "https://herdoydev.com",
+              logo: "https://herdoydev.com/logo.png",
+              description:
+                "Professional web development services for businesses and startups.",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Your City",
+                addressRegion: "Your State",
+                postalCode: "00000",
+                addressCountry: "Your Country",
+              },
+              offers: {
+                "@type": "Service",
+                name: "Web Development",
+                description: "Custom website and application development.",
+              },
+            }),
+          }}
+        />
       </body>
     </html>
   );
