@@ -2,6 +2,7 @@ import Navbar from "@/components/Navbar";
 import "@radix-ui/themes/styles.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
+import Script from "next/script";
 import { Footer } from "./footer";
 import "./globals.css";
 
@@ -101,6 +102,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
+      <head>
+        <Script
+          async
+          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7106488480723857"
+          crossOrigin="anonymous"
+          strategy="afterInteractive"
+        />
+      </head>
       <body
         className={`${poppins.variable} antialiased bg-white text-gray-900`}
       >
