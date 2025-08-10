@@ -14,7 +14,7 @@ export default function ContactPage() {
       </Head>
 
       <main>
-        <section className="relative bg-gradient-to-b from-blue-50 to-white py-24">
+        <section className="relative py-24">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl text-center">
               <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
@@ -31,7 +31,7 @@ export default function ContactPage() {
           </div>
         </section>
         <Contact />
-        <section className="py-16 bg-gray-50">
+        <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="rounded-2xl overflow-hidden shadow-lg">
               <iframe

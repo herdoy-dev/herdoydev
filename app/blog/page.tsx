@@ -122,7 +122,7 @@ export default function BlogPage() {
 
       <main>
         {/* Blog Hero */}
-        <section className="relative bg-gradient-to-b from-blue-50 to-white py-24">
+        <section className="relative py-24">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl text-center">
               <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
@@ -140,7 +140,7 @@ export default function BlogPage() {
         </section>
 
         {/* Featured Post */}
-        <section className="py-16 bg-white">
+        <section className="py-16">
           <div className="container mx-auto px-4">
             <h2 className="text-2xl font-bold mb-8">Featured Post</h2>
             <div className="grid gap-8 lg:grid-cols-2">
@@ -179,7 +179,7 @@ export default function BlogPage() {
         </section>
 
         {/* Blog Content */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="grid gap-12 lg:grid-cols-4">
               {/* Categories Sidebar */}
@@ -299,7 +299,7 @@ export default function BlogPage() {
         </section>
 
         {/* Newsletter CTA */}
-        <section className="py-16 bg-white">
+        <section className="py-16 bg-gray-950">
           <div className="container mx-auto px-4 max-w-4xl text-center">
             <h2 className="text-2xl font-bold mb-4">Stay Updated</h2>
             <p className="text-gray-600 mb-8 max-w-2xl mx-auto">

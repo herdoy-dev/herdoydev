@@ -1,13 +1,5 @@
 "use client";
-import { Button } from "@/components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
-import { Menu, X } from "lucide-react";
+
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -27,89 +19,126 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-white/95 backdrop-blur-lg supports-[backdrop-filter]:bg-white/80">
-      <div className="container mx-auto flex h-16 items-center justify-between px-4">
+    <header
+      className="
+        fixed top-4 left-0 right-0 z-50
+         bg-white/30 dark:bg-gray-900/30
+        backdrop-blur-md
+        border border-white/30 dark:border-gray-700/50 rounded-full
+        shadow-md
+        max-w-7xl md:mx-auto
+        px-4 mx-2
+      "
+    >
+      <div className="flex items-center justify-between h-16 max-w-7xl mx-auto">
         {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2 text-2xl font-bold"
+          className="flex items-center gap-2 text-2xl font-bold text-gray-900 dark:text-white"
           aria-label="herdoydev homepage"
+          onClick={() => setMobileMenuOpen(false)}
         >
-          <Image src="/logo.png" alt="logo" width={180} height={30} />
+          <Image src="/logo_light.png" alt="logo" width={120} height={30} />
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden items-center gap-1 md:flex">
+        <nav className="hidden md:flex items-center gap-2">
           {navLinks.map((link) => (
-            <Button
+            <Link
               key={link.name}
-              asChild
-              variant="ghost"
-              className={`rounded-lg px-4 py-2 text-sm font-medium transition-colors ${
-                pathname === link.href
-                  ? "bg-primary/10 text-primary"
-                  : "text-muted-foreground hover:bg-accent hover:text-accent-foreground"
-              }`}
+              href={link.href}
+              className={`
+                rounded-full px-4 py-2 text-sm font-medium transition-colors
+                ${
+                  pathname === link.href
+                    ? "bg-blue-600/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400"
+                    : "text-gray-800 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white"
+                }
+              `}
+              onClick={() => setMobileMenuOpen(false)}
             >
-              <Link href={link.href}>{link.name}</Link>
-            </Button>
+              {link.name}
+            </Link>
           ))}
-          <Button asChild className="ml-2 rounded-lg">
-            <Link href="/contact">Get Started</Link>
-          </Button>
+          <Link
+            href="/contact"
+            className="ml-2 rounded-full bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Get Started
+          </Link>
         </nav>
 
-        {/* Mobile Navigation */}
-        <div className="flex md:hidden">
-          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
-            <SheetTrigger asChild>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="hover:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
-                aria-label="Toggle menu"
-              >
-                {mobileMenuOpen ? (
-                  <X className="h-6 w-6" />
-                ) : (
-                  <Menu className="h-6 w-6" />
-                )}
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="right" className="w-full max-w-xs px-2">
-              <SheetHeader className="text-left">
-                <SheetTitle className="text-2xl font-bold">
-                  herdoy<span className="text-primary">dev</span>
-                </SheetTitle>
-              </SheetHeader>
-              <div className="mt-8 flex flex-col space-y-2">
-                {navLinks.map((link) => (
-                  <Button
-                    key={link.name}
-                    asChild
-                    variant="ghost"
-                    className={`justify-start px-4 py-3 text-base font-medium ${
-                      pathname === link.href
-                        ? "bg-primary/10 text-primary"
-                        : "text-muted-foreground"
-                    }`}
-                    onClick={() => setMobileMenuOpen(false)}
-                  >
-                    <Link href={link.href}>{link.name}</Link>
-                  </Button>
-                ))}
-                <Button
-                  asChild
-                  className="mt-4 justify-start px-4 py-3 text-base font-medium"
-                  onClick={() => setMobileMenuOpen(false)}
-                >
-                  <Link href="/contact">Get Started</Link>
-                </Button>
-              </div>
-            </SheetContent>
-          </Sheet>
-        </div>
+        {/* Mobile menu button */}
+        <button
+          className="md:hidden p-2 rounded-md text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+          aria-label="Toggle menu"
+          aria-expanded={mobileMenuOpen}
+        >
+          {mobileMenuOpen ? (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
+          ) : (
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              className="h-6 w-6"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                d="M4 8h16M4 16h16"
+              />
+            </svg>
+          )}
+        </button>
       </div>
+
+      {/* Mobile Menu */}
+      {mobileMenuOpen && (
+        <nav className="md:hidden mt-2 px-4 pb-4 space-y-2 bg-white/90 dark:bg-gray-900/90 rounded-b-xl backdrop-blur-md border-t border-gray-200 dark:border-gray-700">
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              href={link.href}
+              className={`
+                block rounded-md px-4 py-3 font-medium transition-colors
+                ${
+                  pathname === link.href
+                    ? "bg-blue-600/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400"
+                    : "text-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+                }
+              `}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              {link.name}
+            </Link>
+          ))}
+          <Link
+            href="/contact"
+            className="block rounded-full bg-blue-600 px-4 py-3 text-center font-medium text-white hover:bg-blue-700"
+            onClick={() => setMobileMenuOpen(false)}
+          >
+            Get Started
+          </Link>
+        </nav>
+      )}
     </header>
   );
 }

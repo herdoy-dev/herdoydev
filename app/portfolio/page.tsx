@@ -145,7 +145,7 @@ export default function PortfolioPage() {
 
       <main>
         {/* Portfolio Hero */}
-        <section className="relative bg-gradient-to-b from-blue-50 to-white py-24">
+        <section className="relative py-24">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl text-center">
               <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
@@ -163,7 +163,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* Portfolio Grid */}
-        <section className="py-16 bg-white">
+        <section className="py-16">
           <div className="container mx-auto px-4">
             {/* Category Filters */}
             <div className="flex flex-wrap justify-center gap-3 mb-12">
@@ -269,7 +269,7 @@ export default function PortfolioPage() {
         </section>
 
         {/* Testimonial Highlight */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16">
           <div className="container mx-auto px-4 max-w-4xl">
             <blockquote className="text-center">
               <p className="text-xl italic text-gray-700 mb-6">

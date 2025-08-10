@@ -1,3 +1,4 @@
+import ThemedCard from "@/components/themed-card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Award, Briefcase, Globe, Users } from "lucide-react";
 import Head from "next/head";
@@ -102,7 +103,7 @@ export default function AboutPage() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-b from-blue-50 to-white py-28">
+        <section className="relative py-28">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-4xl text-center">
               <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
@@ -125,7 +126,7 @@ export default function AboutPage() {
         </section>
 
         {/* About Content */}
-        <section className="py-20 bg-white">
+        <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
               {/* Image Column */}
@@ -209,7 +210,7 @@ export default function AboutPage() {
         </section>
 
         {/* Our Values */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl text-center mb-16">
               <span className="inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
@@ -225,21 +226,18 @@ export default function AboutPage() {
 
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
               {values.map((value, index) => (
-                <div
-                  key={index}
-                  className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
-                >
+                <ThemedCard key={index}>
                   <div className="text-3xl mb-4">{value.icon}</div>
                   <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
                   <p className="text-gray-600">{value.description}</p>
-                </div>
+                </ThemedCard>
               ))}
             </div>
           </div>
         </section>
 
         {/* Team Section */}
-        <section className="py-20 bg-white">
+        <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-3xl text-center mb-16">
               <span className="inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
@@ -255,10 +253,7 @@ export default function AboutPage() {
 
             <div className="grid gap-12 md:grid-cols-2 lg:grid-cols-3 max-w-6xl mx-auto">
               {teamMembers.map((member) => (
-                <div
-                  key={member.name}
-                  className="group relative overflow-hidden rounded-2xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl"
-                >
+                <ThemedCard key={member.name} className="!p-0 overflow-hidden">
                   <div className="relative aspect-square overflow-hidden">
                     <Image
                       src={member.image}
@@ -296,7 +291,7 @@ export default function AboutPage() {
                       <ArrowRight className="ml-1 h-4 w-4" />
                     </Link>
                   </div>
-                </div>
+                </ThemedCard>
               ))}
             </div>
           </div>

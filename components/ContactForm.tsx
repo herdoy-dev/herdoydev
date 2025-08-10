@@ -18,18 +18,14 @@ import * as z from "zod";
 
 // Define form schema
 const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-  email: z.string().email({
-    message: "Please enter a valid email address.",
-  }),
-  subject: z.string().min(5, {
-    message: "Subject must be at least 5 characters.",
-  }),
-  message: z.string().min(10, {
-    message: "Message must be at least 10 characters.",
-  }),
+  name: z.string().min(2, { message: "Name must be at least 2 characters." }),
+  email: z.string().email({ message: "Please enter a valid email address." }),
+  subject: z
+    .string()
+    .min(5, { message: "Subject must be at least 5 characters." }),
+  message: z
+    .string()
+    .min(10, { message: "Message must be at least 10 characters." }),
 });
 
 export function ContactForm() {
@@ -43,24 +39,18 @@ export function ContactForm() {
     },
   });
 
-  // Form submit handler
   async function onSubmit(values: z.infer<typeof formSchema>) {
     try {
-      // Replace with your actual form submission logic
       await fetch("/api/contact", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify(values),
       });
-
       toast.success("Message sent successfully!");
-
       form.reset();
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
-      console.log(error);
+      console.error(error);
     }
   }
 
@@ -75,11 +65,7 @@ export function ContactForm() {
               <FormItem>
                 <FormLabel>Full Name</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="John Doe"
-                    className="bg-white"
-                    {...field}
-                  />
+                  <Input placeholder="John Doe" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -92,11 +78,7 @@ export function ContactForm() {
               <FormItem>
                 <FormLabel>Email</FormLabel>
                 <FormControl>
-                  <Input
-                    placeholder="john@example.com"
-                    className="bg-white"
-                    {...field}
-                  />
+                  <Input placeholder="john@example.com" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -111,11 +93,7 @@ export function ContactForm() {
             <FormItem>
               <FormLabel>Subject</FormLabel>
               <FormControl>
-                <Input
-                  placeholder="Project Inquiry"
-                  className="bg-white"
-                  {...field}
-                />
+                <Input placeholder="Project Inquiry" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -132,7 +110,6 @@ export function ContactForm() {
                 <Textarea
                   placeholder="Tell us about your project..."
                   rows={5}
-                  className="bg-white"
                   {...field}
                 />
               </FormControl>
@@ -141,12 +118,12 @@ export function ContactForm() {
           )}
         />
 
-        <div className="flex items-center space-x-4">
-          <Button type="submit" size="lg" className="group">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4">
+          <Button type="submit" size="lg" className="group mb-2 sm:mb-0">
             Send Message
             <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Button>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-400">
             We&apos;ll get back to you within 24 hours
           </p>
         </div>

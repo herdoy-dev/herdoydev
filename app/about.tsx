@@ -12,12 +12,12 @@ const stats = [
 
 export function About() {
   return (
-    <section className="py-24 bg-white" id="about">
+    <section className="py-24" id="about">
       <div className="container mx-auto px-4">
         <div className="grid gap-16 lg:grid-cols-2 lg:gap-24">
           {/* Image Column */}
           <div className="relative">
-            <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl bg-gray-100">
+            <div className="aspect-[4/3] w-full overflow-hidden rounded-2xl">
               <Image
                 src="/about/team-working.jpeg"
                 alt="herdoydev web development team collaborating on project"
@@ -44,7 +44,7 @@ export function About() {
               Web Development Experts <br className="hidden sm:inline" />
               <span className="text-blue-600">Focused on Your Growth</span>
             </h2>
-            <p className="mt-6 text-lg text-gray-600">
+            <p className="mt-6 text-lg text-gray-400">
               We&apos;re not just coders - we&apos;re strategic partners who
               build
               <strong> high-converting websites</strong> and
@@ -53,12 +53,12 @@ export function About() {
             </p>
 
             <div className="mt-8 space-y-6">
-              <p className="text-gray-600">
+              <p className="text-gray-400">
                 Since 2018, we&apos;ve helped startups and enterprises transform
                 their digital presence. Our full-stack expertise means we handle
                 everything from UI/UX design to backend architecture and DevOps.
               </p>
-              <p className="text-gray-600">
+              <p className="text-gray-400">
                 <strong>94% of our clients</strong> see measurable business
                 improvements within 3 months of launch. We achieve this through
                 performance-optimized code and data-driven design.
@@ -69,14 +69,14 @@ export function About() {
             <div className="mt-12 grid grid-cols-2 gap-8">
               {stats.map((stat) => (
                 <div key={stat.id} className="flex items-start">
-                  <div className="rounded-lg bg-blue-50 p-3">
-                    <stat.icon className="h-6 w-6 text-blue-600" />
+                  <div className="rounded-lg bg-blue-800 p-3">
+                    <stat.icon className="h-6 w-6 text-blue-400" />
                   </div>
                   <div className="ml-4">
-                    <h3 className="text-2xl font-bold text-gray-900">
+                    <h3 className="text-2xl font-bold text-gray-100">
                       {stat.value}
                     </h3>
-                    <p className="mt-1 text-sm text-gray-600">{stat.name}</p>
+                    <p className="mt-1 text-sm text-gray-400">{stat.name}</p>
                   </div>
                 </div>
               ))}
@@ -96,31 +96,31 @@ export function About() {
           </div>
         </div>
 
-        {/* Value Proposition Cards */}
+        {/* Value Proposition Cards with Glass Effect */}
         <div className="mt-24 grid gap-12 md:grid-cols-3">
-          <div className="rounded-xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
-            <h3 className="text-xl font-semibold text-gray-900">
+          <div className="rounded-xl border border-gray-700 backdrop-blur-md p-6 shadow-sm hover:shadow-md transition-shadow">
+            <h3 className="text-xl font-semibold text-gray-100">
               End-to-End Solutions
             </h3>
-            <p className="mt-4 text-gray-600">
+            <p className="mt-4 text-gray-300">
               From initial strategy to post-launch optimization, we handle every
               aspect of web development so you can focus on your business.
             </p>
           </div>
-          <div className="rounded-xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
-            <h3 className="text-xl font-semibold text-gray-900">
+          <div className="rounded-xl border border-gray-700 backdrop-blur-md p-6 shadow-sm hover:shadow-md transition-shadow">
+            <h3 className="text-xl font-semibold text-gray-100">
               Performance First
             </h3>
-            <p className="mt-4 text-gray-600">
+            <p className="mt-4 text-gray-300">
               Our websites load 3x faster than industry averages, directly
               improving SEO rankings and conversion rates.
             </p>
           </div>
-          <div className="rounded-xl border border-gray-100 p-6 shadow-sm hover:shadow-md transition-shadow">
-            <h3 className="text-xl font-semibold text-gray-900">
+          <div className="rounded-xl border border-gray-700 backdrop-blur-md p-6 shadow-sm hover:shadow-md transition-shadow">
+            <h3 className="text-xl font-semibold text-gray-100">
               Transparent Process
             </h3>
-            <p className="mt-4 text-gray-600">
+            <p className="mt-4 text-gray-300">
               Weekly updates, dedicated project managers, and clear pricing - no
               surprises, just results.
             </p>

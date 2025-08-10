@@ -78,7 +78,7 @@ const categories = [
 
 export function Portfolio() {
   return (
-    <section className="py-24 bg-gray-50" id="work">
+    <section className="py-24" id="work">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-3xl text-center mb-16">
           <span className="inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">

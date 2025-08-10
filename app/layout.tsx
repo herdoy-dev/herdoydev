@@ -5,6 +5,7 @@ import { Poppins } from "next/font/google";
 import Script from "next/script";
 import { Footer } from "./footer";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const poppins = Poppins({
   variable: "--font-poppins",
@@ -101,7 +102,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className="scroll-smooth">
+    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
       <head>
         <meta name="google-adsense-account" content="ca-pub-7106488480723857" />
         <Script
@@ -109,12 +110,18 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
       </head>
-      <body
-        className={`${poppins.variable} antialiased bg-white text-gray-900`}
-      >
-        <Navbar />
-        <main className="min-h-[calc(100vh-140px)]">{children}</main>
-        <Footer />
+      <body className={`${poppins.variable} antialiased`}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <Navbar />
+
+          <main className="min-h-[calc(100vh-140px)]">{children}</main>
+          <Footer />
+        </ThemeProvider>
 
         {/* Schema.org JSON-LD for SEO */}
         <script

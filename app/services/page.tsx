@@ -1,5 +1,6 @@
+import ThemedCard from "@/components/themed-card";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
   Code,
   Cpu,
@@ -178,7 +179,7 @@ export default function ServicesPage() {
 
       <main>
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-b from-blue-50 to-white py-28">
+        <section className="relative py-28">
           <div className="container mx-auto px-4">
             <div className="mx-auto max-w-4xl text-center">
               <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
@@ -207,7 +208,7 @@ export default function ServicesPage() {
         </section>
 
         {/* Services Grid */}
-        <section className="py-20 bg-white">
+        <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
@@ -221,10 +222,7 @@ export default function ServicesPage() {
 
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {services.map((service, index) => (
-                <Card
-                  key={index}
-                  className="h-full border border-gray-200 hover:border-blue-200 transition-all hover:shadow-xl hover:-translate-y-2 group"
-                >
+                <ThemedCard key={index}>
                   <CardHeader className="pb-3">
                     <div className="flex items-center space-x-4">
                       <div className="rounded-lg bg-blue-50 p-3 group-hover:bg-blue-100 transition-colors">
@@ -261,14 +259,14 @@ export default function ServicesPage() {
                       <Link href={service.href}>{service.cta}</Link>
                     </Button>
                   </CardContent>
-                </Card>
+                </ThemedCard>
               ))}
             </div>
           </div>
         </section>
 
         {/* Process Section */}
-        <section className="py-20 bg-gray-50">
+        <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="text-center mb-16">
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
@@ -282,10 +280,7 @@ export default function ServicesPage() {
 
             <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
               {processSteps.map((step, index) => (
-                <div
-                  key={index}
-                  className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 hover:shadow-md transition-shadow"
-                >
+                <ThemedCard key={index}>
                   <div className="flex items-center mb-4">
                     <span className="text-3xl mr-4">{step.icon}</span>
                     <span className="text-2xl font-bold text-blue-600">
@@ -294,7 +289,7 @@ export default function ServicesPage() {
                   </div>
                   <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
                   <p className="text-gray-600">{step.description}</p>
-                </div>
+                </ThemedCard>
               ))}
             </div>
           </div>

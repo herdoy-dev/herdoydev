@@ -1,6 +1,6 @@
-import { Star, Quote, ArrowRight } from "lucide-react";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
+import { ArrowRight, Quote, Star } from "lucide-react";
 import Link from "next/link";
 
 const testimonials = [
@@ -44,53 +44,63 @@ const testimonials = [
 
 export function Testimonials() {
   return (
-    <section className="py-24 bg-gray-50" id="testimonials">
+    <section className="py-24" id="testimonials">
       <div className="container mx-auto px-4">
+        {/* Section Heading */}
         <div className="mx-auto max-w-3xl text-center mb-16">
-          <span className="inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
+          <span className="inline-block rounded-full bg-blue-900/40 px-4 py-2 text-sm font-medium text-blue-400">
             Client Voices
           </span>
-          <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
+          <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Trusted by Industry Leaders
           </h2>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-lg text-gray-300">
             Don&apos;t just take our word for it. Here&apos;s what our clients
             say about working with us.
           </p>
         </div>
 
+        {/* Testimonials Grid */}
         <div className="grid gap-8 md:grid-cols-2">
           {testimonials.map((testimonial) => (
             <div
               key={testimonial.id}
-              className="relative rounded-2xl bg-white p-8 shadow-sm transition-all hover:shadow-md"
+              className="relative rounded-2xl p-8 bg-gray-800/40 border border-gray-700 shadow-md transition-transform hover:shadow-lg hover:-translate-y-1"
             >
+              {/* Quote Icon */}
               <div className="absolute top-0 right-0 p-4 text-yellow-400">
-                <Quote className="h-8 w-8 opacity-10" />
+                <Quote className="h-8 w-8 opacity-20" />
               </div>
 
+              {/* Avatar + Name */}
               <div className="flex items-center gap-4">
-                <Avatar className="h-12 w-12">
+                <Avatar className="h-12 w-12 ring-2 ring-blue-600">
                   <AvatarImage
                     src={testimonial.avatar}
                     alt={testimonial.name}
                   />
-                  <AvatarFallback>
-                    {testimonial.name.substring(0, 2)}
+                  <AvatarFallback className="text-gray-300">
+                    {testimonial.name
+                      .split(" ")
+                      .map((n) => n[0])
+                      .join("")
+                      .substring(0, 2)}
                   </AvatarFallback>
                 </Avatar>
                 <div>
-                  <h3 className="font-semibold text-gray-900">
+                  <h3 className="font-semibold text-white">
                     {testimonial.name}
                   </h3>
-                  <p className="text-sm text-gray-600">{testimonial.role}</p>
+                  <p className="text-sm text-gray-400">{testimonial.role}</p>
                 </div>
               </div>
 
+              {/* Content */}
               <div className="mt-6">
-                <p className="text-gray-700">{testimonial.content}</p>
+                <p className="text-gray-300">{testimonial.content}</p>
               </div>
 
+              {/* Rating */}
               <div className="mt-6 flex items-center">
                 {[...Array(5)].map((_, i) => (
                   <Star
@@ -98,11 +108,11 @@ export function Testimonials() {
                     className={`h-5 w-5 ${
                       i < testimonial.rating
                         ? "text-yellow-400 fill-yellow-400"
-                        : "text-gray-300"
+                        : "text-gray-600"
                     }`}
                   />
                 ))}
-                <span className="ml-2 text-sm text-gray-600">
+                <span className="ml-2 text-sm text-gray-400">
                   {testimonial.rating}.0 rating
                 </span>
               </div>
@@ -110,9 +120,13 @@ export function Testimonials() {
           ))}
         </div>
 
+        {/* CTA */}
         <div className="mt-16 text-center">
           <Button variant="outline" size="lg" asChild>
-            <Link href="/case-studies" className="group">
+            <Link
+              href="/case-studies"
+              className="group text-blue-400 hover:text-blue-500"
+            >
               Read Case Studies
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
