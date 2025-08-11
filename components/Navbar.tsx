@@ -112,13 +112,13 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <nav className="md:hidden mt-2 px-4 pb-4 space-y-2 bg-white/90 dark:bg-gray-900/90 rounded-b-xl backdrop-blur-md border-t border-gray-200 dark:border-gray-700">
+        <nav className="md:hidden mt-2 px-4 py-4 space-y-2 bg-white/90 dark:bg-gray-900/90 rounded-2xl backdrop-blur-md border-t border-gray-700">
           {navLinks.map((link) => (
             <Link
               key={link.name}
               href={link.href}
               className={`
-                block rounded-md px-4 py-3 font-medium transition-colors
+                block rounded-full px-4 py-3 font-medium transition-colors
                 ${
                   pathname === link.href
                     ? "bg-blue-600/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400"

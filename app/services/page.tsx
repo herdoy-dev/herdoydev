@@ -1,4 +1,7 @@
+import { PageHeaderBox } from "@/components/page-header-box";
+import SectionButton from "@/components/section-button";
 import ThemedCard from "@/components/themed-card";
+import ThemedIcon from "@/components/themed-icon";
 import { Button } from "@/components/ui/button";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -45,7 +48,7 @@ export const metadata = {
 
 const services = [
   {
-    icon: <Globe className="h-8 w-8 text-blue-600" />,
+    icon: <Globe />,
     title: "Custom Website Development",
     description:
       "Bespoke websites that load in <1.5s and convert 40% better with our React/Next.js framework.",
@@ -59,7 +62,7 @@ const services = [
     href: "/contact?service=website",
   },
   {
-    icon: <LayoutTemplate className="h-8 w-8 text-blue-600" />,
+    icon: <LayoutTemplate />,
     title: "E-Commerce Development",
     description:
       "Stores with 3.2x average conversion rates using Shopify Plus and headless architectures.",
@@ -73,7 +76,7 @@ const services = [
     href: "/contact?service=ecommerce",
   },
   {
-    icon: <Code className="h-8 w-8 text-blue-600" />,
+    icon: <Code />,
     title: "Web Applications",
     description:
       "Secure apps handling 10K+ daily users with Node.js backends and React frontends.",
@@ -87,7 +90,7 @@ const services = [
     href: "/contact?service=webapp",
   },
   {
-    icon: <Smartphone className="h-8 w-8 text-blue-600" />,
+    icon: <Smartphone />,
     title: "Progressive Web Apps",
     description:
       "Mobile experiences with 85% higher engagement than traditional sites.",
@@ -101,7 +104,7 @@ const services = [
     href: "/contact?service=pwa",
   },
   {
-    icon: <Cpu className="h-8 w-8 text-blue-600" />,
+    icon: <Cpu />,
     title: "Headless CMS Solutions",
     description: "Content infrastructure that reduces publishing time by 50%.",
     features: [
@@ -114,7 +117,7 @@ const services = [
     href: "/contact?service=cms",
   },
   {
-    icon: <Zap className="h-8 w-8 text-blue-600" />,
+    icon: <Zap />,
     title: "Performance Optimization",
     description: "Websites scoring 95+ Lighthouse points within 30 days.",
     features: [
@@ -178,34 +181,28 @@ export default function ServicesPage() {
       </Head>
 
       <main>
-        {/* Hero Section */}
-        <section className="relative py-28">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-4xl text-center">
-              <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-                Web Development Experts
+        <PageHeaderBox>
+          <div className="mx-auto max-w-4xl text-center">
+            <SectionButton>Web Development Experts</SectionButton>
+            <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
+              <span className="block">High-Performance</span>
+              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                Web Development Services
               </span>
-              <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
-                <span className="block">High-Performance</span>
-                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-                  Web Development Services
-                </span>
-              </h1>
-              <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
-                We build websites and applications that outperform competitors
-                by
-                <strong> 40% in speed</strong> and{" "}
-                <strong>30% in conversions</strong>
-                using React, Next.js, and Node.js.
-              </p>
-              <div className="mt-8">
-                <Button asChild size="lg" className="animate-pulse">
-                  <Link href="/contact">Get Free Technical Consultation</Link>
-                </Button>
-              </div>
+            </h1>
+            <p className="mt-6 text-xl text-gray-400 max-w-3xl mx-auto">
+              We build websites and applications that outperform competitors by
+              <strong> 40% in speed</strong> and{" "}
+              <strong>30% in conversions</strong>
+              using React, Next.js, and Node.js.
+            </p>
+            <div className="mt-8">
+              <Button asChild size="lg" className="animate-pulse text-gray-200">
+                <Link href="/contact">Get Free Technical Consultation</Link>
+              </Button>
             </div>
           </div>
-        </section>
+        </PageHeaderBox>
 
         {/* Services Grid */}
         <section className="py-20">
@@ -214,7 +211,7 @@ export default function ServicesPage() {
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
                 Our <span className="text-blue-600">Specialized</span> Services
               </h2>
-              <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
                 Solutions trusted by SaaS companies and enterprises to scale
                 their digital presence.
               </p>
@@ -225,21 +222,21 @@ export default function ServicesPage() {
                 <ThemedCard key={index}>
                   <CardHeader className="pb-3">
                     <div className="flex items-center space-x-4">
-                      <div className="rounded-lg bg-blue-50 p-3 group-hover:bg-blue-100 transition-colors">
+                      <ThemedIcon className="bg-primary">
                         {service.icon}
-                      </div>
+                      </ThemedIcon>
                       <CardTitle className="text-xl font-semibold">
                         {service.title}
                       </CardTitle>
                     </div>
                   </CardHeader>
                   <CardContent className="pt-0">
-                    <p className="text-gray-600 mb-4">{service.description}</p>
+                    <p className="text-gray-300 mb-4">{service.description}</p>
                     <ul className="space-y-3 mb-6">
                       {service.features.map((feature, i) => (
                         <li key={i} className="flex items-start">
                           <svg
-                            className="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0"
+                            className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -251,11 +248,11 @@ export default function ServicesPage() {
                               d="M5 13l4 4L19 7"
                             />
                           </svg>
-                          <span className="text-gray-700">{feature}</span>
+                          <span className="text-gray-400">{feature}</span>
                         </li>
                       ))}
                     </ul>
-                    <Button asChild className="w-full" size="lg">
+                    <Button asChild className="w-full text-gray-200" size="lg">
                       <Link href={service.href}>{service.cta}</Link>
                     </Button>
                   </CardContent>
@@ -272,7 +269,7 @@ export default function ServicesPage() {
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
                 Our <span className="text-blue-600">6-Stage</span> Process
               </h2>
-              <p className="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+              <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
                 Transparent workflow that delivers on time and exceeds
                 expectations.
               </p>
@@ -288,7 +285,7 @@ export default function ServicesPage() {
                     </span>
                   </div>
                   <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
-                  <p className="text-gray-600">{step.description}</p>
+                  <p className="text-gray-400">{step.description}</p>
                 </ThemedCard>
               ))}
             </div>
@@ -296,7 +293,7 @@ export default function ServicesPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-500 text-white">
+        <section className="py-20 bg-card/40 backdrop-blur-2xl">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6">
               Ready for a Website That Converts?
@@ -308,18 +305,12 @@ export default function ServicesPage() {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button
                 asChild
-                variant="secondary"
+                className="border bg-transparent !text-primary border-primary"
                 size="lg"
-                className="bg-white text-blue-600 hover:bg-gray-100"
               >
                 <Link href="/contact">Get Free Audit</Link>
               </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600"
-              >
+              <Button asChild size="lg">
                 <Link href="/case-studies">See Case Studies</Link>
               </Button>
             </div>

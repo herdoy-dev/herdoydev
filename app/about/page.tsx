@@ -1,3 +1,6 @@
+import ListItem from "@/components/list-item";
+import { PageHeaderBox } from "@/components/page-header-box";
+import SectionButton from "@/components/section-button";
 import ThemedCard from "@/components/themed-card";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Award, Briefcase, Globe, Users } from "lucide-react";
@@ -35,10 +38,10 @@ export const metadata = {
 };
 
 const stats = [
-  { id: 1, name: "Projects delivered", value: "100+", icon: Briefcase },
-  { id: 2, name: "Client satisfaction", value: "98%", icon: Users },
-  { id: 3, name: "Countries served", value: "15+", icon: Globe },
-  { id: 4, name: "Tech certifications", value: "12", icon: Award },
+  { id: 1, name: "Projects delivered", value: "100+", icon: <Briefcase /> },
+  { id: 2, name: "Client satisfaction", value: "98%", icon: <Users /> },
+  { id: 3, name: "Countries served", value: "15+", icon: <Globe /> },
+  { id: 4, name: "Tech certifications", value: "12", icon: <Award /> },
 ];
 
 const teamMembers = [
@@ -102,28 +105,23 @@ export default function AboutPage() {
       </Head>
 
       <main>
-        {/* Hero Section */}
-        <section className="relative py-28">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-4xl text-center">
-              <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-                Since 2018
+        <PageHeaderBox>
+          <div className="mx-auto max-w-4xl text-center">
+            <SectionButton>Since 2018</SectionButton>
+            <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
+              <span className="block">Web Development</span>
+              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                Done Right
               </span>
-              <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
-                <span className="block">Web Development</span>
-                <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
-                  Done Right
-                </span>
-              </h1>
-              <p className="mt-6 text-xl text-gray-600 max-w-3xl mx-auto">
-                We&apos;re a team of React and Next.js specialists building
-                websites that <strong>load faster</strong>,{" "}
-                <strong>convert better</strong>, and{" "}
-                <strong>scale effortlessly</strong>.
-              </p>
-            </div>
+            </h1>
+            <p className="mt-6 text-xl text-gray-400 max-w-3xl mx-auto">
+              We&apos;re a team of React and Next.js specialists building
+              websites that <strong>load faster</strong>,{" "}
+              <strong>convert better</strong>, and{" "}
+              <strong>scale effortlessly</strong>.
+            </p>
           </div>
-        </section>
+        </PageHeaderBox>
 
         {/* About Content */}
         <section className="py-20">
@@ -155,7 +153,7 @@ export default function AboutPage() {
                   More Than Just Developers
                 </h2>
                 <div className="space-y-6">
-                  <p className="text-lg text-gray-600">
+                  <p className="text-lg text-gray-400">
                     Founded in 2018, we&apos;ve evolved from a freelance
                     collective to a trusted web development partner for startups
                     and enterprises worldwide. What began as a passion for
@@ -165,7 +163,7 @@ export default function AboutPage() {
                     </strong>
                     .
                   </p>
-                  <p className="text-lg text-gray-600">
+                  <p className="text-lg text-gray-400">
                     Unlike typical agencies, we combine{" "}
                     <strong>deep technical expertise</strong> with{" "}
                     <strong>business strategy</strong>. Every project starts
@@ -176,24 +174,14 @@ export default function AboutPage() {
 
                 {/* Stats */}
                 <div className="mt-12 grid grid-cols-2 gap-8">
-                  {stats.map((stat) => {
-                    const Icon = stat.icon;
-                    return (
-                      <div key={stat.id} className="flex items-start">
-                        <div className="rounded-lg bg-blue-50 p-3">
-                          <Icon className="h-6 w-6 text-blue-600" />
-                        </div>
-                        <div className="ml-4">
-                          <h3 className="text-2xl font-bold text-gray-900">
-                            {stat.value}
-                          </h3>
-                          <p className="mt-1 text-sm text-gray-600">
-                            {stat.name}
-                          </p>
-                        </div>
-                      </div>
-                    );
-                  })}
+                  {stats.map((stat) => (
+                    <ListItem
+                      key={stat.id}
+                      icon={stat.icon}
+                      title={stat.value}
+                      description={stat.name}
+                    />
+                  ))}
                 </div>
 
                 <div className="mt-12">
@@ -219,7 +207,7 @@ export default function AboutPage() {
               <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
                 Our Core Principles
               </h2>
-              <p className="mt-4 text-lg text-gray-600">
+              <p className="mt-4 text-lg text-gray-400">
                 The foundation of every project we undertake
               </p>
             </div>
@@ -229,7 +217,7 @@ export default function AboutPage() {
                 <ThemedCard key={index}>
                   <div className="text-3xl mb-4">{value.icon}</div>
                   <h3 className="text-xl font-semibold mb-3">{value.title}</h3>
-                  <p className="text-gray-600">{value.description}</p>
+                  <p className="text-gray-400">{value.description}</p>
                 </ThemedCard>
               ))}
             </div>
@@ -246,7 +234,7 @@ export default function AboutPage() {
               <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
                 The Experts Behind Your Project
               </h2>
-              <p className="mt-4 text-lg text-gray-600">
+              <p className="mt-4 text-lg text-gray-400">
                 Senior-level talent dedicated to your success
               </p>
             </div>
@@ -269,13 +257,13 @@ export default function AboutPage() {
                     <p className="text-blue-600 font-semibold mb-3">
                       {member.role}
                     </p>
-                    <p className="text-gray-600 mb-4">{member.bio}</p>
+                    <p className="text-gray-400 mb-4">{member.bio}</p>
 
                     <div className="flex flex-wrap gap-2 mb-4">
                       {member.expertise.map((skill) => (
                         <span
                           key={skill}
-                          className="inline-flex items-center rounded-full bg-blue-50 px-3 py-1 text-xs font-medium text-blue-700"
+                          className="inline-flex items-center rounded-full bg-gray-800 px-3 py-1 text-xs font-medium text-gray-400"
                         >
                           {skill}
                         </span>
@@ -298,7 +286,7 @@ export default function AboutPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-r from-blue-600 to-blue-500 text-white">
+        <section className="py-20 bg-card/40 backdrop-blur-2xl">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6">
               Ready to Build Something Great?
@@ -310,18 +298,12 @@ export default function AboutPage() {
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button
                 asChild
-                variant="secondary"
+                className="border bg-transparent !text-primary border-primary"
                 size="lg"
-                className="bg-white text-blue-600 hover:bg-gray-100"
               >
                 <Link href="/contact">Schedule Call</Link>
               </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="bg-transparent border-white text-white hover:bg-white hover:text-blue-600"
-              >
+              <Button asChild size="lg">
                 <Link href="/process">Our Process</Link>
               </Button>
             </div>

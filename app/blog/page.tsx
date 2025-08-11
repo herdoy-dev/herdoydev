@@ -1,9 +1,12 @@
-import Head from "next/head";
-import { CalendarDays, Clock, Tag } from "lucide-react";
+import { PageHeaderBox } from "@/components/page-header-box";
+import SectionButton from "@/components/section-button";
+import ThemedCard from "@/components/themed-card";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
-import Image from "next/image";
 import { Input } from "@/components/ui/input";
+import { CalendarDays, Clock, Tag } from "lucide-react";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
 
 export const metadata = {
   title: "Blog | herdoydev - Web Development Insights",
@@ -121,30 +124,25 @@ export default function BlogPage() {
       </Head>
 
       <main>
-        {/* Blog Hero */}
-        <section className="relative py-24">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl text-center">
-              <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-                Insights & Tutorials
-              </span>
-              <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
-                herdoydev Blog
-              </h1>
-              <p className="mt-4 text-lg text-gray-600">
-                Expert articles on web development, design patterns, and
-                industry trends.
-              </p>
-            </div>
+        <PageHeaderBox>
+          <div className="mx-auto max-w-3xl text-center">
+            <SectionButton>Insights & Tutorials</SectionButton>
+            <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
+              herdoydev Blog
+            </h1>
+            <p className="mt-4 text-lg text-gray-400">
+              Expert articles on web development, design patterns, and industry
+              trends.
+            </p>
           </div>
-        </section>
+        </PageHeaderBox>
 
         {/* Featured Post */}
         <section className="py-16">
           <div className="container mx-auto px-4">
             <h2 className="text-2xl font-bold mb-8">Featured Post</h2>
             <div className="grid gap-8 lg:grid-cols-2">
-              <div className="relative aspect-[16/9] overflow-hidden rounded-xl">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-4xl">
                 <Image
                   src={featuredPost.image}
                   alt={featuredPost.title}
@@ -157,11 +155,11 @@ export default function BlogPage() {
                   <span className="inline-flex items-center rounded-full bg-blue-100 px-3 py-1 text-xs font-medium text-blue-700">
                     {featuredPost.category}
                   </span>
-                  <div className="flex items-center text-sm text-gray-500">
+                  <div className="flex items-center text-sm text-gray-300">
                     <CalendarDays className="mr-1 h-4 w-4" />
                     {featuredPost.date}
                   </div>
-                  <div className="flex items-center text-sm text-gray-500">
+                  <div className="flex items-center text-sm text-gray-300">
                     <Clock className="mr-1 h-4 w-4" />
                     {featuredPost.readTime}
                   </div>
@@ -169,7 +167,7 @@ export default function BlogPage() {
                 <h3 className="text-2xl font-bold mb-2">
                   {featuredPost.title}
                 </h3>
-                <p className="text-gray-600 mb-6">{featuredPost.excerpt}</p>
+                <p className="text-gray-400 mb-6">{featuredPost.excerpt}</p>
                 <Button asChild className="self-start">
                   <Link href={`/blog/${featuredPost.slug}`}>Read Article</Link>
                 </Button>
@@ -239,8 +237,8 @@ export default function BlogPage() {
               <div className="lg:col-span-3">
                 <div className="grid gap-8 md:grid-cols-2">
                   {posts.map((post) => (
-                    <article key={post.id} className="group">
-                      <div className="relative aspect-[16/9] overflow-hidden rounded-xl mb-4">
+                    <ThemedCard className="p-0 overflow-hidden" key={post.id}>
+                      <div className="relative aspect-[16/9] mb-4">
                         <Image
                           src={post.image}
                           alt={post.title}
@@ -248,38 +246,40 @@ export default function BlogPage() {
                           className="object-cover transition-transform duration-500 group-hover:scale-105"
                         />
                       </div>
-                      <div className="flex items-center gap-4 mb-3">
-                        <span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700">
-                          {post.category}
-                        </span>
-                        <div className="flex items-center text-sm text-gray-500">
-                          <CalendarDays className="mr-1 h-3 w-3" />
-                          {post.date}
+                      <div className="px-3">
+                        <div className="flex items-center gap-4 mb-3">
+                          <span className="inline-flex items-center rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-700">
+                            {post.category}
+                          </span>
+                          <div className="flex items-center text-sm text-gray-500">
+                            <CalendarDays className="mr-1 h-3 w-3" />
+                            {post.date}
+                          </div>
                         </div>
+                        <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
+                          <Link href={`/blog/${post.slug}`}>{post.title}</Link>
+                        </h3>
+                        <p className="text-gray-400 mb-4">{post.excerpt}</p>
+                        <Button variant="link" className="p-0" asChild>
+                          <Link href={`/blog/${post.slug}`}>
+                            Read more
+                            <svg
+                              className="h-4 w-4 transition-transform group-hover:translate-x-1"
+                              fill="none"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M14 5l7 7m0 0l-7 7m7-7H3"
+                              />
+                            </svg>
+                          </Link>
+                        </Button>
                       </div>
-                      <h3 className="text-xl font-bold mb-2 group-hover:text-primary transition-colors">
-                        <Link href={`/blog/${post.slug}`}>{post.title}</Link>
-                      </h3>
-                      <p className="text-gray-600 mb-4">{post.excerpt}</p>
-                      <Button variant="link" className="p-0" asChild>
-                        <Link href={`/blog/${post.slug}`}>
-                          Read more
-                          <svg
-                            className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1"
-                            fill="none"
-                            viewBox="0 0 24 24"
-                            stroke="currentColor"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M14 5l7 7m0 0l-7 7m7-7H3"
-                            />
-                          </svg>
-                        </Link>
-                      </Button>
-                    </article>
+                    </ThemedCard>
                   ))}
                 </div>
 
@@ -302,7 +302,7 @@ export default function BlogPage() {
         <section className="py-16 bg-gray-950">
           <div className="container mx-auto px-4 max-w-4xl text-center">
             <h2 className="text-2xl font-bold mb-4">Stay Updated</h2>
-            <p className="text-gray-600 mb-8 max-w-2xl mx-auto">
+            <p className="text-gray-400 mb-8 max-w-2xl mx-auto">
               Subscribe to our newsletter for the latest web development
               insights, tutorials, and company news.
             </p>

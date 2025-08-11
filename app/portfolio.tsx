@@ -1,3 +1,4 @@
+import SectionButton from "@/components/section-button";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ExternalLink } from "lucide-react";
 import Image from "next/image";
@@ -81,13 +82,11 @@ export function Portfolio() {
     <section className="py-24" id="work">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-3xl text-center mb-16">
-          <span className="inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-            Our Work
-          </span>
+          <SectionButton>Our Work</SectionButton>
           <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
             Projects We&apos;re Proud Of
           </h2>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-lg text-gray-400">
             Explore our case studies to see how we&apos;ve helped businesses
             achieve their digital goals.
           </p>
@@ -165,7 +164,7 @@ export function Portfolio() {
 
         <div className="mt-16 text-center">
           <Button size="lg" asChild>
-            <Link href="/portfolio" className="group">
+            <Link href="/portfolio" className="group !text-gray-200">
               View Full Portfolio
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>

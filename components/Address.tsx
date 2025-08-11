@@ -1,6 +1,5 @@
 import { Mail, MapPin, Phone } from "lucide-react";
-import Link from "next/link";
-import { Button } from "./ui/button";
+import ListItem from "./list-item";
 
 const contactMethods = [
   {
@@ -30,24 +29,14 @@ export default function Address() {
   return (
     <>
       {contactMethods.map((method, index) => (
-        <div key={index} className="flex items-start gap-6">
-          <div className="rounded-lg bg-blue-50 p-3 flex-shrink-0">
-            {method.icon}
-          </div>
-          <div>
-            <h3 className="text-lg font-semibold text-gray-900">
-              {method.title}
-            </h3>
-            <p className="mt-1 text-gray-600">{method.description}</p>
-            <Button
-              variant="link"
-              className="mt-2 p-0 text-blue-600 hover:text-blue-800"
-              asChild
-            >
-              <Link href={method.link}>{method.value}</Link>
-            </Button>
-          </div>
-        </div>
+        <ListItem
+          key={index}
+          title={method.title}
+          description={method.description}
+          icon={method.icon}
+          linkTitle={method.value}
+          link={method.link}
+        />
       ))}
     </>
   );

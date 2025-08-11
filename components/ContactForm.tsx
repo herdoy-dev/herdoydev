@@ -119,7 +119,11 @@ export function ContactForm() {
         />
 
         <div className="flex flex-col sm:flex-row sm:items-center sm:space-x-4">
-          <Button type="submit" size="lg" className="group mb-2 sm:mb-0">
+          <Button
+            type="submit"
+            size="lg"
+            className="group mb-2 sm:mb-0 text-gray-200"
+          >
             Send Message
             <Send className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
           </Button>

@@ -1,5 +1,6 @@
 import Address from "@/components/Address";
 import { ContactForm } from "@/components/ContactForm";
+import SectionButton from "@/components/section-button";
 import ThemedCard from "@/components/themed-card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
@@ -10,9 +11,7 @@ export function Contact() {
     <section className="py-24" id="contact">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-4xl text-center mb-16">
-          <span className="inline-block rounded-full bg-blue-900 px-4 py-2 text-sm font-medium text-blue-400">
-            Get In Touch
-          </span>
+          <SectionButton>Get In Touch</SectionButton>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Let&apos;s Build Something Great Together
           </h2>

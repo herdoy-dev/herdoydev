@@ -1,8 +1,10 @@
+import ArrowButton from "@/components/arrow-button";
+import { PageHeaderBox } from "@/components/page-header-box";
+import SectionButton from "@/components/section-button";
+import ThemedCard from "@/components/themed-card";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
 import Head from "next/head";
 import Image from "next/image";
-import Link from "next/link";
 
 export const metadata = {
   title: "Case Studies | herdoydev - Web Development Success Stories",
@@ -116,30 +118,22 @@ export default function CaseStudiesPage() {
         <meta name="description" content={metadata.description} />
         <meta name="keywords" content={metadata.keywords.join(", ")} />
       </Head>
-
-      <main>
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-b from-blue-50 to-white py-24">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl text-center">
-              <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-                Success Stories
-              </span>
-              <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
-                Proven Results for Our Clients
-              </h1>
-              <p className="mt-4 text-lg text-gray-600">
-                Explore how we&apos;ve helped businesses solve complex
-                challenges and achieve measurable success.
-              </p>
-            </div>
+      <main className="text-foreground">
+        <PageHeaderBox>
+          <div className="mx-auto max-w-3xl text-center">
+            <SectionButton>Success Stories</SectionButton>
+            <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
+              Proven Results for Our Clients
+            </h1>
+            <p className="mt-4 text-lg text-muted-foreground">
+              Explore how we&apos;ve helped businesses solve complex challenges
+              and achieve measurable success.
+            </p>
           </div>
-        </section>
+        </PageHeaderBox>
 
-        {/* Case Studies Grid */}
-        <section className="py-16 bg-white">
+        <section className="py-16">
           <div className="container mx-auto px-4">
-            {/* Category Filters */}
             <div className="flex flex-wrap justify-center gap-3 mb-12">
               {categories.map((category) => (
                 <Button
@@ -155,11 +149,11 @@ export default function CaseStudiesPage() {
             {/* Case Studies */}
             <div className="grid gap-12">
               {caseStudies.map((caseStudy) => (
-                <div
+                <ThemedCard
+                  className="flex flex-col lg:flex-row items-center justify-between gap-8 md:px-8 px-4 rounded-3xl md:py-0 py-4"
                   key={caseStudy.id}
-                  className="grid gap-8 rounded-xl border border-gray-200 overflow-hidden md:grid-cols-2"
                 >
-                  <div className="relative aspect-[16/9]">
+                  <div className="relative aspect-[16/9] w-full lg:w-1/2 md:rounded-3xl rounded-2xl overflow-hidden">
                     <Image
                       src={caseStudy.image}
                       alt={`${caseStudy.client} - ${caseStudy.title}`}
@@ -167,57 +161,50 @@ export default function CaseStudiesPage() {
                       className="object-cover"
                     />
                   </div>
-                  <div className="p-8">
-                    <span className="inline-block text-sm font-medium text-blue-600 mb-2">
+                  <div className="md:p-8 p-2 w-full lg:w-1/2">
+                    <span className="inline-block text-sm font-medium text-primary mb-2">
                       {caseStudy.category}
                     </span>
-                    <h2 className="text-2xl font-bold mb-2">
+                    <h2 className="text-2xl font-bold mb-4">
                       {caseStudy.client}: {caseStudy.title}
                     </h2>
 
-                    <div className="mb-6">
-                      <h3 className="font-semibold text-gray-900 mb-1">
-                        The Challenge
-                      </h3>
-                      <p className="text-gray-600">{caseStudy.challenge}</p>
+                    <div className="md:mb-6 mb-3">
+                      <h3 className="font-semibold mb-1">The Challenge</h3>
+                      <p className="text-muted-foreground">
+                        {caseStudy.challenge}
+                      </p>
                     </div>
 
                     <div className="mb-6">
-                      <h3 className="font-semibold text-gray-900 mb-1">
-                        Our Solution
-                      </h3>
-                      <p className="text-gray-600">{caseStudy.solution}</p>
+                      <h3 className="font-semibold mb-1">Our Solution</h3>
+                      <p className="text-muted-foreground">
+                        {caseStudy.solution}
+                      </p>
                     </div>
 
                     <div className="mb-8">
-                      <h3 className="font-semibold text-gray-900 mb-3">
-                        The Results
-                      </h3>
+                      <h3 className="font-semibold mb-3">The Results</h3>
                       <div className="grid gap-4 sm:grid-cols-3">
                         {caseStudy.results.map((result, index) => (
-                          <div
-                            key={index}
-                            className="bg-blue-50 p-4 rounded-lg"
-                          >
-                            <p className="text-2xl font-bold text-blue-600">
+                          <ThemedCard className="p-4" key={index}>
+                            <p className="text-2xl font-bold text-primary">
                               {result.metric}
                             </p>
-                            <p className="text-sm text-gray-600">
+                            <p className="text-sm text-muted-foreground">
                               {result.description}
                             </p>
-                          </div>
+                          </ThemedCard>
                         ))}
                       </div>
                     </div>
 
-                    <Button asChild>
-                      <Link href={caseStudy.link}>
-                        Read Full Case Study
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
-                    </Button>
+                    <ArrowButton
+                      href={caseStudy.link}
+                      label="Read Full Case Study"
+                    />
                   </div>
-                </div>
+                </ThemedCard>
               ))}
             </div>
 
@@ -226,33 +213,27 @@ export default function CaseStudiesPage() {
               <h2 className="text-2xl font-bold mb-4">
                 Ready to See Similar Results?
               </h2>
-              <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
+              <p className="text-muted-foreground mb-6 max-w-2xl mx-auto">
                 Let&apos;s discuss how we can help your business achieve its
                 digital goals.
               </p>
-              <Button size="lg" asChild>
-                <Link href="/contact" className="group">
-                  Get Started
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </Button>
+              <ArrowButton href="/contact" label="Get Started" />
             </div>
           </div>
         </section>
 
-        {/* Testimonial Section */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-16 bg-muted/20">
           <div className="container mx-auto px-4 max-w-4xl">
             <blockquote className="text-center">
-              <p className="text-xl italic text-gray-700 mb-6">
+              <p className="text-xl italic text-muted-foreground mb-6">
                 &quot;herdoydev didn&apos;t just deliver a website - they
                 delivered a digital transformation. Our new platform has become
                 a competitive advantage, driving measurable business
                 growth.&quot;
               </p>
               <footer className="font-medium">
-                <div className="text-blue-600">Michael Chen</div>
-                <div className="text-gray-600">CEO, TechCorp</div>
+                <div className="text-primary">Michael Chen</div>
+                <div className="text-muted-foreground">CEO, TechCorp</div>
               </footer>
             </blockquote>
           </div>

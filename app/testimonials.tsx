@@ -1,7 +1,7 @@
+import ArrowButton from "@/components/arrow-button";
+import SectionButton from "@/components/section-button";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Quote, Star } from "lucide-react";
-import Link from "next/link";
+import { Quote, Star } from "lucide-react";
 
 const testimonials = [
   {
@@ -48,9 +48,7 @@ export function Testimonials() {
       <div className="container mx-auto px-4">
         {/* Section Heading */}
         <div className="mx-auto max-w-3xl text-center mb-16">
-          <span className="inline-block rounded-full bg-blue-900/40 px-4 py-2 text-sm font-medium text-blue-400">
-            Client Voices
-          </span>
+          <SectionButton>Client Voices</SectionButton>
           <h2 className="mt-4 text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Trusted by Industry Leaders
           </h2>
@@ -122,15 +120,7 @@ export function Testimonials() {
 
         {/* CTA */}
         <div className="mt-16 text-center">
-          <Button variant="outline" size="lg" asChild>
-            <Link
-              href="/case-studies"
-              className="group text-blue-400 hover:text-blue-500"
-            >
-              Read Case Studies
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </Button>
+          <ArrowButton label="Read Case Studies" href="/case-studies" />
         </div>
       </div>
     </section>

@@ -1,13 +1,15 @@
-import { Button } from "@/components/ui/button";
-import { ArrowRight, Award, Briefcase, Globe, Users } from "lucide-react";
+import ArrowButton from "@/components/arrow-button";
+import ListItem from "@/components/list-item";
+import SectionButton from "@/components/section-button";
+import ThemedCard from "@/components/themed-card";
+import { Award, Briefcase, Globe, Users } from "lucide-react";
 import Image from "next/image";
-import Link from "next/link";
 
 const stats = [
-  { id: 1, name: "Web Projects Delivered", value: "100+", icon: Briefcase },
-  { id: 2, name: "Client Satisfaction Rate", value: "98%", icon: Users },
-  { id: 3, name: "Countries Served", value: "15+", icon: Globe },
-  { id: 4, name: "Industry Recognitions", value: "5+", icon: Award },
+  { id: 1, name: "Web Projects Delivered", value: "100+", icon: <Briefcase /> },
+  { id: 2, name: "Client Satisfaction Rate", value: "98%", icon: <Users /> },
+  { id: 3, name: "Countries Served", value: "15+", icon: <Globe /> },
+  { id: 4, name: "Industry Recognitions", value: "5+", icon: <Award /> },
 ];
 
 export function About() {
@@ -37,9 +39,7 @@ export function About() {
 
           {/* Content Column */}
           <div>
-            <span className="inline-block rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-              Why Choose Us
-            </span>
+            <SectionButton>Why Choose Us</SectionButton>
             <h2 className="mt-4 text-3xl font-bold tracking-tight sm:text-4xl">
               Web Development Experts <br className="hidden sm:inline" />
               <span className="text-blue-600">Focused on Your Growth</span>
@@ -68,37 +68,28 @@ export function About() {
             {/* Stats - Now with Better Microcopy */}
             <div className="mt-12 grid grid-cols-2 gap-8">
               {stats.map((stat) => (
-                <div key={stat.id} className="flex items-start">
-                  <div className="rounded-lg bg-blue-800 p-3">
-                    <stat.icon className="h-6 w-6 text-blue-400" />
-                  </div>
-                  <div className="ml-4">
-                    <h3 className="text-2xl font-bold text-gray-100">
-                      {stat.value}
-                    </h3>
-                    <p className="mt-1 text-sm text-gray-400">{stat.name}</p>
-                  </div>
-                </div>
+                <ListItem
+                  key={stat.id}
+                  title={stat.value}
+                  icon={stat.icon}
+                  description={stat.name}
+                  iconSize={10}
+                />
               ))}
             </div>
 
             <div className="mt-12">
-              <Button size="lg" asChild className="group">
-                <Link
-                  href="/case-studies"
-                  aria-label="See our web development case studies"
-                >
-                  See Our Success Stories
-                  <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                </Link>
-              </Button>
+              <ArrowButton
+                label=" See Our Success Stories"
+                href="/case-studies"
+              />
             </div>
           </div>
         </div>
 
         {/* Value Proposition Cards with Glass Effect */}
         <div className="mt-24 grid gap-12 md:grid-cols-3">
-          <div className="rounded-xl border border-gray-700 backdrop-blur-md p-6 shadow-sm hover:shadow-md transition-shadow">
+          <ThemedCard>
             <h3 className="text-xl font-semibold text-gray-100">
               End-to-End Solutions
             </h3>
@@ -106,8 +97,8 @@ export function About() {
               From initial strategy to post-launch optimization, we handle every
               aspect of web development so you can focus on your business.
             </p>
-          </div>
-          <div className="rounded-xl border border-gray-700 backdrop-blur-md p-6 shadow-sm hover:shadow-md transition-shadow">
+          </ThemedCard>
+          <ThemedCard>
             <h3 className="text-xl font-semibold text-gray-100">
               Performance First
             </h3>
@@ -115,8 +106,8 @@ export function About() {
               Our websites load 3x faster than industry averages, directly
               improving SEO rankings and conversion rates.
             </p>
-          </div>
-          <div className="rounded-xl border border-gray-700 backdrop-blur-md p-6 shadow-sm hover:shadow-md transition-shadow">
+          </ThemedCard>
+          <ThemedCard>
             <h3 className="text-xl font-semibold text-gray-100">
               Transparent Process
             </h3>
@@ -124,7 +115,7 @@ export function About() {
               Weekly updates, dedicated project managers, and clear pricing - no
               surprises, just results.
             </p>
-          </div>
+          </ThemedCard>
         </div>
       </div>
     </section>

@@ -1,8 +1,10 @@
-import Head from "next/head";
-import { ArrowRight, ExternalLink } from "lucide-react";
+import { PageHeaderBox } from "@/components/page-header-box";
+import SectionButton from "@/components/section-button";
 import { Button } from "@/components/ui/button";
-import Link from "next/link";
+import { ArrowRight, ExternalLink } from "lucide-react";
+import Head from "next/head";
 import Image from "next/image";
+import Link from "next/link";
 
 export const metadata = {
   title: "Our Portfolio | herdoydev - Web Development Projects",
@@ -144,23 +146,18 @@ export default function PortfolioPage() {
       </Head>
 
       <main>
-        {/* Portfolio Hero */}
-        <section className="relative py-24">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl text-center">
-              <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-                Our Work
-              </span>
-              <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
-                Projects We&apos;re Proud Of
-              </h1>
-              <p className="mt-4 text-lg text-gray-600">
-                Explore our case studies to see how we&apos;ve helped businesses
-                achieve their digital goals.
-              </p>
-            </div>
+        <PageHeaderBox>
+          <div className="mx-auto max-w-3xl text-center">
+            <SectionButton>Our Work</SectionButton>
+            <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
+              Projects We&apos;re Proud Of
+            </h1>
+            <p className="mt-4 text-lg text-gray-400">
+              Explore our case studies to see how we&apos;ve helped businesses
+              achieve their digital goals.
+            </p>
           </div>
-        </section>
+        </PageHeaderBox>
 
         {/* Portfolio Grid */}
         <section className="py-16">
@@ -268,11 +265,10 @@ export default function PortfolioPage() {
           </div>
         </section>
 
-        {/* Testimonial Highlight */}
         <section className="py-16">
           <div className="container mx-auto px-4 max-w-4xl">
             <blockquote className="text-center">
-              <p className="text-xl italic text-gray-700 mb-6">
+              <p className="text-xl italic text-gray-400 mb-6">
                 &quot;herdoydev transformed our online presence with a website
                 that exceeded our expectations. Their technical expertise and
                 attention to detail resulted in a 140% increase in leads within
@@ -280,7 +276,7 @@ export default function PortfolioPage() {
               </p>
               <footer className="font-medium">
                 <div className="text-blue-600">Sarah Johnson</div>
-                <div className="text-gray-600">
+                <div className="text-gray-300">
                   Marketing Director, TechCorp
                 </div>
               </footer>

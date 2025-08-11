@@ -1,3 +1,4 @@
+import ArrowButton from "@/components/arrow-button";
 import { Button } from "@/components/ui/button";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -156,12 +157,7 @@ export function Services() {
         </div>
 
         <div className="mt-16 text-center">
-          <Button size="lg" asChild>
-            <Link href="/contact" className="group">
-              Get Your Free Tech Audit
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </Button>
+          <ArrowButton label="Get Your Free Tech Audit" href="/contact" />
         </div>
       </div>
     </section>

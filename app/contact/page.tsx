@@ -1,6 +1,7 @@
 import Head from "next/head";
 
 import { Contact } from "../contact";
+import { PageHeaderBox } from "@/components/page-header-box";
 
 export default function ContactPage() {
   return (
@@ -14,22 +15,20 @@ export default function ContactPage() {
       </Head>
 
       <main>
-        <section className="relative py-24">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl text-center">
-              <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-                Get In Touch
-              </span>
-              <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
-                Let&apos;s Build Something Great Together
-              </h1>
-              <p className="mt-4 text-lg text-gray-600">
-                Have a project in mind or want to discuss how we can help your
-                business? Reach out—we&apos;d love to hear from you.
-              </p>
-            </div>
+        <PageHeaderBox>
+          <div className="mx-auto max-w-3xl text-center">
+            <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
+              Get In Touch
+            </span>
+            <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
+              Let&apos;s Build Something Great Together
+            </h1>
+            <p className="mt-4 text-lg text-gray-600">
+              Have a project in mind or want to discuss how we can help your
+              business? Reach out—we&apos;d love to hear from you.
+            </p>
           </div>
-        </section>
+        </PageHeaderBox>
         <Contact />
         <section className="py-16">
           <div className="container mx-auto px-4">
