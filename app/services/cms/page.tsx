@@ -1,5 +1,9 @@
+import { PageHeaderBox } from "@/components/page-header-box";
+import SectionButton from "@/components/section-button";
+import ThemedCard from "@/components/themed-card";
+import ThemedIcon from "@/components/themed-icon";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Icon } from "@iconify/react";
 import {
   Database,
@@ -42,7 +46,7 @@ export const metadata = {
 
 const services = [
   {
-    icon: <LayoutTemplate className="h-8 w-8 text-blue-600" />,
+    icon: <LayoutTemplate />,
     title: "Custom CMS Development",
     description:
       "Tailored content management systems designed specifically for your content workflows.",
@@ -52,9 +56,11 @@ const services = [
       "Workflow management",
       "API integrations",
     ],
+    cta: "Get Custom CMS",
+    href: "/contact?service=custom-cms",
   },
   {
-    icon: <PenTool className="h-8 w-8 text-blue-600" />,
+    icon: <PenTool />,
     title: "WordPress Development",
     description:
       "Custom themes, plugins, and optimizations for the world's most popular CMS.",
@@ -64,9 +70,11 @@ const services = [
       "Gutenberg block development",
       "Performance optimization",
     ],
+    cta: "Build WordPress Site",
+    href: "/contact?service=wordpress",
   },
   {
-    icon: <Database className="h-8 w-8 text-blue-600" />,
+    icon: <Database />,
     title: "Headless CMS Solutions",
     description: "Modern architecture separating content from presentation.",
     features: [
@@ -75,9 +83,11 @@ const services = [
       "Developer-friendly interfaces",
       "Future-proof architecture",
     ],
+    cta: "Go Headless",
+    href: "/contact?service=headless-cms",
   },
   {
-    icon: <RefreshCw className="h-8 w-8 text-blue-600" />,
+    icon: <RefreshCw />,
     title: "CMS Migration",
     description: "Seamless transition between content management systems.",
     features: [
@@ -86,6 +96,8 @@ const services = [
       "Preserved SEO value",
       "Editor training",
     ],
+    cta: "Plan Migration",
+    href: "/contact?service=cms-migration",
   },
 ];
 
@@ -105,26 +117,31 @@ const processSteps = [
     step: "01",
     title: "Content Audit",
     description: "Analyzing your content structure and editorial needs",
+    icon: "🔍",
   },
   {
     step: "02",
     title: "CMS Selection",
     description: "Recommending the ideal platform for your requirements",
+    icon: "📋",
   },
   {
     step: "03",
     title: "Customization",
     description: "Tailoring the CMS to your workflows",
+    icon: "🛠️",
   },
   {
     step: "04",
     title: "Editor Training",
     description: "Ensuring your team can use the system effectively",
+    icon: "👩‍💻",
   },
   {
     step: "05",
     title: "Launch & Support",
     description: "Going live with ongoing maintenance",
+    icon: "🚀",
   },
 ];
 
@@ -135,70 +152,68 @@ export default function CMSDevelopmentPage() {
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
         <meta name="keywords" content={metadata.keywords.join(", ")} />
+        <link
+          rel="canonical"
+          href="https://herdoydev.com/services/cms-development"
+        />
       </Head>
 
       <main>
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-b from-blue-50 to-white py-24">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl text-center">
-              <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-                Content Management
-              </span>
-              <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
+        <PageHeaderBox>
+          <div className="mx-auto max-w-4xl text-center">
+            <SectionButton>Content Management Experts</SectionButton>
+            <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
+              <span className="block">Professional</span>
+              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
                 CMS Development Services
-              </h1>
-              <p className="mt-4 text-lg text-gray-600">
-                We build and customize content management systems that empower
-                your team to create, manage, and publish content with ease.
-              </p>
-              <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-                <Button size="lg" asChild>
-                  <Link href="/contact">Get Your CMS Consultation</Link>
-                </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <Link href="/portfolio">See CMS Examples</Link>
-                </Button>
-              </div>
+              </span>
+            </h1>
+            <p className="mt-6 text-xl text-gray-400 max-w-3xl mx-auto">
+              We build and customize content management systems that empower
+              your team to create, manage, and publish content with{" "}
+              <strong>75% more efficiency</strong>.
+            </p>
+            <div className="mt-8">
+              <Button asChild size="lg" className="animate-pulse text-gray-200">
+                <Link href="/contact">Get Free CMS Consultation</Link>
+              </Button>
             </div>
           </div>
-        </section>
+        </PageHeaderBox>
 
-        {/* Services Offered */}
-        <section className="py-16 bg-white">
+        {/* Services Grid */}
+        <section className="py-20">
           <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
-                Our CMS Services
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Our <span className="text-blue-600">CMS</span> Services
               </h2>
-              <p className="text-lg text-gray-600">
+              <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
                 Comprehensive solutions for all your content management needs
+                across industries.
               </p>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-2">
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-2">
               {services.map((service, index) => (
-                <Card
-                  key={index}
-                  className="h-full transition-all hover:shadow-lg hover:-translate-y-1"
-                >
+                <ThemedCard key={index}>
                   <CardHeader className="pb-3">
                     <div className="flex items-center space-x-4">
-                      <div className="rounded-lg bg-blue-50 p-3">
+                      <ThemedIcon className="bg-primary">
                         {service.icon}
-                      </div>
-                      <CardTitle className="text-lg font-semibold">
+                      </ThemedIcon>
+                      <CardTitle className="text-xl font-semibold">
                         {service.title}
                       </CardTitle>
                     </div>
                   </CardHeader>
                   <CardContent className="pt-0">
-                    <p className="text-gray-600 mb-4">{service.description}</p>
-                    <ul className="space-y-2 mb-6">
+                    <p className="text-gray-300 mb-4">{service.description}</p>
+                    <ul className="space-y-3 mb-6">
                       {service.features.map((feature, i) => (
                         <li key={i} className="flex items-start">
                           <svg
-                            className="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0"
+                            className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -210,28 +225,28 @@ export default function CMSDevelopmentPage() {
                               d="M5 13l4 4L19 7"
                             />
                           </svg>
-                          <span className="text-gray-700">{feature}</span>
+                          <span className="text-gray-400">{feature}</span>
                         </li>
                       ))}
                     </ul>
-                    <Button asChild variant="outline" className="w-full">
-                      <Link href="/contact">Learn More</Link>
+                    <Button asChild className="w-full text-gray-200" size="lg">
+                      <Link href={service.href}>{service.cta}</Link>
                     </Button>
                   </CardContent>
-                </Card>
+                </ThemedCard>
               ))}
             </div>
           </div>
         </section>
 
         {/* Technology Stack */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-20 bg-card/40 backdrop-blur-2xl">
           <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
-                Our CMS Technology Stack
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Our <span className="text-blue-600">Technology</span> Stack
               </h2>
-              <p className="text-lg text-gray-600">
+              <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
                 Platforms and tools we use to build powerful content management
                 solutions
               </p>
@@ -240,7 +255,7 @@ export default function CMSDevelopmentPage() {
             <div className="flex flex-wrap justify-center gap-8">
               {technologies.map((tech) => (
                 <div key={tech.name} className="flex flex-col items-center">
-                  <div className="bg-white p-4 rounded-lg shadow-sm w-24 h-24 flex items-center justify-center">
+                  <div className="bg-card p-4 rounded-lg shadow-sm w-24 h-24 flex items-center justify-center">
                     <Icon
                       icon={tech.iconName}
                       width="64"
@@ -248,24 +263,28 @@ export default function CMSDevelopmentPage() {
                       style={{ color: tech.color }}
                     />
                   </div>
-                  <span className="mt-3 text-sm font-medium">{tech.name}</span>
+                  <span className="mt-3 text-sm font-medium text-gray-300">
+                    {tech.name}
+                  </span>
                 </div>
               ))}
             </div>
 
-            <div className="mt-16 bg-white rounded-xl p-8 shadow-sm max-w-4xl mx-auto">
+            <div className="mt-16 bg-card rounded-xl p-8 shadow-sm max-w-4xl mx-auto">
               <div className="flex flex-col md:flex-row items-center gap-8">
-                <Users className="h-12 w-12 text-blue-600 flex-shrink-0" />
+                <ThemedIcon className="bg-primary">
+                  <Users className="h-6 w-6" />
+                </ThemedIcon>
                 <div>
-                  <h3 className="text-xl font-bold mb-2">
+                  <h3 className="text-xl font-bold mb-2 text-white">
                     Editor-First Approach
                   </h3>
-                  <p className="text-gray-600">
+                  <p className="text-gray-400">
                     We design CMS interfaces with content editors in mind,
-                    creating intuitive dashboards that reduce training time and
-                    increase productivity. Our solutions include custom
-                    workflows, preview functionality, and collaborative editing
-                    features.
+                    creating intuitive dashboards that reduce training time by{" "}
+                    <strong>60%</strong> and increase productivity. Our
+                    solutions include custom workflows, preview functionality,
+                    and collaborative editing features.
                   </p>
                 </div>
               </div>
@@ -273,36 +292,41 @@ export default function CMSDevelopmentPage() {
           </div>
         </section>
 
-        {/* Our Process */}
-        <section className="py-16 bg-white">
+        {/* Process Section */}
+        <section className="py-20">
           <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
-                Our CMS Implementation Process
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Our <span className="text-blue-600">5-Stage</span> Process
               </h2>
-              <p className="text-lg text-gray-600">
-                A content-focused approach to delivering successful CMS projects
+              <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
+                Content-focused approach to delivering successful CMS projects
               </p>
             </div>
 
-            <div className="grid gap-8 md:grid-cols-5">
-              {processSteps.map((step) => (
-                <div key={step.step} className="text-center">
-                  <div className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
-                    {step.step}
+            <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-5">
+              {processSteps.map((step, index) => (
+                <ThemedCard key={index}>
+                  <div className="flex items-center mb-4">
+                    <span className="text-3xl mr-4">{step.icon}</span>
+                    <span className="text-2xl font-bold text-blue-600">
+                      {step.step}
+                    </span>
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
-                  <p className="text-gray-600 text-sm">{step.description}</p>
-                </div>
+                  <h3 className="text-xl font-semibold mb-3 text-white">
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-400">{step.description}</p>
+                </ThemedCard>
               ))}
             </div>
           </div>
         </section>
 
         {/* Case Study Highlight */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-20 bg-card/40 backdrop-blur-2xl">
           <div className="container mx-auto px-4">
-            <div className="bg-white rounded-xl overflow-hidden shadow-sm">
+            <div className="bg-card rounded-xl overflow-hidden shadow-sm">
               <div className="grid md:grid-cols-2">
                 <div className="relative aspect-square">
                   <Image
@@ -314,35 +338,35 @@ export default function CMSDevelopmentPage() {
                   />
                 </div>
                 <div className="p-8">
-                  <span className="inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700 mb-4">
+                  <span className="inline-block rounded-full bg-blue-900 px-3 py-1 text-sm font-medium text-blue-200 mb-4">
                     Case Study
                   </span>
-                  <h2 className="text-2xl font-bold mb-4">
+                  <h2 className="text-2xl font-bold mb-4 text-white">
                     University Website Redesign
                   </h2>
-                  <p className="text-gray-600 mb-6">
+                  <p className="text-gray-400 mb-6">
                     How we implemented a headless CMS for a major university,
                     enabling 200+ content editors to manage thousands of pages
                     while maintaining brand consistency and accessibility
                     standards.
                   </p>
                   <div className="grid gap-4 sm:grid-cols-3 mb-6">
-                    <div className="bg-blue-50 p-3 rounded-lg">
-                      <p className="text-xl font-bold text-blue-600">200+</p>
-                      <p className="text-sm text-gray-600">Trained editors</p>
+                    <div className="bg-blue-900/30 p-3 rounded-lg">
+                      <p className="text-xl font-bold text-blue-400">200+</p>
+                      <p className="text-sm text-gray-400">Trained editors</p>
                     </div>
-                    <div className="bg-blue-50 p-3 rounded-lg">
-                      <p className="text-xl font-bold text-blue-600">75%</p>
-                      <p className="text-sm text-gray-600">
+                    <div className="bg-blue-900/30 p-3 rounded-lg">
+                      <p className="text-xl font-bold text-blue-400">75%</p>
+                      <p className="text-sm text-gray-400">
                         Faster content updates
                       </p>
                     </div>
-                    <div className="bg-blue-50 p-3 rounded-lg">
-                      <p className="text-xl font-bold text-blue-600">100%</p>
-                      <p className="text-sm text-gray-600">WCAG compliance</p>
+                    <div className="bg-blue-900/30 p-3 rounded-lg">
+                      <p className="text-xl font-bold text-blue-400">100%</p>
+                      <p className="text-sm text-gray-400">WCAG compliance</p>
                     </div>
                   </div>
-                  <Button asChild>
+                  <Button asChild className="text-gray-200">
                     <Link href="/case-studies/university-cms">
                       Read Case Study
                     </Link>
@@ -354,17 +378,17 @@ export default function CMSDevelopmentPage() {
         </section>
 
         {/* Testimonial Section */}
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <blockquote className="text-center">
-              <p className="text-xl italic text-gray-700 mb-6">
+        <section className="py-20">
+          <div className="container mx-auto px-4 max-w-4xl text-center">
+            <blockquote>
+              <p className="text-xl italic text-gray-400 mb-6">
                 &quot;The CMS herdoydev built transformed how our marketing team
                 works. What used to take days now takes hours, and our content
                 consistency across departments has improved dramatically.&quot;
               </p>
               <footer className="font-medium">
-                <div className="text-blue-600">Jennifer Park</div>
-                <div className="text-gray-600">
+                <div className="text-blue-400">Jennifer Park</div>
+                <div className="text-gray-500">
                   Digital Director, Global University
                 </div>
               </footer>
@@ -373,22 +397,27 @@ export default function CMSDevelopmentPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-blue-600 text-white">
+        <section className="py-20 bg-card/40 backdrop-blur-2xl">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6">
               Ready to Transform Your Content Management?
             </h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
               Let&apos;s discuss how we can build a CMS that fits your
               team&apos;s workflow and content strategy.
             </p>
-            <Button
-              asChild
-              size="lg"
-              className="bg-white text-blue-600 hover:bg-gray-100"
-            >
-              <Link href="/contact">Start Your CMS Project</Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Button
+                asChild
+                className="border bg-transparent hover:bg-transparent !text-primary border-primary"
+                size="lg"
+              >
+                <Link href="/contact">Get Free Audit</Link>
+              </Button>
+              <Button asChild size="lg">
+                <Link href="/case-studies">See Case Studies</Link>
+              </Button>
+            </div>
           </div>
         </section>
       </main>

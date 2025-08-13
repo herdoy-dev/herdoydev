@@ -1,5 +1,9 @@
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { PageHeaderBox } from "@/components/page-header-box";
+import SectionButton from "@/components/section-button";
+import ThemedCard from "@/components/themed-card";
+import ThemedIcon from "@/components/themed-icon";
 import { Icon } from "@iconify/react";
 import {
   BarChart,
@@ -43,7 +47,7 @@ export const metadata = {
 
 const services = [
   {
-    icon: <Search className="h-8 w-8 text-blue-600" />,
+    icon: <Search />,
     title: "Technical SEO",
     description:
       "Improve your website's infrastructure for better crawling and indexing.",
@@ -53,9 +57,11 @@ const services = [
       "Core Web Vitals improvement",
       "XML sitemap optimization",
     ],
+    cta: "Audit My Site",
+    href: "/contact?service=technical-seo",
   },
   {
-    icon: <BarChart className="h-8 w-8 text-blue-600" />,
+    icon: <BarChart />,
     title: "On-Page SEO",
     description:
       "Optimize your content and HTML for maximum search visibility.",
@@ -65,9 +71,11 @@ const services = [
       "Meta tag optimization",
       "Internal linking strategy",
     ],
+    cta: "Optimize Content",
+    href: "/contact?service=onpage-seo",
   },
   {
-    icon: <Globe className="h-8 w-8 text-blue-600" />,
+    icon: <Globe />,
     title: "Local SEO",
     description: "Boost visibility in local search results and maps.",
     features: [
@@ -76,9 +84,11 @@ const services = [
       "Review management",
       "NAP consistency audit",
     ],
+    cta: "Boost Local SEO",
+    href: "/contact?service=local-seo",
   },
   {
-    icon: <TrendingUp className="h-8 w-8 text-blue-600" />,
+    icon: <TrendingUp />,
     title: "SEO Analytics",
     description: "Measure, analyze, and improve your search performance.",
     features: [
@@ -87,6 +97,8 @@ const services = [
       "Traffic growth strategies",
       "Conversion rate optimization",
     ],
+    cta: "Track Performance",
+    href: "/contact?service=seo-analytics",
   },
 ];
 
@@ -94,32 +106,32 @@ const technologies = [
   {
     name: "Google Search Console",
     icon: "fa6-brands:google",
-    color: "#4285F4", // Google blue
+    color: "#4285F4",
   },
   {
     name: "Google Analytics",
     icon: "fa6-solid:chart-line",
-    color: "#FF7043", // Orange
+    color: "#FF7043",
   },
   {
     name: "Ahrefs",
     icon: "fa6-solid:magnifying-glass-chart",
-    color: "#193153", // Ahrefs navy blue
+    color: "#193153",
   },
   {
     name: "SEMrush",
     icon: "fa6-solid:arrow-trend-up",
-    color: "#FF6B3D", // SEMrush orange
+    color: "#FF6B3D",
   },
   {
     name: "Screaming Frog",
     icon: "fa6-solid:frog",
-    color: "#4CAF50", // Green
+    color: "#4CAF50",
   },
   {
     name: "Moz",
     icon: "fa6-solid:globe",
-    color: "#00A1B1", // Moz teal
+    color: "#00A1B1",
   },
 ];
 
@@ -128,26 +140,31 @@ const processSteps = [
     step: "01",
     title: "SEO Audit",
     description: "Comprehensive analysis of your current SEO performance",
+    icon: "🔍",
   },
   {
     step: "02",
     title: "Strategy",
     description: "Developing a customized SEO roadmap for your business",
+    icon: "📋",
   },
   {
     step: "03",
     title: "Implementation",
     description: "Executing technical and content optimizations",
+    icon: "🛠️",
   },
   {
     step: "04",
     title: "Content Optimization",
     description: "Enhancing existing content and planning new content",
+    icon: "✍️",
   },
   {
     step: "05",
     title: "Monitoring",
     description: "Ongoing tracking and iterative improvements",
+    icon: "📊",
   },
 ];
 
@@ -158,43 +175,43 @@ export default function SEOPage() {
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
         <meta name="keywords" content={metadata.keywords.join(", ")} />
+        <link
+          rel="canonical"
+          href="https://herdoydev.com/services/seo-optimization"
+        />
       </Head>
 
       <main>
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-b from-blue-50 to-white py-24">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl text-center">
-              <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-                Search Engine Optimization
+        <PageHeaderBox>
+          <div className="mx-auto max-w-4xl text-center">
+            <SectionButton>Search Engine Optimization</SectionButton>
+            <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
+              <span className="block">Data-Driven</span>
+              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                SEO Services
               </span>
-              <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
-                Professional SEO Services
-              </h1>
-              <p className="mt-4 text-lg text-gray-600">
-                Data-driven strategies to increase organic traffic, improve
-                search rankings, and grow your business through search engines.
-              </p>
-              <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-                <Button size="lg" asChild>
-                  <Link href="/contact">Get Your SEO Audit</Link>
-                </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <Link href="/case-studies">See SEO Results</Link>
-                </Button>
-              </div>
+            </h1>
+            <p className="mt-6 text-xl text-gray-400 max-w-3xl mx-auto">
+              We implement proven strategies to increase organic traffic by{" "}
+              <strong>300%+</strong> and improve search rankings through
+              technical SEO, content optimization, and analytics.
+            </p>
+            <div className="mt-8">
+              <Button asChild size="lg" className="animate-pulse text-gray-200">
+                <Link href="/contact">Get Free SEO Audit</Link>
+              </Button>
             </div>
           </div>
-        </section>
+        </PageHeaderBox>
 
-        {/* Services Offered */}
-        <section className="py-16 bg-white">
+        {/* Services Grid */}
+        <section className="py-20">
           <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
-                Our SEO Services
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Our <span className="text-blue-600">SEO</span> Services
               </h2>
-              <p className="text-lg text-gray-600">
+              <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
                 Comprehensive solutions to improve your search visibility and
                 organic growth
               </p>
@@ -202,27 +219,24 @@ export default function SEOPage() {
 
             <div className="grid gap-8 md:grid-cols-2">
               {services.map((service, index) => (
-                <Card
-                  key={index}
-                  className="h-full transition-all hover:shadow-lg hover:-translate-y-1"
-                >
+                <ThemedCard key={index}>
                   <CardHeader className="pb-3">
                     <div className="flex items-center space-x-4">
-                      <div className="rounded-lg bg-blue-50 p-3">
+                      <ThemedIcon className="bg-primary">
                         {service.icon}
-                      </div>
-                      <CardTitle className="text-lg font-semibold">
+                      </ThemedIcon>
+                      <CardTitle className="text-xl font-semibold">
                         {service.title}
                       </CardTitle>
                     </div>
                   </CardHeader>
                   <CardContent className="pt-0">
-                    <p className="text-gray-600 mb-4">{service.description}</p>
-                    <ul className="space-y-2 mb-6">
+                    <p className="text-gray-300 mb-4">{service.description}</p>
+                    <ul className="space-y-3 mb-6">
                       {service.features.map((feature, i) => (
                         <li key={i} className="flex items-start">
                           <svg
-                            className="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0"
+                            className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -234,28 +248,28 @@ export default function SEOPage() {
                               d="M5 13l4 4L19 7"
                             />
                           </svg>
-                          <span className="text-gray-700">{feature}</span>
+                          <span className="text-gray-400">{feature}</span>
                         </li>
                       ))}
                     </ul>
-                    <Button asChild variant="outline" className="w-full">
-                      <Link href="/contact">Learn More</Link>
+                    <Button asChild className="w-full text-gray-200" size="lg">
+                      <Link href={service.href}>{service.cta}</Link>
                     </Button>
                   </CardContent>
-                </Card>
+                </ThemedCard>
               ))}
             </div>
           </div>
         </section>
 
         {/* Technology Stack */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-20 bg-card/40 backdrop-blur-2xl">
           <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
-                Our SEO Tools
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Our <span className="text-blue-600">SEO</span> Tools
               </h2>
-              <p className="text-lg text-gray-600">
+              <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
                 Industry-leading tools we use to analyze, optimize, and track
                 your SEO performance
               </p>
@@ -264,41 +278,47 @@ export default function SEOPage() {
             <div className="flex flex-wrap justify-center gap-8">
               {technologies.map((tech) => (
                 <div key={tech.name} className="flex flex-col items-center">
-                  <div className="bg-white p-4 rounded-lg shadow-sm w-24 h-24 flex items-center justify-center">
+                  <div className="bg-card p-4 rounded-lg shadow-sm w-24 h-24 flex items-center justify-center">
                     <Icon
                       icon={tech.icon}
-                      width={48}
-                      height={48}
+                      width="48"
+                      height="48"
                       style={{ color: tech.color }}
                     />
                   </div>
-                  <span className="mt-3 text-sm font-medium">{tech.name}</span>
+                  <span className="mt-3 text-sm font-medium text-gray-300">
+                    {tech.name}
+                  </span>
                 </div>
               ))}
             </div>
 
             <div className="mt-16 grid md:grid-cols-2 gap-8 max-w-6xl mx-auto">
-              <div className="bg-white rounded-xl p-8 shadow-sm">
+              <div className="bg-card rounded-xl p-8 shadow-sm">
                 <div className="flex items-center gap-4 mb-4">
-                  <ClipboardCheck className="h-8 w-8 text-blue-600" />
-                  <h3 className="text-xl font-bold">
+                  <ThemedIcon className="bg-primary">
+                    <ClipboardCheck className="h-6 w-6" />
+                  </ThemedIcon>
+                  <h3 className="text-xl font-bold text-white">
                     Comprehensive SEO Audits
                   </h3>
                 </div>
-                <p className="text-gray-600">
+                <p className="text-gray-400">
                   Our 150+ point audits analyze technical infrastructure,
                   content quality, backlink profile, and competitor gaps to
                   identify your biggest opportunities for organic growth.
                 </p>
               </div>
-              <div className="bg-white rounded-xl p-8 shadow-sm">
+              <div className="bg-card rounded-xl p-8 shadow-sm">
                 <div className="flex items-center gap-4 mb-4">
-                  <Link2 className="h-8 w-8 text-blue-600" />
-                  <h3 className="text-xl font-bold">
+                  <ThemedIcon className="bg-primary">
+                    <Link2 className="h-6 w-6" />
+                  </ThemedIcon>
+                  <h3 className="text-xl font-bold text-white">
                     Link Building Strategies
                   </h3>
                 </div>
-                <p className="text-gray-600">
+                <p className="text-gray-400">
                   White-hat link acquisition through digital PR, content
                   marketing, and strategic outreach to build domain authority
                   and improve rankings for competitive keywords.
@@ -308,36 +328,41 @@ export default function SEOPage() {
           </div>
         </section>
 
-        {/* Our Process */}
-        <section className="py-16 bg-white">
+        {/* Process Section */}
+        <section className="py-20">
           <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
-                Our SEO Process
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Our <span className="text-blue-600">5-Stage</span> SEO Process
               </h2>
-              <p className="text-lg text-gray-600">
+              <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
                 A proven methodology to deliver sustainable organic growth
               </p>
             </div>
 
             <div className="grid gap-8 md:grid-cols-5">
-              {processSteps.map((step) => (
-                <div key={step.step} className="text-center">
-                  <div className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
-                    {step.step}
+              {processSteps.map((step, index) => (
+                <ThemedCard key={index}>
+                  <div className="flex items-center mb-4">
+                    <span className="text-3xl mr-4">{step.icon}</span>
+                    <span className="text-2xl font-bold text-blue-600">
+                      {step.step}
+                    </span>
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
-                  <p className="text-gray-600 text-sm">{step.description}</p>
-                </div>
+                  <h3 className="text-xl font-semibold mb-3 text-white">
+                    {step.title}
+                  </h3>
+                  <p className="text-gray-400">{step.description}</p>
+                </ThemedCard>
               ))}
             </div>
           </div>
         </section>
 
         {/* Case Study Highlight */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-20 bg-card/40 backdrop-blur-2xl">
           <div className="container mx-auto px-4">
-            <div className="bg-white rounded-xl overflow-hidden shadow-sm">
+            <div className="bg-card rounded-xl overflow-hidden shadow-sm">
               <div className="grid md:grid-cols-2">
                 <div className="relative aspect-square">
                   <Image
@@ -345,37 +370,38 @@ export default function SEOPage() {
                     alt="SEO case study"
                     fill
                     className="object-cover"
+                    priority
                   />
                 </div>
                 <div className="p-8">
-                  <span className="inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700 mb-4">
+                  <span className="inline-block rounded-full bg-blue-900 px-3 py-1 text-sm font-medium text-blue-200 mb-4">
                     Case Study
                   </span>
-                  <h2 className="text-2xl font-bold mb-4">
+                  <h2 className="text-2xl font-bold mb-4 text-white">
                     E-Commerce SEO Transformation
                   </h2>
-                  <p className="text-gray-600 mb-6">
+                  <p className="text-gray-400 mb-6">
                     How we increased organic traffic by 320% and revenue by 210%
                     for an online retailer through comprehensive technical SEO
                     fixes, content optimization, and strategic link building.
                   </p>
                   <div className="grid gap-4 sm:grid-cols-3 mb-6">
-                    <div className="bg-blue-50 p-3 rounded-lg">
-                      <p className="text-xl font-bold text-blue-600">320%</p>
-                      <p className="text-sm text-gray-600">Traffic increase</p>
+                    <div className="bg-blue-900/30 p-3 rounded-lg">
+                      <p className="text-xl font-bold text-blue-400">320%</p>
+                      <p className="text-sm text-gray-400">Traffic increase</p>
                     </div>
-                    <div className="bg-blue-50 p-3 rounded-lg">
-                      <p className="text-xl font-bold text-blue-600">210%</p>
-                      <p className="text-sm text-gray-600">Revenue growth</p>
+                    <div className="bg-blue-900/30 p-3 rounded-lg">
+                      <p className="text-xl font-bold text-blue-400">210%</p>
+                      <p className="text-sm text-gray-400">Revenue growth</p>
                     </div>
-                    <div className="bg-blue-50 p-3 rounded-lg">
-                      <p className="text-xl font-bold text-blue-600">85%</p>
-                      <p className="text-sm text-gray-600">
+                    <div className="bg-blue-900/30 p-3 rounded-lg">
+                      <p className="text-xl font-bold text-blue-400">85%</p>
+                      <p className="text-sm text-gray-400">
                         Keyword ranking improvements
                       </p>
                     </div>
                   </div>
-                  <Button asChild>
+                  <Button asChild className="text-gray-200">
                     <Link href="/case-studies/ecommerce-seo">
                       Read Case Study
                     </Link>
@@ -387,18 +413,18 @@ export default function SEOPage() {
         </section>
 
         {/* Testimonial Section */}
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <blockquote className="text-center">
-              <p className="text-xl italic text-gray-700 mb-6">
+        <section className="py-20">
+          <div className="container mx-auto px-4 max-w-4xl text-center">
+            <blockquote>
+              <p className="text-xl italic text-gray-400 mb-6">
                 &quot;herdoydev&apos;s SEO strategy delivered results we
                 didn&apos;t think were possible. In 8 months, we went from page
                 3 to ranking #1 for our most valuable keywords, driving
                 consistent high-quality traffic that converts.&quot;
               </p>
               <footer className="font-medium">
-                <div className="text-blue-600">Mark Thompson</div>
-                <div className="text-gray-600">
+                <div className="text-blue-400">Mark Thompson</div>
+                <div className="text-gray-500">
                   Marketing Director, TechSolutions Inc.
                 </div>
               </footer>
@@ -407,30 +433,25 @@ export default function SEOPage() {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-blue-600 text-white">
+        <section className="py-20 bg-card/40 backdrop-blur-2xl">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6">
               Ready to Dominate Search Results?
             </h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-400 mb-8 max-w-3xl mx-auto">
               Let&apos;s discuss how we can improve your search visibility and
               drive more qualified traffic to your website.
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
               <Button
                 asChild
+                className="border bg-transparent !text-primary border-primary"
                 size="lg"
-                className="bg-white text-blue-600 hover:bg-gray-100"
               >
-                <Link href="/contact">Get Your Free SEO Audit</Link>
+                <Link href="/contact">Get Free Audit</Link>
               </Button>
-              <Button
-                asChild
-                variant="outline"
-                size="lg"
-                className="text-white border-white hover:bg-blue-700"
-              >
-                <Link href="/blog/seo-tips">Read Our SEO Blog</Link>
+              <Button asChild size="lg">
+                <Link href="/case-studies">See Case Studies</Link>
               </Button>
             </div>
           </div>

@@ -1,5 +1,9 @@
+import { PageHeaderBox } from "@/components/page-header-box";
+import SectionButton from "@/components/section-button";
+import ThemedCard from "@/components/themed-card";
+import ThemedIcon from "@/components/themed-icon";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { CardContent, CardTitle } from "@/components/ui/card";
 import {
   Box,
   CreditCard,
@@ -7,9 +11,6 @@ import {
   ShoppingCart,
   TrendingUp,
 } from "lucide-react";
-import Head from "next/head";
-import Image from "next/image";
-import Link from "next/link";
 import {
   SiBigcommerce,
   SiNextdotjs,
@@ -18,22 +19,25 @@ import {
   SiStripe,
   SiWoocommerce,
 } from "react-icons/si";
+import Head from "next/head";
+import Image from "next/image";
+import Link from "next/link";
 
 export const metadata = {
   title: "E-Commerce Development Services | herdoydev",
   description:
-    "Professional e-commerce solutions with modern technologies. We build high-converting online stores with seamless checkout experiences.",
+    "Professional e-commerce solutions that convert 3.2x better than average. We build high-performance online stores with seamless checkout experiences.",
   keywords: [
     "e-commerce development",
     "online store development",
     "shopify development",
-    "e-commerce website",
-    "herdoydev e-commerce services",
+    "high-converting stores",
+    "headless commerce",
   ],
   openGraph: {
-    title: "E-Commerce Development Services | herdoydev",
+    title: "Premium E-Commerce Development | herdoydev",
     description:
-      "Custom online stores built for maximum conversions and sales growth.",
+      "Stores with 3.2x average conversion rates using Shopify Plus and headless architectures.",
     url: "https://herdoydev.com/services/e-commerce",
     images: [
       {
@@ -48,89 +52,100 @@ export const metadata = {
 
 const services = [
   {
-    icon: <ShoppingCart className="h-8 w-8 text-blue-600" />,
-    title: "Custom E-Commerce Development",
+    icon: <ShoppingCart />,
+    title: "Custom E-Commerce",
     description:
-      "Tailored online stores designed to maximize conversions and provide seamless shopping experiences.",
+      "Stores converting 3.2x better with Shopify Plus and headless architectures.",
     features: [
-      "Mobile-optimized product pages",
-      "Custom checkout flows",
-      "Inventory management",
-      "Payment gateway integration",
+      "One-click checkout optimization",
+      "PIM and ERP integrations",
+      "90+ Lighthouse scores",
+      "Post-launch conversion analytics",
     ],
+    cta: "Build My Store",
+    href: "/contact?service=ecommerce",
   },
   {
-    icon: <CreditCard className="h-8 w-8 text-blue-600" />,
+    icon: <CreditCard />,
     title: "Platform Migration",
-    description:
-      "Seamless transition to a better e-commerce platform without losing data or SEO rankings.",
+    description: "Zero-downtime migrations that preserve 100% of SEO equity.",
     features: [
-      "Data migration strategy",
-      "URL redirect mapping",
-      "Theme customization",
-      "Performance optimization",
+      "Automated data transfer",
+      "301 redirect strategy",
+      "Theme reconstruction",
+      "Performance benchmarking",
     ],
+    cta: "Migrate My Store",
+    href: "/contact?service=migration",
   },
   {
-    icon: <Box className="h-8 w-8 text-blue-600" />,
-    title: "Headless E-Commerce",
+    icon: <Box />,
+    title: "Headless Commerce",
     description:
-      "Modern architecture for blazing-fast storefronts with CMS flexibility.",
+      "Blazing-fast storefronts with CMS flexibility and omnichannel capabilities.",
     features: [
-      "API-first architecture",
-      "Omnichannel capabilities",
-      "Progressive Web App (PWA)",
-      "Custom CMS integration",
+      "Commerce.js implementations",
+      "Progressive Web Apps",
+      "60fps animations",
+      "Edge caching",
     ],
+    cta: "Go Headless",
+    href: "/contact?service=headless",
   },
   {
-    icon: <TrendingUp className="h-8 w-8 text-blue-600" />,
+    icon: <TrendingUp />,
     title: "Conversion Optimization",
-    description:
-      "Data-driven improvements to boost your store's sales performance.",
+    description: "Data-driven improvements that boost revenue by 40-220%.",
     features: [
-      "A/B testing implementation",
+      "A/B testing framework",
       "Checkout funnel analysis",
-      "UX/UI improvements",
-      "Shopping cart recovery",
+      "Cart recovery flows",
+      "Personalization engines",
     ],
+    cta: "Boost Conversions",
+    href: "/contact?service=conversion",
   },
 ];
 
 const technologies = [
-  { name: "Shopify", icon: SiShopify },
-  { name: "WooCommerce", icon: SiWoocommerce },
-  { name: "BigCommerce", icon: SiBigcommerce },
-  { name: "Next.js", icon: SiNextdotjs },
-  { name: "React", icon: SiReact },
-  { name: "Stripe", icon: SiStripe },
+  { name: "Shopify", icon: SiShopify, color: "#7AB55C" },
+  { name: "WooCommerce", icon: SiWoocommerce, color: "#96588A" },
+  { name: "BigCommerce", icon: SiBigcommerce, color: "#121118" },
+  { name: "Next.js", icon: SiNextdotjs, color: "#000000" },
+  { name: "React", icon: SiReact, color: "#61DAFB" },
+  { name: "Stripe", icon: SiStripe, color: "#635BFF" },
 ];
 
 const processSteps = [
   {
     step: "01",
-    title: "Strategy",
-    description: "Understanding your products, customers, and business goals",
+    title: "Discovery Workshop",
+    description: "90-minute session to define KPIs and technical requirements",
+    icon: "🔍",
   },
   {
     step: "02",
-    title: "Design",
-    description: "Creating intuitive shopping experiences that convert",
+    title: "Technical Blueprint",
+    description: "Architecture diagrams and platform recommendations",
+    icon: "📋",
   },
   {
     step: "03",
-    title: "Development",
-    description: "Building with security and scalability in mind",
+    title: "UI/UX Design Sprint",
+    description: "2-week design process with user testing",
+    icon: "🎨",
   },
   {
     step: "04",
-    title: "Integration",
-    description: "Connecting payment, shipping, and inventory systems",
+    title: "Development",
+    description: "2-week sprints with bi-weekly demos",
+    icon: "💻",
   },
   {
     step: "05",
-    title: "Launch",
-    description: "Going live with performance monitoring",
+    title: "QA Testing",
+    description: "Automated + manual testing across 20+ devices",
+    icon: "🧪",
   },
 ];
 
@@ -141,71 +156,68 @@ export default function ECommercePage() {
         <title>{metadata.title}</title>
         <meta name="description" content={metadata.description} />
         <meta name="keywords" content={metadata.keywords.join(", ")} />
+        <link
+          rel="canonical"
+          href="https://herdoydev.com/services/e-commerce"
+        />
       </Head>
 
       <main>
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-b from-blue-50 to-white py-24">
-          <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl text-center">
-              <span className="inline-flex items-center rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
-                E-Commerce Solutions
+        <PageHeaderBox>
+          <div className="mx-auto max-w-4xl text-center">
+            <SectionButton>E-Commerce Solutions</SectionButton>
+            <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
+              <span className="block">High-Converting</span>
+              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                E-Commerce Development
               </span>
-              <h1 className="mt-6 text-4xl font-bold tracking-tight sm:text-5xl">
-                E-Commerce Development That Drives Sales
-              </h1>
-              <p className="mt-4 text-lg text-gray-600">
-                We build high-converting online stores with seamless checkout
-                experiences, robust inventory management, and scalable
-                architectures.
-              </p>
-              <div className="mt-8 flex flex-col sm:flex-row justify-center gap-4">
-                <Button size="lg" asChild>
-                  <Link href="/contact">Get Your Free Consultation</Link>
-                </Button>
-                <Button variant="outline" size="lg" asChild>
-                  <Link href="/portfolio">See E-Commerce Examples</Link>
-                </Button>
-              </div>
+            </h1>
+            <p className="mt-6 text-xl text-gray-400 max-w-3xl mx-auto">
+              We build stores that outperform competitors by{" "}
+              <strong>3.2x in conversions</strong> with{" "}
+              <strong>90+ Lighthouse scores</strong> using modern commerce
+              platforms.
+            </p>
+            <div className="mt-8">
+              <Button asChild size="lg" className="animate-pulse text-gray-200">
+                <Link href="/contact">Get Free Store Audit</Link>
+              </Button>
             </div>
           </div>
-        </section>
+        </PageHeaderBox>
 
-        {/* Services Offered */}
-        <section className="py-16 bg-white">
+        {/* Services Grid */}
+        <section className="py-20">
           <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
-                Our E-Commerce Services
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Our <span className="text-blue-600">E-Commerce</span> Services
               </h2>
-              <p className="text-lg text-gray-600">
-                End-to-end solutions to launch and grow your online store
+              <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
+                Solutions trusted by brands to scale their online revenue.
               </p>
             </div>
 
             <div className="grid gap-8 md:grid-cols-2">
               {services.map((service, index) => (
-                <Card
-                  key={index}
-                  className="h-full transition-all hover:shadow-lg hover:-translate-y-1"
-                >
-                  <CardHeader className="pb-3">
+                <ThemedCard key={index}>
+                  <div className="pb-3">
                     <div className="flex items-center space-x-4">
-                      <div className="rounded-lg bg-blue-50 p-3">
+                      <ThemedIcon className="bg-primary">
                         {service.icon}
-                      </div>
-                      <CardTitle className="text-lg font-semibold">
+                      </ThemedIcon>
+                      <CardTitle className="text-xl font-semibold">
                         {service.title}
                       </CardTitle>
                     </div>
-                  </CardHeader>
+                  </div>
                   <CardContent className="pt-0">
-                    <p className="text-gray-600 mb-4">{service.description}</p>
-                    <ul className="space-y-2 mb-6">
+                    <p className="text-gray-300 mb-4">{service.description}</p>
+                    <ul className="space-y-3 mb-6">
                       {service.features.map((feature, i) => (
                         <li key={i} className="flex items-start">
                           <svg
-                            className="h-5 w-5 text-blue-500 mr-2 mt-0.5 flex-shrink-0"
+                            className="h-5 w-5 text-primary mr-2 mt-0.5 flex-shrink-0"
                             fill="none"
                             viewBox="0 0 24 24"
                             stroke="currentColor"
@@ -217,28 +229,28 @@ export default function ECommercePage() {
                               d="M5 13l4 4L19 7"
                             />
                           </svg>
-                          <span className="text-gray-700">{feature}</span>
+                          <span className="text-gray-400">{feature}</span>
                         </li>
                       ))}
                     </ul>
-                    <Button asChild variant="outline" className="w-full">
-                      <Link href="/contact">Learn More</Link>
+                    <Button asChild className="w-full text-gray-200" size="lg">
+                      <Link href={service.href}>{service.cta}</Link>
                     </Button>
                   </CardContent>
-                </Card>
+                </ThemedCard>
               ))}
             </div>
           </div>
         </section>
 
         {/* Technology Stack */}
-        <section className="py-16 bg-gray-50">
+        <section className="py-20 bg-card/40 backdrop-blur-2xl">
           <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
-                Our E-Commerce Technology Stack
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Our <span className="text-blue-600">Commerce</span> Stack
               </h2>
-              <p className="text-lg text-gray-600">
+              <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
                 Platforms and tools we use to build secure, scalable stores
               </p>
             </div>
@@ -248,10 +260,13 @@ export default function ECommercePage() {
                 const Icon = tech.icon;
                 return (
                   <div key={tech.name} className="flex flex-col items-center">
-                    <div className="bg-white p-4 rounded-lg shadow-sm w-24 h-24 flex items-center justify-center">
-                      <Icon className="text-5xl text-primary" />
+                    <div className="bg-card p-6 rounded-lg shadow-sm w-24 h-24 flex items-center justify-center">
+                      <Icon
+                        className="text-5xl"
+                        style={{ color: tech.color }}
+                      />
                     </div>
-                    <span className="mt-3 text-sm font-medium">
+                    <span className="mt-3 text-sm font-medium text-gray-300">
                       {tech.name}
                     </span>
                   </div>
@@ -259,139 +274,130 @@ export default function ECommercePage() {
               })}
             </div>
 
-            <div className="mt-16 bg-white rounded-xl p-8 shadow-sm max-w-4xl mx-auto">
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                <ShieldCheck className="h-12 w-12 text-blue-600 flex-shrink-0" />
-                <div>
-                  <h3 className="text-xl font-bold mb-2">
-                    Security First Approach
-                  </h3>
-                  <p className="text-gray-600">
-                    We implement PCI compliance, SSL certificates, fraud
-                    prevention, and regular security audits to protect your
-                    business and customers.
-                  </p>
+            <div className="mt-16 max-w-4xl mx-auto">
+              <ThemedCard>
+                <div className="flex flex-col md:flex-row items-center gap-8">
+                  <ThemedIcon className="bg-primary">
+                    <ShieldCheck />
+                  </ThemedIcon>
+                  <div>
+                    <h3 className="text-xl font-bold mb-2">
+                      Enterprise-Grade Security
+                    </h3>
+                    <p className="text-gray-400">
+                      PCI-DSS compliance, fraud prevention, and regular security
+                      audits to protect your business and customers.
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </ThemedCard>
             </div>
           </div>
         </section>
 
         {/* Our Process */}
-        <section className="py-16 bg-white">
+        <section className="py-20">
           <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-3xl text-center mb-12">
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
-                Our E-Commerce Process
+            <div className="text-center mb-16">
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
+                Our <span className="text-blue-600">5-Stage</span> Process
               </h2>
-              <p className="text-lg text-gray-600">
-                A proven methodology to deliver successful online stores
+              <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
+                Transparent workflow that delivers on time and exceeds
+                expectations.
               </p>
             </div>
 
             <div className="grid gap-8 md:grid-cols-5">
-              {processSteps.map((step) => (
-                <div key={step.step} className="text-center">
-                  <div className="bg-blue-600 text-white rounded-full w-12 h-12 flex items-center justify-center mx-auto mb-4">
-                    {step.step}
+              {processSteps.map((step, index) => (
+                <ThemedCard key={index}>
+                  <div className="flex items-center mb-4">
+                    <span className="text-3xl mr-4">{step.icon}</span>
+                    <span className="text-2xl font-bold text-blue-600">
+                      {step.step}
+                    </span>
                   </div>
-                  <h3 className="text-lg font-semibold mb-2">{step.title}</h3>
-                  <p className="text-gray-600 text-sm">{step.description}</p>
-                </div>
+                  <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
+                  <p className="text-gray-400">{step.description}</p>
+                </ThemedCard>
               ))}
             </div>
           </div>
         </section>
 
         {/* Case Study Highlight */}
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <div className="bg-white rounded-xl overflow-hidden shadow-sm">
-              <div className="grid md:grid-cols-2">
-                <div className="relative aspect-square">
-                  <Image
-                    src="/projects/portfolio1.jpeg"
-                    alt="E-commerce case study"
-                    fill
-                    className="object-cover"
-                  />
-                </div>
-                <div className="p-8">
-                  <span className="inline-block rounded-full bg-blue-100 px-3 py-1 text-sm font-medium text-blue-700 mb-4">
-                    Case Study
-                  </span>
-                  <h2 className="text-2xl font-bold mb-4">
-                    Fashion Boutique E-Commerce
-                  </h2>
-                  <p className="text-gray-600 mb-6">
-                    How we helped a boutique fashion brand increase online sales
-                    by 220% with a complete store redesign and conversion
-                    optimization.
-                  </p>
-                  <div className="grid gap-4 sm:grid-cols-3 mb-6">
-                    <div className="bg-blue-50 p-3 rounded-lg">
-                      <p className="text-xl font-bold text-blue-600">220%</p>
-                      <p className="text-sm text-gray-600">Sales increase</p>
-                    </div>
-                    <div className="bg-blue-50 p-3 rounded-lg">
-                      <p className="text-xl font-bold text-blue-600">42%</p>
-                      <p className="text-sm text-gray-600">
-                        Lower cart abandonment
-                      </p>
-                    </div>
-                    <div className="bg-blue-50 p-3 rounded-lg">
-                      <p className="text-xl font-bold text-blue-600">3.2x</p>
-                      <p className="text-sm text-gray-600">
-                        Mobile conversion rate
-                      </p>
-                    </div>
+        <section className="py-20 bg-card/40 backdrop-blur-2xl">
+          <div className="container mx-auto px-4 max-w-6xl">
+            <div className="grid md:grid-cols-2 gap-8">
+              <div className="relative aspect-square rounded-xl overflow-hidden">
+                <Image
+                  src="/projects/portfolio1.jpeg"
+                  alt="E-commerce case study"
+                  fill
+                  className="object-cover"
+                />
+              </div>
+              <div className="flex flex-col justify-center">
+                <span className="inline-flex items-center rounded-full bg-primary/20 px-4 py-2 text-sm font-medium text-primary mb-4 w-fit">
+                  Case Study
+                </span>
+                <h2 className="text-3xl font-bold mb-4">
+                  Fashion Boutique E-Commerce
+                </h2>
+                <p className="text-gray-400 mb-6">
+                  Transformed a boutique&apos;s online presence with results
+                  including:
+                </p>
+                <div className="grid gap-4 sm:grid-cols-3 mb-6">
+                  <div className="bg-primary/10 p-3 rounded-lg">
+                    <p className="text-xl font-bold text-primary">220%</p>
+                    <p className="text-sm text-gray-400">Sales increase</p>
                   </div>
-                  <Button asChild>
-                    <Link href="/case-studies/fashion-boutique-ecommerce">
-                      Read Case Study
-                    </Link>
-                  </Button>
+                  <div className="bg-primary/10 p-3 rounded-lg">
+                    <p className="text-xl font-bold text-primary">1.2s</p>
+                    <p className="text-sm text-gray-400">Load time</p>
+                  </div>
+                  <div className="bg-primary/10 p-3 rounded-lg">
+                    <p className="text-xl font-bold text-primary">42%</p>
+                    <p className="text-sm text-gray-400">Lower abandonment</p>
+                  </div>
                 </div>
+                <Button asChild size="lg">
+                  <Link href="/case-studies/fashion-boutique-ecommerce">
+                    Read Case Study
+                  </Link>
+                </Button>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Testimonial Section */}
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4 max-w-4xl">
-            <blockquote className="text-center">
-              <p className="text-xl italic text-gray-700 mb-6">
-                &quot;After struggling with our old platform, herdoydev
-                transformed our online store. In just 3 months, we saw a 150%
-                increase in revenue with lower operational costs. Their
-                expertise in e-commerce is unmatched.&quot;
-              </p>
-              <footer className="font-medium">
-                <div className="text-blue-600">Sarah Johnson</div>
-                <div className="text-gray-600">Founder, LuxeHome Decor</div>
-              </footer>
-            </blockquote>
-          </div>
-        </section>
-
         {/* CTA Section */}
-        <section className="py-16 bg-blue-600 text-white">
+        <section className="py-20 bg-card/40 backdrop-blur-2xl">
           <div className="container mx-auto px-4 text-center">
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-6">
-              Ready to Grow Your Online Sales?
+              <span className="block">Ready to Transform Your</span>
+              <span className="bg-gradient-to-r from-blue-600 to-blue-400 bg-clip-text text-transparent">
+                E-Commerce Performance?
+              </span>
             </h2>
-            <p className="text-xl mb-8 max-w-2xl mx-auto">
-              Let&apos;s discuss how we can build or optimize your e-commerce
-              store for maximum conversions.
+            <p className="text-xl mb-8 max-w-3xl mx-auto text-gray-400">
+              Get a free store audit with actionable insights to boost
+              conversions by 30-200%.
             </p>
-            <Button
-              asChild
-              size="lg"
-              className="bg-white text-blue-600 hover:bg-gray-100"
-            >
-              <Link href="/contact">Start Your Project Today</Link>
-            </Button>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Button asChild size="lg" className="animate-pulse text-gray-200">
+                <Link href="/contact?service=audit">Get Free Store Audit</Link>
+              </Button>
+              <Button
+                asChild
+                variant="outline"
+                size="lg"
+                className="border bg-transparent !text-primary border-primary hover:bg-primary/10"
+              >
+                <Link href="/case-studies">See Client Results</Link>
+              </Button>
+            </div>
           </div>
         </section>
       </main>
