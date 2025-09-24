@@ -51,8 +51,8 @@ export default function Navbar() {
                 rounded-full px-4 py-2 text-sm font-medium transition-colors
                 ${
                   pathname === link.href
-                    ? "bg-blue-600/20 text-white dark:bg-blue-500/30 dark:text-blue-400"
-                    : "text-gray-800 hover:bg-gray-200 hover:text-gray-900 dark:text-gray-900 dark:hover:bg-gray-700 dark:hover:text-white"
+                    ? "text-white bg-blue-500/30"
+                    : "text-white hover:bg-blue-500/30"
                 }
               `}
               onClick={() => setMobileMenuOpen(false)}
