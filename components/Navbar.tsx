@@ -1,5 +1,6 @@
 "use client";
 
+import { cn } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -7,11 +8,10 @@ import { useState } from "react";
 
 const navLinks = [
   { name: "Home", href: "/" },
-  { name: "Services", href: "/services" },
-  { name: "Portfolio", href: "/portfolio" },
-  { name: "About", href: "/about" },
-  { name: "Blog", href: "/blog" },
-  { name: "Contact", href: "/contact" },
+  { name: "Services", href: "#services" },
+  { name: "Portfolio", href: "#portfolio" },
+  { name: "About", href: "#about" },
+  { name: "Contact", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -20,25 +20,20 @@ export default function Navbar() {
 
   return (
     <header
-      className="
-        fixed top-4 left-0 right-0 z-50
-         bg-white/30 dark:bg-gray-900/30
-        backdrop-blur-md
-        border border-white/30 dark:border-gray-700/50 rounded-full
-        shadow-md
-        max-w-7xl md:mx-auto
-        px-4 mx-2
-      "
+      className={cn(
+        !mobileMenuOpen && "border border-primary",
+        mobileMenuOpen && " pb-6",
+        "fixed top-4 left-0 right-0 rounded-4xl z-50 bg-background/40 backdrop-blur-md shadow-sm max-w-7xl md:mx-auto px-4 mx-2"
+      )}
     >
       <div className="flex items-center justify-between h-16 max-w-7xl mx-auto">
-        {/* Logo */}
         <Link
           href="/"
-          className="flex items-center gap-2 text-2xl font-bold text-gray-900 dark:text-white"
+          className="flex items-center gap-2 text-2xl font-bold text-foreground"
           aria-label="herdoydev homepage"
           onClick={() => setMobileMenuOpen(false)}
         >
-          <Image src="/logo_light.png" alt="logo" width={120} height={30} />
+          <Image src="/logo.png" width={150} height={60} alt="Logo" />
         </Link>
 
         {/* Desktop Navigation */}
@@ -51,8 +46,8 @@ export default function Navbar() {
                 rounded-full px-4 py-2 text-sm font-medium transition-colors
                 ${
                   pathname === link.href
-                    ? "text-white bg-blue-500/30"
-                    : "text-white hover:bg-blue-500/30"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-foreground hover:bg-accent hover:text-accent-foreground"
                 }
               `}
               onClick={() => setMobileMenuOpen(false)}
@@ -61,8 +56,8 @@ export default function Navbar() {
             </Link>
           ))}
           <Link
-            href="/contact"
-            className="ml-2 rounded-full bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700"
+            href="#contact"
+            className="ml-2 rounded-full bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90"
             onClick={() => setMobileMenuOpen(false)}
           >
             Get Started
@@ -71,7 +66,7 @@ export default function Navbar() {
 
         {/* Mobile menu button */}
         <button
-          className="md:hidden p-2 rounded-md text-gray-900 dark:text-white hover:bg-gray-200 dark:hover:bg-gray-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"
+          className="md:hidden p-2 rounded-md text-foreground hover:bg-primary/10"
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
           aria-label="Toggle menu"
           aria-expanded={mobileMenuOpen}
@@ -112,7 +107,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <nav className="md:hidden mt-2 px-4 py-4 space-y-2 bg-white/90 dark:bg-gray-900/90 rounded-2xl backdrop-blur-md border-t border-gray-700">
+        <nav className="md:hidden mt-2 px-4 py-4 space-y-2  bg-background/40 backdrop-blur-md rounded-2xl border border-primary">
           {navLinks.map((link) => (
             <Link
               key={link.name}
@@ -121,8 +116,8 @@ export default function Navbar() {
                 block rounded-full px-4 py-3 font-medium transition-colors
                 ${
                   pathname === link.href
-                    ? "bg-blue-600/20 text-blue-600 dark:bg-blue-500/30 dark:text-blue-400"
-                    : "text-gray-800 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700"
+                    ? "bg-primary text-primary-foreground"
+                    : "text-foreground hover:bg-accent hover:text-accent-foreground"
                 }
               `}
               onClick={() => setMobileMenuOpen(false)}
@@ -131,8 +126,8 @@ export default function Navbar() {
             </Link>
           ))}
           <Link
-            href="/contact"
-            className="block rounded-full bg-blue-600 px-4 py-3 text-center font-medium text-white hover:bg-blue-700"
+            href="#contact"
+            className="block rounded-full bg-primary px-4 py-3 text-center font-medium text-primary-foreground hover:bg-primary/90"
             onClick={() => setMobileMenuOpen(false)}
           >
             Get Started

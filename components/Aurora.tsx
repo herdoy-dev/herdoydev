@@ -1,7 +1,5 @@
-// components/Aurora.tsx
 "use client";
-
-import React, { useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import { Renderer, Program, Mesh, Color, Triangle } from "ogl";
 
 const VERT = `#version 300 es
@@ -21,8 +19,6 @@ uniform vec2 uResolution;
 uniform float uBlend;
 
 out vec4 fragColor;
-
-// ... (Your full fragment shader code unchanged) ...
 
 vec3 permute(vec3 x) {
   return mod(((x * 34.0) + 1.0) * x, 289.0);
@@ -144,7 +140,20 @@ export default function Aurora(props: AuroraProps) {
     gl.clearColor(0, 0, 0, 0);
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.ONE, gl.ONE_MINUS_SRC_ALPHA);
-    (gl.canvas as HTMLCanvasElement).style.backgroundColor = "transparent";
+    gl.canvas.style.backgroundColor = "transparent";
+
+    let program: Program | undefined;
+
+    function resize() {
+      if (!ctn) return;
+      const width = ctn.offsetWidth;
+      const height = ctn.offsetHeight;
+      renderer.setSize(width, height);
+      if (program) {
+        program.uniforms.uResolution.value = [width, height];
+      }
+    }
+    window.addEventListener("resize", resize);
 
     const geometry = new Triangle(gl);
     if (geometry.attributes.uv) {
@@ -156,7 +165,7 @@ export default function Aurora(props: AuroraProps) {
       return [c.r, c.g, c.b];
     });
 
-    const program = new Program(gl, {
+    program = new Program(gl, {
       vertex: VERT,
       fragment: FRAG,
       uniforms: {
@@ -189,15 +198,6 @@ export default function Aurora(props: AuroraProps) {
     };
     animateId = requestAnimationFrame(update);
 
-    function resize() {
-      if (!ctn) return;
-      const width = ctn.offsetWidth;
-      const height = ctn.offsetHeight;
-      renderer.setSize(width, height);
-      program.uniforms.uResolution.value = [width, height];
-    }
-    window.addEventListener("resize", resize);
-
     resize();
 
     return () => {
@@ -208,7 +208,7 @@ export default function Aurora(props: AuroraProps) {
       }
       gl.getExtension("WEBGL_lose_context")?.loseContext();
     };
-  }, [amplitude, blend, colorStops]);
+  }, [amplitude]);
 
   return <div ref={ctnDom} className="w-full h-full" />;
 }

@@ -1,179 +1,42 @@
-import Navbar from "@/components/Navbar";
-import "@radix-ui/themes/styles.css";
 import type { Metadata } from "next";
-import { Poppins } from "next/font/google";
-import Script from "next/script";
-import { Footer } from "./footer";
+import { ThemeProvider } from "next-themes";
+import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const poppins = Poppins({
-  variable: "--font-poppins",
+const geistSans = Geist({
+  variable: "--font-geist-sans",
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
 });
 
-// SEO Metadata
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
 export const metadata: Metadata = {
-  title: {
-    default: "Hire Web Developer | Custom Websites & Apps | herdoydev",
-    template: "%s | herdoydev - Web Development Experts",
-  },
+  title: "HerdoyDev | Modern Websites & AI-Powered Solutions",
   description:
-    "Top-rated web development agency. Hire expert developers for React, Next.js, Node.js, and custom web applications. 100% client satisfaction.",
-  keywords: [
-    // Hiring Intent
-    "hire web developer",
-    "freelance web developer",
-    "web developer for hire",
-
-    // Technologies
-    "React developer",
-    "Next.js expert",
-    "Node.js developer",
-    "full-stack developer",
-    "JavaScript developer",
-    "TypeScript developer",
-    "Python web developer",
-
-    // Services
-    "e-commerce development",
-    "custom web application",
-    "website redesign",
-    "responsive web design",
-    "CMS development",
-    "headless CMS",
-
-    // Business Keywords
-    "web development agency",
-    "offshore developers",
-    "affordable web development",
-  ],
-  openGraph: {
-    title: "Hire Expert Web Developers | Premium Development Services",
-    description:
-      "Need a professional web developer? We specialize in React, Next.js, and scalable web solutions. Free consultation available.",
-    url: "https://herdoydev.com",
-    siteName: "herdoydev",
-    type: "website",
-    images: [
-      {
-        url: "https://herdoydev.com/og-image.jpg",
-        width: 1200,
-        height: 630,
-        alt: "herdoydev team building modern web applications",
-      },
-    ],
-    locale: "en_US",
-  },
-  twitter: {
-    card: "summary_large_image",
-    title: "herdoydev | Web Development Experts",
-    description:
-      "Building fast, scalable web applications with React, Next.js, and modern tech stacks.",
-    creator: "@herdoydev",
-    images: ["https://herdoydev.com/twitter-card.jpg"],
-  },
-  icons: {
-    icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
-  },
-  metadataBase: new URL("https://herdoydev.com"),
-  alternates: {
-    canonical: "/",
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-video-preview": -1,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+    "HerdoyDev creates smart, responsive websites and integrates AI automations to help businesses grow online.",
 };
 
 export default function RootLayout({
   children,
-}: {
+}: Readonly<{
   children: React.ReactNode;
-}) {
+}>) {
   return (
-    <html lang="en" className="scroll-smooth">
-      <head>
-        <meta name="google-adsense-account" content="ca-pub-7106488480723857" />
-        <Script
-          src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7106488480723857"
-          crossOrigin="anonymous"
-        />
-      </head>
-      <body className={`${poppins.variable} antialiased`}>
-        <Navbar />
-
-        <main className="min-h-[calc(100vh-140px)]">{children}</main>
-        <Footer />
-
-        {/* Schema.org JSON-LD for SEO */}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "WebDevelopmentCompany",
-              name: "herdoydev",
-              url: "https://herdoydev.com",
-              logo: "https://herdoydev.com/logo.png",
-              description:
-                "Professional web development services for businesses and startups.",
-              address: {
-                "@type": "PostalAddress",
-                addressLocality: "Your City",
-                addressRegion: "Your State",
-                postalCode: "00000",
-                addressCountry: "Your Country",
-              },
-              offers: {
-                "@type": "Service",
-                name: "Web Development",
-                description: "Custom website and application development.",
-              },
-            }),
-          }}
-        />
-
-        {/* Chatbase Script */}
-        <Script id="chatbase-script" strategy="afterInteractive">
-          {`
-            (function(){
-              if(!window.chatbase||window.chatbase("getState")!=="initialized"){
-                window.chatbase=(...arguments)=>{
-                  if(!window.chatbase.q){window.chatbase.q=[]}
-                  window.chatbase.q.push(arguments)
-                };
-                window.chatbase=new Proxy(window.chatbase,{
-                  get(target,prop){
-                    if(prop==="q"){return target.q}
-                    return(...args)=>target(prop,...args)
-                  }
-                })
-              }
-              const onLoad=function(){
-                const script=document.createElement("script");
-                script.src="https://www.chatbase.co/embed.min.js";
-                script.id="EzjgCYNBOzKGiouzgN3xx";
-                script.domain="www.chatbase.co";
-                document.body.appendChild(script)
-              };
-              if(document.readyState==="complete"){
-                onLoad()
-              }else{
-                window.addEventListener("load",onLoad)
-              }
-            })();
-          `}
-        </Script>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+      >
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {children}
+        </ThemeProvider>
       </body>
     </html>
   );
