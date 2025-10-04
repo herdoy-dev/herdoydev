@@ -8,14 +8,14 @@ import { cn } from "@/lib/utils";
 function Hero() {
   return (
     <>
-      <div className="w-full md:h-[800px] h-[800px] relative mb-6">
+      <div className="w-full md:h-[860px] h-[800px] relative mb-6">
         <Aurora
           colorStops={["#000000", "#1aa64b", "#1db954", "#33c065", "#4ac776"]}
           blend={0.5}
           amplitude={1.0}
           speed={0.5}
         />
-        <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 absolute md:top-0 top-16 w-full">
+        <section className="min-h-full flex items-center justify-center px-4 sm:px-6 lg:px-8 absolute md:top-0 top-16 w-full">
           <div className="max-w-4xl mx-auto text-center space-y-8">
             {/* Badge */}
             <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full border bg-background/50 backdrop-blur-sm text-sm font-medium">
