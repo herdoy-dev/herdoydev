@@ -5,6 +5,12 @@ export const metadata: Metadata = {
   title: "Terms of Service",
   description:
     "Terms of Service for herdoydev — the rules and guidelines for using our website and applications.",
+  alternates: { canonical: "/terms" },
+  openGraph: {
+    title: "Terms of Service | herdoydev",
+    description: "Terms of Service for herdoydev — the rules and guidelines for using our website and applications.",
+    url: "/terms",
+  },
 };
 
 export default function TermsOfServicePage() {

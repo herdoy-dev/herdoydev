@@ -5,6 +5,12 @@ export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
     "Privacy Policy for herdoydev — how we collect, use, and protect your data.",
+  alternates: { canonical: "/privacy" },
+  openGraph: {
+    title: "Privacy Policy | herdoydev",
+    description: "Privacy Policy for herdoydev — how we collect, use, and protect your data.",
+    url: "/privacy",
+  },
 };
 
 export default function PrivacyPolicyPage() {

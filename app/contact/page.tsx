@@ -3,9 +3,16 @@ import { ContactForm } from "@/components/sections/contact-form";
 import { MotionDiv } from "@/components/motion-wrapper";
 
 export const metadata: Metadata = {
-  title: "Contact Us | herdoydev",
+  title: "Contact Us",
   description:
     "Get in touch with herdoydev for custom app development, collaborations, or any inquiries.",
+  alternates: { canonical: "/contact" },
+  openGraph: {
+    title: "Contact Us | herdoydev",
+    description:
+      "Get in touch with herdoydev for custom app development, collaborations, or any inquiries.",
+    url: "/contact",
+  },
 };
 
 export default function ContactPage() {

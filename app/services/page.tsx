@@ -16,9 +16,16 @@ import { MotionDiv, StaggerContainer, StaggerItem } from "@/components/motion-wr
 import { CTA } from "@/components/sections/cta";
 
 export const metadata: Metadata = {
-  title: "Services | herdoydev",
+  title: "Services",
   description:
     "Custom app development, UI/UX design, backend APIs, and app launch services. Full-stack development from idea to production.",
+  alternates: { canonical: "/services" },
+  openGraph: {
+    title: "Services | herdoydev",
+    description:
+      "Custom app development, UI/UX design, backend APIs, and app launch services. Full-stack development from idea to production.",
+    url: "/services",
+  },
 };
 
 const services = [

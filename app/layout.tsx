@@ -17,7 +17,10 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+const siteUrl = "https://herdoydev.com";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: {
     default: "herdoydev — Code. Ship. Impact.",
     template: "%s | herdoydev",
@@ -30,25 +33,53 @@ export const metadata: Metadata = {
     "herdoydev",
     "android apps",
     "AI apps",
-    "fintech",
+    "fintech apps",
     "health apps",
-    "custom development",
+    "custom app development",
+    "mobile app developer",
+    "react native developer",
+    "full stack developer",
+    "app development company",
+    "google play store apps",
+    "productivity apps",
   ],
-  authors: [{ name: "herdoydev" }],
+  authors: [{ name: "Herdoy Almamun", url: siteUrl }],
   creator: "herdoydev",
+  publisher: "herdoydev",
+  formatDetection: {
+    email: false,
+    address: false,
+    telephone: false,
+  },
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     type: "website",
     locale: "en_US",
+    url: siteUrl,
     siteName: "herdoydev",
     title: "herdoydev — Code. Ship. Impact.",
     description:
-      "Building mobile applications that solve real-world problems.",
+      "We build mobile applications that solve real-world problems — AI, health, fintech, productivity, and more.",
   },
   twitter: {
     card: "summary_large_image",
     title: "herdoydev — Code. Ship. Impact.",
     description:
-      "Building mobile applications that solve real-world problems.",
+      "We build mobile applications that solve real-world problems — AI, health, fintech, productivity, and more.",
+    creator: "@herdoydev",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
   },
 };
 

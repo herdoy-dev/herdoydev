@@ -12,9 +12,16 @@ import { MotionDiv, StaggerContainer, StaggerItem } from "@/components/motion-wr
 import { CTA } from "@/components/sections/cta";
 
 export const metadata: Metadata = {
-  title: "About Us | herdoydev",
+  title: "About Us",
   description:
     "Learn about herdoydev — a tech-focused organization building mobile apps that solve real-world problems.",
+  alternates: { canonical: "/about" },
+  openGraph: {
+    title: "About Us | herdoydev",
+    description:
+      "Learn about herdoydev — a tech-focused organization building mobile apps that solve real-world problems.",
+    url: "/about",
+  },
 };
 
 const values = [

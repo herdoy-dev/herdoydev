@@ -4,9 +4,16 @@ import { CTA } from "@/components/sections/cta";
 import { MotionDiv } from "@/components/motion-wrapper";
 
 export const metadata: Metadata = {
-  title: "Products & Apps | herdoydev",
+  title: "Products & Apps",
   description:
     "Explore our growing portfolio of mobile applications — AI, health, fintech, and productivity tools on the Google Play Store.",
+  alternates: { canonical: "/products" },
+  openGraph: {
+    title: "Products & Apps | herdoydev",
+    description:
+      "Explore our growing portfolio of mobile applications — AI, health, fintech, and productivity tools on the Google Play Store.",
+    url: "/products",
+  },
 };
 
 export default function ProductsPage() {
