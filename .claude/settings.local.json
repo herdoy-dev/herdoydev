@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__context7__resolve-library-id",
+      "mcp__context7__query-docs",
+      "Bash(npm install:*)",
+      "Bash(npx shadcn@latest add card input textarea badge separator -y)",
+      "Bash(npx next:*)",
+      "Bash(node -e \"const l = require\\('lucide-react'\\); console.log\\('Twitter' in l, 'X' in l\\)\")",
+      "Bash(node -e \"const l = require\\('lucide-react'\\); const names = Object.keys\\(l\\).filter\\(k => k.toLowerCase\\(\\).includes\\('linked'\\) || k.toLowerCase\\(\\).includes\\('github'\\)\\); console.log\\(names\\)\")",
+      "Bash(node -e \"const l = require\\('lucide-react'\\); const names = Object.keys\\(l\\).filter\\(k => k.toLowerCase\\(\\).includes\\('link'\\) || k.toLowerCase\\(\\).includes\\('git'\\) || k.toLowerCase\\(\\).includes\\('globe'\\)\\); console.log\\(names.join\\(', '\\)\\)\")"
+    ]
+  }
+}
