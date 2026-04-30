@@ -61,7 +61,7 @@ export function CTA() {
                   asChild
                   size="lg"
                   variant="outline"
-                  className="border-white/30 text-white hover:bg-white/10 hover:text-white text-base px-8 h-12 w-full sm:w-auto"
+                  className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white text-base px-8 h-12 w-full sm:w-auto"
                 >
                   <Link href="/products">
                     <Download className="mr-2 size-4" />
