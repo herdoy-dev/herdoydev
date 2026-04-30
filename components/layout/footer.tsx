@@ -1,5 +1,6 @@
 import Link from "next/link";
-import { Code2, Mail } from "lucide-react";
+import Image from "next/image";
+import { Mail } from "lucide-react";
 import { Separator } from "@/components/ui/separator";
 import { GitHubIcon, XIcon, LinkedInIcon } from "@/components/icons";
 
@@ -36,9 +37,13 @@ export function Footer() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             <div className="col-span-2 md:col-span-1">
               <Link href="/" className="flex items-center gap-2 group mb-4">
-                <div className="gradient-bg rounded-lg p-1.5">
-                  <Code2 className="size-5 text-white" />
-                </div>
+                <Image
+                  src="/logo.png"
+                  alt="herdoydev logo"
+                  width={36}
+                  height={36}
+                  className="size-9"
+                />
                 <span className="text-lg font-bold tracking-tight">
                   herdoy<span className="gradient-text">dev</span>
                 </span>

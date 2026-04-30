@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Code2 } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
 
@@ -43,9 +44,14 @@ export function Navbar() {
       <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="gradient-bg rounded-lg p-1.5 transition-transform group-hover:scale-105">
-              <Code2 className="size-5 text-white" />
-            </div>
+            <Image
+              src="/logo.png"
+              alt="herdoydev logo"
+              width={36}
+              height={36}
+              priority
+              className="size-9 transition-transform group-hover:scale-105"
+            />
             <span className="text-lg font-bold tracking-tight">
               herdoy<span className="gradient-text">dev</span>
             </span>
