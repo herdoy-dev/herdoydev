@@ -1,202 +1,218 @@
 import type { Metadata } from "next";
-import {
-  Code2,
-  Users,
-  Target,
-  Heart,
-  Globe,
-  Award,
-} from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { MotionDiv, StaggerContainer, StaggerItem } from "@/components/motion-wrapper";
+import Image from "next/image";
 import { CTA } from "@/components/sections/cta";
 
 export const metadata: Metadata = {
-  title: "About Us",
+  title: "Studio",
   description:
-    "Learn about herdoydev — a tech-focused organization building mobile apps that solve real-world problems.",
+    "About herdoydev — an independent software studio of one, designing and engineering products in mobile and web.",
   alternates: { canonical: "/about" },
   openGraph: {
-    title: "About Us | herdoydev",
+    title: "Studio · herdoydev",
     description:
-      "Learn about herdoydev — a tech-focused organization building mobile apps that solve real-world problems.",
+      "About herdoydev — an independent software studio designing and engineering products.",
     url: "/about",
   },
 };
 
-const values = [
+const principles = [
   {
-    icon: Target,
-    title: "Problem-First Approach",
-    description:
-      "We start with real-world problems and work backwards to build solutions that truly matter.",
+    num: "01",
+    title: "Slow is fast.",
+    body:
+      "Decisions made in haste are paid for in maintenance. The studio rewards patience.",
   },
   {
-    icon: Users,
-    title: "User-Centric Design",
-    description:
-      "Every decision we make is driven by the end user's experience and satisfaction.",
+    num: "02",
+    title: "Craft over content.",
+    body:
+      "Polish is not optional. The taste shows up in the corners — typography, motion, error states.",
   },
   {
-    icon: Heart,
-    title: "Passion for Quality",
-    description:
-      "We believe in craftsmanship — clean code, polished UI, and attention to every detail.",
+    num: "03",
+    title: "Ship in public.",
+    body:
+      "We treat the catalogue like a sketchbook — published openly, revised often, never finished.",
   },
   {
-    icon: Globe,
-    title: "Global Impact",
-    description:
-      "Our apps are built for a global audience, accessible and useful to people everywhere.",
+    num: "04",
+    title: "Respect the user.",
+    body:
+      "No dark patterns. No ads-first thinking. The product earns its place on a screen.",
   },
 ];
 
-const techStack = [
-  "React.js",
-  "Next.js",
-  "Node.js",
-  "Express.js",
-  "MongoDB",
-  "MySQL",
+const stack = [
   "TypeScript",
-  "Tailwind CSS",
-  "React Native",
+  "React / Next.js",
+  "React Native / Expo",
+  "Node.js",
+  "Tailwind",
+  "Prisma",
+  "Postgres",
   "Firebase",
-  "AWS",
-  "Docker",
+  "GCP / AWS",
+  "Figma",
 ];
 
 export default function AboutPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <MotionDiv animation="fade-up">
-              <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
-                About Us
-              </p>
-              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
-                We build apps that{" "}
-                <span className="gradient-text">make a difference</span>
+      <section className="relative pt-32 md:pt-44 pb-16 md:pb-24 overflow-hidden">
+        <div aria-hidden className="absolute inset-0 -z-10 bg-grid pointer-events-none" />
+
+        <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12">
+          <div className="hidden md:flex items-center justify-between mb-12 pb-3 hairline-b">
+            <p className="edge-label">002 — Studio</p>
+            <p className="edge-label">A studio of one</p>
+            <p className="edge-label">Est. 2024 · Dhaka</p>
+          </div>
+
+          <div className="grid grid-cols-12 gap-6 md:gap-10">
+            <div className="col-span-12 md:col-span-3">
+              <p className="eyebrow">— About</p>
+            </div>
+            <div className="col-span-12 md:col-span-9">
+              <h1 className="serif text-[clamp(3rem,10vw,9rem)] leading-[0.9] tracking-tight">
+                A studio of <span className="serif-italic">one,</span><br />
+                with the discipline of many.
               </h1>
-              <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                herdoydev is a tech-focused organization that builds and publishes
-                mobile applications across multiple domains including AI, health,
-                fintech, productivity, and more. We focus on solving real-world
-                problems through scalable and user-friendly applications.
+              <p className="mt-8 max-w-2xl text-base md:text-lg text-muted-foreground leading-relaxed">
+                herdoydev is an independent practice founded by Herdoy
+                Almamun. It exists to design, engineer, and ship a small
+                number of products with unreasonable care.
               </p>
-            </MotionDiv>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Founder */}
-      <section className="py-20 md:py-28 bg-muted/30">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <MotionDiv animation="slide-left">
-              <div className="relative">
-                <div className="aspect-square max-w-md mx-auto lg:mx-0 rounded-2xl gradient-bg flex items-center justify-center">
-                  <Code2 className="size-32 text-white/30" />
-                </div>
-                <div className="absolute -bottom-4 -right-4 w-32 h-32 bg-primary/10 rounded-2xl -z-10" />
+      <section className="relative py-24 md:py-36 hairline-t">
+        <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12">
+          <div className="grid grid-cols-12 gap-6 md:gap-10 items-start">
+            <div className="col-span-12 md:col-span-5">
+              <div className="aspect-[4/5] hairline rounded-sm overflow-hidden bg-muted/30 flex items-center justify-center relative">
+                <Image
+                  src="/logo.png"
+                  alt=""
+                  width={400}
+                  height={400}
+                  className="size-1/2 opacity-90"
+                />
+                <p className="absolute bottom-4 left-4 mono text-[10px] tracking-widest uppercase text-muted-foreground">
+                  Plate i — Mark
+                </p>
               </div>
-            </MotionDiv>
-            <MotionDiv animation="slide-right">
-              <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
-                The Founder
-              </p>
-              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight mb-6">
-                5+ years of building{" "}
-                <span className="gradient-text">production software</span>
+            </div>
+
+            <div className="col-span-12 md:col-span-7 md:pt-8">
+              <p className="eyebrow mb-6">— 002.1 / Founder</p>
+              <h2 className="serif text-4xl md:text-6xl leading-[0.95] tracking-tight mb-8">
+                Herdoy <span className="serif-italic">Almamun</span>
               </h2>
-              <p className="text-muted-foreground leading-relaxed mb-4">
-                As a full-stack developer with over 5 years of experience, I&apos;ve
-                worked with technologies like React.js, Next.js, Node.js,
-                Express.js, MongoDB, MySQL, and modern cloud services.
-              </p>
-              <p className="text-muted-foreground leading-relaxed mb-6">
-                After building numerous client projects, I&apos;m now focused on
-                creating my own products and publishing them to platforms like
-                Google Play Store — solving real problems for real users.
-              </p>
-              <div className="flex items-center gap-4">
-                <div className="size-12 rounded-full gradient-bg flex items-center justify-center">
-                  <Award className="size-6 text-white" />
+              <div className="space-y-5 text-base md:text-lg text-foreground/85 leading-relaxed max-w-prose">
+                <p>
+                  Five years of writing software for other people&apos;s ideas
+                  taught me that the bottleneck is rarely the code. It is taste,
+                  time, and the willingness to say no.
+                </p>
+                <p>
+                  The studio is the answer to that — a small, independent
+                  practice where the same person who scopes the work also writes
+                  the code, draws the screens, and presses publish.
+                </p>
+                <p>
+                  We work with founders, teams, and operators who would rather
+                  hire a craftsperson than a vendor.
+                </p>
+              </div>
+
+              <div className="mt-10 grid grid-cols-3 gap-6 hairline-t pt-6">
+                <div>
+                  <p className="serif num text-3xl">5+</p>
+                  <p className="eyebrow mt-1">Years writing software</p>
                 </div>
                 <div>
-                  <p className="font-semibold">Herdoy Almamun</p>
-                  <p className="text-sm text-muted-foreground">
-                    Founder & Lead Developer
-                  </p>
+                  <p className="serif num text-3xl">15</p>
+                  <p className="eyebrow mt-1">Products in motion</p>
+                </div>
+                <div>
+                  <p className="serif num text-3xl">1</p>
+                  <p className="eyebrow mt-1">Pair of hands</p>
                 </div>
               </div>
-            </MotionDiv>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Values */}
-      <section className="py-20 md:py-28">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <MotionDiv animation="fade-up" className="text-center max-w-2xl mx-auto mb-16">
-            <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
-              Our Values
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-              What drives{" "}
-              <span className="gradient-text">everything we do</span>
-            </h2>
-          </MotionDiv>
+      {/* Principles */}
+      <section className="relative py-24 md:py-36 hairline-t bg-muted/30">
+        <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12">
+          <div className="grid grid-cols-12 gap-6 md:gap-10 mb-16 md:mb-20">
+            <div className="col-span-12 md:col-span-3">
+              <p className="eyebrow">— 002.2 / Principles</p>
+            </div>
+            <div className="col-span-12 md:col-span-9">
+              <h2 className="serif text-4xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight">
+                What we hold,<br />
+                <span className="serif-italic">in writing.</span>
+              </h2>
+            </div>
+          </div>
 
-          <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {values.map((value) => (
-              <StaggerItem key={value.title}>
-                <Card className="border-border/50 bg-card/50 hover:border-primary/30 transition-all duration-300 h-full">
-                  <CardContent className="p-6">
-                    <div className="size-12 rounded-xl gradient-bg flex items-center justify-center mb-4">
-                      <value.icon className="size-6 text-white" />
-                    </div>
-                    <h3 className="text-lg font-semibold mb-2">
-                      {value.title}
+          <ul className="hairline-t hairline-b">
+            {principles.map((p) => (
+              <li key={p.num} className="hairline-b last:border-b-0">
+                <div className="grid grid-cols-12 gap-6 py-8 md:py-10">
+                  <div className="col-span-2 md:col-span-1 mono num text-xs text-muted-foreground pt-1.5">
+                    / {p.num}
+                  </div>
+                  <div className="col-span-10 md:col-span-4">
+                    <h3 className="serif text-3xl md:text-4xl tracking-tight leading-none">
+                      {p.title}
                     </h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
-                      {value.description}
+                  </div>
+                  <div className="col-span-12 md:col-span-7">
+                    <p className="text-base md:text-lg text-foreground/80 leading-relaxed max-w-prose">
+                      {p.body}
                     </p>
-                  </CardContent>
-                </Card>
-              </StaggerItem>
+                  </div>
+                </div>
+              </li>
             ))}
-          </StaggerContainer>
+          </ul>
         </div>
       </section>
 
-      {/* Tech Stack */}
-      <section className="py-20 md:py-28 bg-muted/30">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <MotionDiv animation="fade-up" className="text-center max-w-2xl mx-auto mb-12">
-            <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
-              Tech Stack
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-              Technologies we{" "}
-              <span className="gradient-text">work with</span>
-            </h2>
-          </MotionDiv>
-          <MotionDiv animation="fade-up" delay={0.2}>
-            <div className="flex flex-wrap justify-center gap-3 max-w-3xl mx-auto">
-              {techStack.map((tech) => (
-                <span
-                  key={tech}
-                  className="px-4 py-2 rounded-full border border-border/50 bg-card/50 text-sm font-medium hover:border-primary/30 hover:bg-primary/5 transition-all duration-300"
-                >
-                  {tech}
-                </span>
-              ))}
+      {/* Stack */}
+      <section className="relative py-24 md:py-36 hairline-t">
+        <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12">
+          <div className="grid grid-cols-12 gap-6 md:gap-10">
+            <div className="col-span-12 md:col-span-3">
+              <p className="eyebrow">— 002.3 / Toolkit</p>
             </div>
-          </MotionDiv>
+            <div className="col-span-12 md:col-span-9">
+              <h2 className="serif text-4xl md:text-5xl tracking-tight leading-[1.1]">
+                Tools we keep <span className="serif-italic">on hand.</span>
+              </h2>
+              <ul className="mt-10 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-px hairline">
+                {stack.map((tool, i) => (
+                  <li
+                    key={tool}
+                    className="bg-background p-4 flex items-center gap-3"
+                  >
+                    <span className="mono num text-[11px] tracking-widest text-muted-foreground">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span className="text-sm font-medium">{tool}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </section>
 

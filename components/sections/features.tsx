@@ -1,91 +1,97 @@
 "use client";
 
-import {
-  Smartphone,
-  Brain,
-  HeartPulse,
-  Wallet,
-  Zap,
-  Shield,
-} from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { StaggerContainer, StaggerItem } from "@/components/motion-wrapper";
-import { MotionDiv } from "@/components/motion-wrapper";
+import { motion } from "framer-motion";
 
-const features = [
+const disciplines = [
   {
-    icon: Smartphone,
-    title: "Mobile-First Apps",
+    num: "01",
+    title: "Mobile",
     description:
-      "Native-quality mobile applications designed for seamless user experiences across all devices.",
+      "Native-feel applications on Android and cross-platform — built to launch, monitored, and maintained.",
+    keywords: ["React Native", "Expo", "Skia", "Reanimated"],
   },
   {
-    icon: Brain,
-    title: "AI-Powered Solutions",
+    num: "02",
+    title: "Web",
     description:
-      "Leveraging artificial intelligence to build smarter, more intuitive applications.",
+      "Marketing sites, dashboards, and internal tools — fast by default, accessible by design, prerendered when sensible.",
+    keywords: ["Next.js", "TypeScript", "Tailwind", "Edge"],
   },
   {
-    icon: HeartPulse,
-    title: "Health & Wellness",
+    num: "03",
+    title: "Backend",
     description:
-      "Apps that help people track, improve, and maintain their health and wellbeing.",
+      "APIs, data pipelines, and services that quietly do their job. Boring infrastructure is a feature.",
+    keywords: ["Node", "Postgres", "Firebase", "REST/GraphQL"],
   },
   {
-    icon: Wallet,
-    title: "Fintech Innovation",
+    num: "04",
+    title: "Identity",
     description:
-      "Financial tools that simplify money management and empower better decisions.",
-  },
-  {
-    icon: Zap,
-    title: "Productivity Tools",
-    description:
-      "Streamlined workflows and smart automation to help users get more done.",
-  },
-  {
-    icon: Shield,
-    title: "Secure & Scalable",
-    description:
-      "Enterprise-grade security with architecture built to scale with your growth.",
+      "Naming, marks, and product surface design that feel earned rather than templated.",
+    keywords: ["Brand", "Type", "Design systems", "Motion"],
   },
 ];
 
 export function Features() {
   return (
-    <section className="py-20 md:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <MotionDiv animation="fade-up" className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
-            What We Do
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-            Building apps across{" "}
-            <span className="gradient-text">multiple domains</span>
-          </h2>
-          <p className="mt-4 text-muted-foreground text-lg">
-            We focus on solving real-world problems through scalable and
-            user-friendly applications.
-          </p>
-        </MotionDiv>
+    <section className="relative py-24 md:py-36 hairline-t">
+      <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-12 gap-6 md:gap-10 mb-16 md:mb-24">
+          <div className="col-span-12 md:col-span-3">
+            <p className="eyebrow">— 002 / Practice</p>
+          </div>
+          <div className="col-span-12 md:col-span-9">
+            <h2 className="serif text-4xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight">
+              Four disciplines, one{" "}
+              <span className="serif-italic">studio.</span>
+            </h2>
+            <p className="mt-6 max-w-2xl text-base md:text-lg text-muted-foreground leading-relaxed">
+              Every product crosses these lines. The studio operates as a
+              single craftsperson — not a pipeline, not a factory.
+            </p>
+          </div>
+        </div>
 
-        <StaggerContainer className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {features.map((feature) => (
-            <StaggerItem key={feature.title}>
-              <Card className="group relative overflow-hidden border-border/50 bg-card/50 hover:border-primary/30 hover:bg-card transition-all duration-300 h-full">
-                <CardContent className="p-6">
-                  <div className="size-12 rounded-xl gradient-bg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <feature.icon className="size-6 text-white" />
-                  </div>
-                  <h3 className="text-lg font-semibold mb-2">{feature.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">
-                    {feature.description}
+        {/* Numbered discipline rows */}
+        <ul className="hairline-t">
+          {disciplines.map((d, i) => (
+            <motion.li
+              key={d.num}
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+              className="group hairline-b"
+            >
+              <div className="grid grid-cols-12 gap-4 md:gap-10 py-8 md:py-12 transition-colors group-hover:bg-muted/40">
+                <div className="col-span-3 md:col-span-2 mono num text-xs text-muted-foreground pt-1">
+                  / {d.num}
+                </div>
+                <div className="col-span-9 md:col-span-3">
+                  <h3 className="serif text-3xl md:text-4xl leading-none tracking-tight">
+                    {d.title}
+                  </h3>
+                </div>
+                <div className="col-span-12 md:col-span-5">
+                  <p className="text-base text-foreground/80 leading-relaxed max-w-md">
+                    {d.description}
                   </p>
-                </CardContent>
-              </Card>
-            </StaggerItem>
+                </div>
+                <div className="col-span-12 md:col-span-2 flex flex-wrap gap-1.5 md:justify-end content-start">
+                  {d.keywords.map((k) => (
+                    <span
+                      key={k}
+                      className="mono text-[10px] tracking-wider uppercase px-1.5 py-0.5 hairline rounded-sm text-muted-foreground"
+                    >
+                      {k}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.li>
           ))}
-        </StaggerContainer>
+        </ul>
       </div>
     </section>
   );

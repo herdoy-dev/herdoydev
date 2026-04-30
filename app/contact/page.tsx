@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import { ContactForm } from "@/components/sections/contact-form";
-import { MotionDiv } from "@/components/motion-wrapper";
 
 export const metadata: Metadata = {
-  title: "Contact Us",
+  title: "Contact",
   description:
-    "Get in touch with herdoydev for custom app development, collaborations, or any inquiries.",
+    "Get in touch with herdoydev — projects, partnerships, or simply a hello.",
   alternates: { canonical: "/contact" },
   openGraph: {
-    title: "Contact Us | herdoydev",
+    title: "Contact · herdoydev",
     description:
-      "Get in touch with herdoydev for custom app development, collaborations, or any inquiries.",
+      "Get in touch with herdoydev — projects, partnerships, or simply a hello.",
     url: "/contact",
   },
 };
@@ -18,26 +17,37 @@ export const metadata: Metadata = {
 export default function ContactPage() {
   return (
     <>
-      <section className="pt-32 pb-8 md:pt-40 md:pb-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <MotionDiv animation="fade-up">
-              <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
-                Get in Touch
-              </p>
-              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
-                We&apos;d love to{" "}
-                <span className="gradient-text">hear from you</span>
+      <section className="relative pt-32 md:pt-44 pb-12 overflow-hidden">
+        <div aria-hidden className="absolute inset-0 -z-10 bg-grid pointer-events-none" />
+
+        <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12">
+          <div className="hidden md:flex items-center justify-between mb-12 pb-3 hairline-b">
+            <p className="edge-label">005 — Contact</p>
+            <p className="edge-label">Reply within two working days</p>
+            <p className="edge-label inline-flex items-center gap-1.5">
+              <span className="size-1.5 rounded-full bg-emerald-500" />
+              Accepting projects
+            </p>
+          </div>
+
+          <div className="grid grid-cols-12 gap-6 md:gap-10">
+            <div className="col-span-12 md:col-span-3">
+              <p className="eyebrow">— Contact</p>
+            </div>
+            <div className="col-span-12 md:col-span-9">
+              <h1 className="serif text-[clamp(3rem,10vw,9rem)] leading-[0.9] tracking-tight">
+                Write to <span className="serif-italic">us.</span>
               </h1>
-              <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                Whether you have a project idea, need custom development, or
-                just want to say hello — drop us a message and we&apos;ll get
-                back to you as soon as possible.
+              <p className="mt-8 max-w-2xl text-base md:text-lg text-muted-foreground leading-relaxed">
+                A working project, a half-formed idea, or simply a hello — they
+                all reach the same desk. We read every note and write back
+                personally.
               </p>
-            </MotionDiv>
+            </div>
           </div>
         </div>
       </section>
+
       <ContactForm />
     </>
   );

@@ -1,75 +1,69 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Quote } from "lucide-react";
-import { Card, CardContent } from "@/components/ui/card";
-import { MotionDiv, StaggerContainer, StaggerItem } from "@/components/motion-wrapper";
 
-const testimonials = [
+const quotes = [
   {
-    quote:
-      "herdoydev built exactly what we needed. The app was delivered on time and exceeded our expectations in quality.",
+    body:
+      "Delivered on time, finished beyond what we briefed. The kind of partner you keep on speed dial.",
     name: "Sarah Ahmed",
-    role: "Product Manager",
-    company: "TechStart Inc.",
+    role: "Product Lead, TechStart Inc.",
   },
   {
-    quote:
-      "Their attention to detail and understanding of user experience is outstanding. Our app ratings went from 3.5 to 4.7 stars.",
+    body:
+      "Our app rating jumped from 3.5 to 4.7. The difference is craftsmanship.",
     name: "Michael Chen",
-    role: "CEO",
-    company: "HealthPlus",
+    role: "CEO, HealthPlus",
   },
   {
-    quote:
-      "Working with herdoydev was a seamless experience. Professional, responsive, and truly skilled in mobile development.",
+    body:
+      "Quiet, decisive, and genuinely good. Working with the studio felt closer to apprenticeship than vendor management.",
     name: "Fatima Rahman",
-    role: "Founder",
-    company: "EduConnect",
+    role: "Founder, EduConnect",
   },
 ];
 
 export function Testimonials() {
   return (
-    <section className="py-20 md:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <MotionDiv animation="fade-up" className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
-            Testimonials
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-            What people{" "}
-            <span className="gradient-text">say about us</span>
-          </h2>
-        </MotionDiv>
+    <section className="relative py-24 md:py-36 hairline-t">
+      <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-12 gap-6 md:gap-10 mb-16 md:mb-24">
+          <div className="col-span-12 md:col-span-3">
+            <p className="eyebrow">— 005 / Word of mouth</p>
+          </div>
+          <div className="col-span-12 md:col-span-9">
+            <h2 className="serif text-4xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight">
+              From the people we&apos;ve{" "}
+              <span className="serif-italic">shipped with.</span>
+            </h2>
+          </div>
+        </div>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6">
-          {testimonials.map((t) => (
-            <StaggerItem key={t.name}>
-              <motion.div whileHover={{ y: -4 }} transition={{ duration: 0.2 }}>
-                <Card className="border-border/50 bg-card/50 hover:border-primary/20 transition-all duration-300 h-full">
-                  <CardContent className="p-6">
-                    <Quote className="size-8 text-primary/30 mb-4" />
-                    <p className="text-sm leading-relaxed text-muted-foreground mb-6">
-                      &ldquo;{t.quote}&rdquo;
-                    </p>
-                    <div className="flex items-center gap-3">
-                      <div className="size-10 rounded-full gradient-bg flex items-center justify-center text-white font-semibold text-sm">
-                        {t.name[0]}
-                      </div>
-                      <div>
-                        <p className="text-sm font-semibold">{t.name}</p>
-                        <p className="text-xs text-muted-foreground">
-                          {t.role}, {t.company}
-                        </p>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              </motion.div>
-            </StaggerItem>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-px hairline">
+          {quotes.map((q, i) => (
+            <motion.figure
+              key={q.name}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.3 }}
+              transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              className="bg-background p-8 md:p-10 flex flex-col"
+            >
+              <span className="serif text-6xl leading-none text-foreground/30 mb-4 select-none">
+                &ldquo;
+              </span>
+              <blockquote className="serif text-2xl md:text-[28px] leading-[1.2] tracking-tight text-foreground/90 mb-8 flex-1">
+                {q.body}
+              </blockquote>
+              <figcaption className="hairline-t pt-5 mt-auto">
+                <p className="text-sm font-medium">{q.name}</p>
+                <p className="mono text-[11px] tracking-wider uppercase text-muted-foreground mt-1">
+                  {q.role}
+                </p>
+              </figcaption>
+            </motion.figure>
           ))}
-        </StaggerContainer>
+        </div>
       </div>
     </section>
   );

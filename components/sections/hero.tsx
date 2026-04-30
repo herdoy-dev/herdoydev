@@ -2,111 +2,121 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Sparkles } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+import { ArrowUpRight } from "lucide-react";
 
 export function Hero() {
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16">
-      {/* Background effects */}
-      <div className="absolute inset-0 -z-10">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl animate-pulse" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-pulse [animation-delay:2s]" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-primary/5 rounded-full blur-3xl" />
-        {/* Grid pattern */}
-        <div
-          className="absolute inset-0 opacity-[0.03]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(0,0,0,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(0,0,0,0.1) 1px, transparent 1px)",
-            backgroundSize: "64px 64px",
-          }}
-        />
-      </div>
+    <section className="relative pt-32 md:pt-44 pb-16 md:pb-24 overflow-hidden">
+      {/* Subtle paper grid */}
+      <div aria-hidden className="absolute inset-0 -z-10 bg-grid pointer-events-none" />
+      <div aria-hidden className="absolute inset-0 -z-10 bg-grain pointer-events-none opacity-50" />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-20 md:py-32">
-        <div className="text-center max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
+      <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12">
+        {/* Edge label rail */}
+        <div className="hidden md:flex items-center justify-between mb-12 pb-3 hairline-b">
+          <p className="edge-label">001 — Index / herdoydev</p>
+          <p className="edge-label">N 23.81° / E 90.41° — Dhaka</p>
+          <p className="edge-label">Established · 2024</p>
+        </div>
+
+        {/* Main grid */}
+        <div className="grid grid-cols-12 gap-x-6 gap-y-12">
+          {/* Left rail */}
+          <motion.aside
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6 }}
+            className="col-span-12 md:col-span-3 md:pt-3 order-2 md:order-1"
           >
-            <Badge
-              variant="secondary"
-              className="mb-6 px-4 py-1.5 text-sm font-medium border border-primary/20 bg-primary/5"
+            <p className="eyebrow mb-3">— Independent studio</p>
+            <p className="text-sm leading-relaxed text-muted-foreground max-w-[26ch]">
+              A small studio of <em className="serif-italic text-foreground">one</em> —
+              designing, engineering and shipping mobile &amp; web products
+              with an obsessive concern for craft.
+            </p>
+          </motion.aside>
+
+          {/* Headline */}
+          <div className="col-span-12 md:col-span-9 order-1 md:order-2">
+            <motion.h1
+              initial="hidden"
+              animate="visible"
+              variants={{
+                hidden: {},
+                visible: { transition: { staggerChildren: 0.05 } },
+              }}
+              className="serif text-[clamp(3.5rem,11vw,10.5rem)] leading-[0.88] tracking-tight"
             >
-              <Sparkles className="size-3.5 mr-1.5 text-primary" />
-              Launching new apps every month
-            </Badge>
-          </motion.div>
+              {[
+                <span key="1" className="block">
+                  Software,
+                </span>,
+                <span key="2" className="block">
+                  designed and{" "}
+                  <span className="serif-italic">engineered —</span>
+                </span>,
+                <span key="3" className="block text-muted-foreground/70">
+                  one product at a time.
+                </span>,
+              ].map((line, i) => (
+                <motion.span
+                  key={i}
+                  variants={{
+                    hidden: { opacity: 0, y: 24 },
+                    visible: { opacity: 1, y: 0 },
+                  }}
+                  transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+                  className="block"
+                >
+                  {line}
+                </motion.span>
+              ))}
+            </motion.h1>
+          </div>
+        </div>
 
-          <motion.h1
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold tracking-tight leading-[1.1]"
-          >
-            Code. Ship.{" "}
-            <span className="gradient-text">Impact.</span>
-          </motion.h1>
-
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="mt-6 text-lg sm:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed"
-          >
-            We build mobile applications that solve real-world problems.
-            From AI-powered tools to health & fintech solutions &mdash; crafted
-            for millions.
-          </motion.p>
-
+        {/* Lower row: CTA + indices */}
+        <div className="grid grid-cols-12 gap-6 mt-16 md:mt-24 pt-6 hairline-t">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-          >
-            <Button
-              asChild
-              size="lg"
-              className="gradient-bg border-0 hover:opacity-90 text-base px-8 h-12 w-full sm:w-auto"
-            >
-              <Link href="/products">
-                Explore Our Apps
-                <ArrowRight className="ml-2 size-4" />
-              </Link>
-            </Button>
-            <Button
-              asChild
-              variant="outline"
-              size="lg"
-              className="text-base px-8 h-12 w-full sm:w-auto"
-            >
-              <Link href="/contact">Get in Touch</Link>
-            </Button>
-          </motion.div>
-
-          {/* Stats */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 8 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="mt-16 grid grid-cols-3 gap-8 max-w-lg mx-auto"
+            className="col-span-12 md:col-span-5 flex flex-wrap items-center gap-3"
+          >
+            <Link
+              href="/products"
+              className="group inline-flex items-center gap-1.5 px-5 h-11 bg-foreground text-background text-sm font-medium rounded-sm hover:bg-foreground/90 transition-colors"
+            >
+              See the catalogue
+              <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-1.5 px-5 h-11 hairline rounded-sm text-sm font-medium hover:bg-muted/60 transition-colors"
+            >
+              Start a project
+            </Link>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 8 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            className="col-span-12 md:col-span-7 grid grid-cols-3 gap-4 md:gap-8"
           >
             {[
-              { value: "10+", label: "Apps Built" },
-              { value: "50K+", label: "Downloads" },
-              { value: "5+", label: "Years Exp." },
+              { num: "15", label: "Products in motion" },
+              { num: "5+", label: "Years of practice" },
+              { num: "∞", label: "Things to ship" },
             ].map((stat) => (
-              <div key={stat.label} className="text-center">
-                <div className="text-2xl sm:text-3xl font-bold gradient-text">
-                  {stat.value}
-                </div>
-                <div className="text-xs sm:text-sm text-muted-foreground mt-1">
-                  {stat.label}
-                </div>
+              <div
+                key={stat.label}
+                className="hairline-l pl-4 md:pl-6 first:hairline-l-0 first:pl-0"
+              >
+                <p className="serif num text-4xl md:text-5xl leading-none mb-2">
+                  {stat.num}
+                </p>
+                <p className="eyebrow">{stat.label}</p>
               </div>
             ))}
           </motion.div>

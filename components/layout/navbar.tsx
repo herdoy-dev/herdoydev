@@ -5,16 +5,15 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Menu, X, ArrowUpRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/about", label: "About" },
-  { href: "/products", label: "Products" },
-  { href: "/services", label: "Services" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", label: "Index", num: "01" },
+  { href: "/about", label: "Studio", num: "02" },
+  { href: "/products", label: "Catalogue", num: "03" },
+  { href: "/services", label: "Practice", num: "04" },
+  { href: "/contact", label: "Contact", num: "05" },
 ];
 
 export function Navbar() {
@@ -23,7 +22,7 @@ export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 20);
+    const onScroll = () => setScrolled(window.scrollY > 8);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
@@ -35,67 +34,91 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        "fixed top-0 left-0 right-0 z-50 transition-all duration-300",
+        "fixed top-0 left-0 right-0 z-50 transition-[background,border] duration-200",
         scrolled
-          ? "bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-sm"
-          : "bg-transparent"
+          ? "bg-background/85 backdrop-blur-md hairline-b"
+          : "bg-transparent border-b border-transparent"
       )}
     >
-      <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
-          <Link href="/" className="flex items-center gap-2 group">
+      <nav className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-[auto_1fr_auto] items-center h-16">
+          {/* Mark */}
+          <Link
+            href="/"
+            className="flex items-center gap-3 group/mark"
+            aria-label="herdoydev — home"
+          >
             <Image
               src="/logo.png"
-              alt="herdoydev logo"
-              width={36}
-              height={36}
+              alt=""
+              width={28}
+              height={28}
               priority
-              className="size-9 transition-transform group-hover:scale-105"
+              className="size-7"
             />
-            <span className="text-lg font-bold tracking-tight">
-              herdoy<span className="gradient-text">dev</span>
-            </span>
+            <div className="flex items-baseline gap-1.5">
+              <span className="text-[15px] font-medium tracking-tight">
+                herdoydev
+              </span>
+              <span className="eyebrow hidden sm:inline-block translate-y-[-1px]">
+                / studio
+              </span>
+            </div>
           </Link>
 
-          <div className="hidden md:flex items-center gap-1">
-            {links.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className={cn(
-                  "relative px-3 py-2 text-sm font-medium transition-colors rounded-lg",
-                  pathname === link.href
-                    ? "text-primary"
-                    : "text-muted-foreground hover:text-foreground"
-                )}
-              >
-                {link.label}
-                {pathname === link.href && (
-                  <motion.div
-                    layoutId="navbar-indicator"
-                    className="absolute inset-0 rounded-lg bg-primary/10"
-                    transition={{ type: "spring", stiffness: 350, damping: 30 }}
-                  />
-                )}
-              </Link>
-            ))}
+          {/* Center nav — desktop only */}
+          <ul className="hidden md:flex items-center justify-center gap-1">
+            {links.map((link) => {
+              const active = pathname === link.href;
+              return (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={cn(
+                      "group relative inline-flex items-baseline gap-1.5 px-3 py-2 text-sm transition-colors",
+                      active
+                        ? "text-foreground"
+                        : "text-muted-foreground hover:text-foreground"
+                    )}
+                  >
+                    <span className="mono num text-[10px] tracking-widest text-muted-foreground/70 group-hover:text-foreground/60 transition-colors">
+                      {link.num}
+                    </span>
+                    <span>{link.label}</span>
+                    {active && (
+                      <motion.span
+                        layoutId="navbar-mark"
+                        className="absolute -bottom-px left-3 right-3 h-px bg-foreground"
+                        transition={{ type: "spring", stiffness: 400, damping: 36 }}
+                      />
+                    )}
+                  </Link>
+                </li>
+              );
+            })}
+          </ul>
+
+          {/* CTA — desktop */}
+          <div className="hidden md:flex items-center justify-end gap-4">
+            <span className="eyebrow num hidden lg:inline">
+              {new Date().getFullYear()} · v1
+            </span>
+            <Link
+              href="/contact"
+              className="group inline-flex items-center gap-1.5 px-4 h-9 hairline rounded-sm bg-foreground text-background text-sm font-medium hover:bg-foreground/90 transition-colors"
+            >
+              Start a project
+              <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </Link>
           </div>
 
-          <div className="hidden md:flex items-center gap-3">
-            <Button asChild variant="ghost" size="sm">
-              <Link href="/contact">Get in Touch</Link>
-            </Button>
-            <Button asChild size="sm" className="gradient-bg border-0 hover:opacity-90">
-              <Link href="/products">Our Apps</Link>
-            </Button>
-          </div>
-
+          {/* Mobile menu button */}
           <button
-            className="md:hidden p-2 rounded-lg hover:bg-muted transition-colors"
+            className="md:hidden col-start-3 size-9 inline-flex items-center justify-center hairline rounded-sm hover:bg-muted/60"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
-            {mobileOpen ? <X className="size-5" /> : <Menu className="size-5" />}
+            {mobileOpen ? <X className="size-4" /> : <Menu className="size-4" />}
           </button>
         </div>
       </nav>
@@ -103,32 +126,41 @@ export function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.2 }}
-            className="md:hidden border-b border-border/50 bg-background/95 backdrop-blur-xl overflow-hidden"
+            initial={{ opacity: 0, y: -8 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -8 }}
+            transition={{ duration: 0.18 }}
+            className="md:hidden hairline-t bg-background"
           >
-            <div className="px-4 py-4 space-y-1">
-              {links.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  className={cn(
-                    "block px-3 py-2.5 rounded-lg text-sm font-medium transition-colors",
-                    pathname === link.href
-                      ? "bg-primary/10 text-primary"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                  )}
-                >
-                  {link.label}
-                </Link>
-              ))}
-              <div className="pt-3 flex flex-col gap-2">
-                <Button asChild className="gradient-bg border-0 w-full">
-                  <Link href="/products">Our Apps</Link>
-                </Button>
-              </div>
+            <ul className="px-5 py-4 divide-y divide-border">
+              {links.map((link) => {
+                const active = pathname === link.href;
+                return (
+                  <li key={link.href}>
+                    <Link
+                      href={link.href}
+                      className={cn(
+                        "flex items-baseline gap-3 py-3 text-base",
+                        active ? "text-foreground" : "text-muted-foreground"
+                      )}
+                    >
+                      <span className="mono num text-[11px] tracking-widest text-muted-foreground/70 w-6">
+                        {link.num}
+                      </span>
+                      <span>{link.label}</span>
+                    </Link>
+                  </li>
+                );
+              })}
+            </ul>
+            <div className="px-5 pb-5">
+              <Link
+                href="/contact"
+                className="flex items-center justify-center gap-1.5 h-11 bg-foreground text-background text-sm font-medium rounded-sm"
+              >
+                Start a project
+                <ArrowUpRight className="size-4" />
+              </Link>
             </div>
           </motion.div>
         )}

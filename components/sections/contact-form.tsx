@@ -1,15 +1,10 @@
 "use client";
 
 import { useState } from "react";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { ArrowUpRight, Mail, MapPin } from "lucide-react";
 import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import * as z from "zod";
 import { db } from "@/firebase";
-import { Card, CardContent } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { Button } from "@/components/ui/button";
-import { MotionDiv } from "@/components/motion-wrapper";
 
 type Status = "idle" | "submitting" | "success" | "error";
 
@@ -41,6 +36,9 @@ const emptyForm: ContactFormValues = {
   subject: "",
   message: "",
 };
+
+const inputClass =
+  "w-full bg-transparent border-0 border-b border-border focus:border-foreground rounded-none px-0 py-3 text-base placeholder:text-muted-foreground/60 focus:outline-none focus:ring-0 transition-colors";
 
 export function ContactForm() {
   const [form, setForm] = useState<ContactFormValues>(emptyForm);
@@ -92,178 +90,203 @@ export function ContactForm() {
   };
 
   return (
-    <section className="py-20 md:py-28" id="contact">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <MotionDiv animation="fade-up" className="text-center max-w-2xl mx-auto mb-16">
-          <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
-            Contact Us
-          </p>
-          <h2 className="text-3xl sm:text-4xl font-bold tracking-tight">
-            Let&apos;s start a{" "}
-            <span className="gradient-text">conversation</span>
-          </h2>
-          <p className="mt-4 text-muted-foreground text-lg">
-            Have a project in mind? We&apos;d love to hear about it.
-          </p>
-        </MotionDiv>
+    <section className="relative py-24 md:py-36 hairline-t" id="contact">
+      <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-12 gap-6 md:gap-10 mb-16 md:mb-20">
+          <div className="col-span-12 md:col-span-3">
+            <p className="eyebrow">— 100 / Direct line</p>
+          </div>
+          <div className="col-span-12 md:col-span-9">
+            <h2 className="serif text-4xl md:text-6xl lg:text-7xl leading-[0.95] tracking-tight">
+              Send us a <span className="serif-italic">letter.</span>
+            </h2>
+            <p className="mt-6 max-w-2xl text-base md:text-lg text-muted-foreground leading-relaxed">
+              Project briefs, ideas, partnerships, or simply a hello — they all
+              land in the same inbox. We reply within two working days.
+            </p>
+          </div>
+        </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-5 gap-8 max-w-5xl mx-auto">
-          <MotionDiv animation="slide-left" className="lg:col-span-3">
-            <Card className="border-border/50">
-              <CardContent className="p-6 md:p-8">
-                <form className="space-y-5" onSubmit={handleSubmit} noValidate>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div>
-                      <label
-                        htmlFor="name"
-                        className="block text-sm font-medium mb-2"
-                      >
-                        Name
-                      </label>
-                      <Input
-                        id="name"
-                        placeholder="Your name"
-                        className="h-11"
-                        value={form.name}
-                        onChange={handleChange}
-                        aria-invalid={!!fieldErrors.name}
-                        aria-describedby={fieldErrors.name ? "name-error" : undefined}
-                      />
-                      {fieldErrors.name && (
-                        <p id="name-error" className="mt-1.5 text-xs text-destructive">
-                          {fieldErrors.name}
-                        </p>
-                      )}
-                    </div>
-                    <div>
-                      <label
-                        htmlFor="email"
-                        className="block text-sm font-medium mb-2"
-                      >
-                        Email
-                      </label>
-                      <Input
-                        id="email"
-                        type="email"
-                        placeholder="you@example.com"
-                        className="h-11"
-                        value={form.email}
-                        onChange={handleChange}
-                        aria-invalid={!!fieldErrors.email}
-                        aria-describedby={fieldErrors.email ? "email-error" : undefined}
-                      />
-                      {fieldErrors.email && (
-                        <p id="email-error" className="mt-1.5 text-xs text-destructive">
-                          {fieldErrors.email}
-                        </p>
-                      )}
-                    </div>
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="subject"
-                      className="block text-sm font-medium mb-2"
-                    >
-                      Subject
-                    </label>
-                    <Input
-                      id="subject"
-                      placeholder="Project inquiry"
-                      className="h-11"
-                      value={form.subject}
-                      onChange={handleChange}
-                      aria-invalid={!!fieldErrors.subject}
-                      aria-describedby={fieldErrors.subject ? "subject-error" : undefined}
-                    />
-                    {fieldErrors.subject && (
-                      <p id="subject-error" className="mt-1.5 text-xs text-destructive">
-                        {fieldErrors.subject}
-                      </p>
-                    )}
-                  </div>
-                  <div>
-                    <label
-                      htmlFor="message"
-                      className="block text-sm font-medium mb-2"
-                    >
-                      Message
-                    </label>
-                    <Textarea
-                      id="message"
-                      placeholder="Tell us about your project..."
-                      rows={5}
-                      value={form.message}
-                      onChange={handleChange}
-                      aria-invalid={!!fieldErrors.message}
-                      aria-describedby={fieldErrors.message ? "message-error" : undefined}
-                    />
-                    {fieldErrors.message && (
-                      <p id="message-error" className="mt-1.5 text-xs text-destructive">
-                        {fieldErrors.message}
-                      </p>
-                    )}
-                  </div>
-                  <Button
-                    type="submit"
-                    size="lg"
-                    disabled={status === "submitting"}
-                    className="gradient-bg border-0 hover:opacity-90 w-full h-12 disabled:opacity-60"
-                  >
-                    {status === "submitting" ? "Sending..." : "Send Message"}
-                  </Button>
-                  {status === "success" && (
-                    <p className="text-sm text-green-600 dark:text-green-400 text-center">
-                      Thanks! Your message has been sent.
-                    </p>
-                  )}
-                  {status === "error" && (
-                    <p className="text-sm text-destructive text-center">
-                      {errorMsg || "Something went wrong. Please try again."}
-                    </p>
-                  )}
-                </form>
-              </CardContent>
-            </Card>
-          </MotionDiv>
+        <div className="grid grid-cols-12 gap-6 md:gap-10">
+          {/* Contact details rail */}
+          <aside className="col-span-12 md:col-span-3">
+            <ul className="space-y-8">
+              <li>
+                <p className="eyebrow mb-2">By email</p>
+                <a
+                  href="mailto:contact@herdoydev.com"
+                  className="text-sm font-medium link-line inline-flex items-center gap-1.5"
+                >
+                  <Mail className="size-3.5" />
+                  contact@herdoydev.com
+                </a>
+              </li>
+              <li>
+                <p className="eyebrow mb-2">In person</p>
+                <p className="text-sm font-medium inline-flex items-center gap-1.5">
+                  <MapPin className="size-3.5" />
+                  Dhaka, Bangladesh
+                </p>
+                <p className="mono text-[11px] tracking-wider text-muted-foreground mt-1">
+                  GMT+6 / 09:00–18:00
+                </p>
+              </li>
+              <li>
+                <p className="eyebrow mb-2">Status</p>
+                <p className="text-sm font-medium inline-flex items-center gap-2">
+                  <span className="size-1.5 rounded-full bg-emerald-500" />
+                  Accepting projects
+                </p>
+              </li>
+            </ul>
+          </aside>
 
-          <MotionDiv animation="slide-right" className="lg:col-span-2 space-y-4">
-            {[
-              {
-                icon: Mail,
-                title: "Email",
-                detail: "contact@herdoydev.com",
-                href: "mailto:contact@herdoydev.com",
-              },
-              {
-                icon: MapPin,
-                title: "Location",
-                detail: "Dhaka, Bangladesh",
-                href: "#",
-              },
-              {
-                icon: Phone,
-                title: "Phone",
-                detail: "+880 1622-465404",
-                href: "#",
-              },
-            ].map((item) => (
-              <a
-                key={item.title}
-                href={item.href}
-                className="flex items-start gap-4 p-5 rounded-xl border border-border/50 bg-card/50 hover:border-primary/30 hover:bg-card transition-all duration-300"
+          {/* Form */}
+          <form
+            className="col-span-12 md:col-span-9"
+            onSubmit={handleSubmit}
+            noValidate
+          >
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-x-6 gap-y-2">
+              <Field
+                id="name"
+                label="Name"
+                num="01"
+                value={form.name}
+                error={fieldErrors.name}
+                onChange={handleChange}
+                placeholder="Jane Doe"
+              />
+              <Field
+                id="email"
+                label="Email"
+                num="02"
+                type="email"
+                value={form.email}
+                error={fieldErrors.email}
+                onChange={handleChange}
+                placeholder="jane@studio.com"
+              />
+            </div>
+
+            <Field
+              id="subject"
+              label="Subject"
+              num="03"
+              value={form.subject}
+              error={fieldErrors.subject}
+              onChange={handleChange}
+              placeholder="A new product, a redesign, a brief…"
+              className="mt-2"
+            />
+
+            <div className="mt-6">
+              <label htmlFor="message" className="flex items-baseline gap-3 mb-3">
+                <span className="mono num text-[10px] tracking-widest text-muted-foreground">
+                  / 04
+                </span>
+                <span className="text-sm font-medium">Message</span>
+              </label>
+              <textarea
+                id="message"
+                rows={6}
+                placeholder="Tell us about the product, the audience, the timeline."
+                value={form.message}
+                onChange={handleChange}
+                aria-invalid={!!fieldErrors.message}
+                aria-describedby={
+                  fieldErrors.message ? "message-error" : undefined
+                }
+                className={`${inputClass} resize-y`}
+              />
+              {fieldErrors.message && (
+                <p
+                  id="message-error"
+                  className="mono text-[11px] tracking-wider uppercase text-destructive mt-2"
+                >
+                  ! {fieldErrors.message}
+                </p>
+              )}
+            </div>
+
+            <div className="mt-12 pt-6 hairline-t flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+              <p className="mono text-[11px] tracking-wider uppercase text-muted-foreground">
+                We never share your details. PGP available on request.
+              </p>
+              <button
+                type="submit"
+                disabled={status === "submitting"}
+                className="group inline-flex items-center justify-center gap-1.5 px-6 h-12 bg-foreground text-background text-sm font-medium rounded-sm hover:bg-foreground/90 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
               >
-                <div className="size-10 rounded-lg gradient-bg flex items-center justify-center shrink-0">
-                  <item.icon className="size-5 text-white" />
-                </div>
-                <div>
-                  <p className="text-sm font-semibold">{item.title}</p>
-                  <p className="text-sm text-muted-foreground">{item.detail}</p>
-                </div>
-              </a>
-            ))}
-          </MotionDiv>
+                {status === "submitting" ? "Sending…" : "Send the letter"}
+                <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </button>
+            </div>
+
+            {status === "success" && (
+              <p className="mono text-[11px] tracking-wider uppercase text-emerald-700 dark:text-emerald-400 mt-4">
+                ✓ Received. We&apos;ll write back shortly.
+              </p>
+            )}
+            {status === "error" && (
+              <p className="mono text-[11px] tracking-wider uppercase text-destructive mt-4">
+                ! {errorMsg || "Something went wrong. Please try again."}
+              </p>
+            )}
+          </form>
         </div>
       </div>
     </section>
+  );
+}
+
+function Field({
+  id,
+  label,
+  num,
+  type = "text",
+  value,
+  onChange,
+  placeholder,
+  error,
+  className = "",
+}: {
+  id: string;
+  label: string;
+  num: string;
+  type?: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => void;
+  placeholder?: string;
+  error?: string;
+  className?: string;
+}) {
+  return (
+    <div className={className}>
+      <label htmlFor={id} className="flex items-baseline gap-3 mb-1">
+        <span className="mono num text-[10px] tracking-widest text-muted-foreground">
+          / {num}
+        </span>
+        <span className="text-sm font-medium">{label}</span>
+      </label>
+      <input
+        id={id}
+        type={type}
+        value={value}
+        onChange={onChange}
+        placeholder={placeholder}
+        aria-invalid={!!error}
+        aria-describedby={error ? `${id}-error` : undefined}
+        className="w-full bg-transparent border-0 border-b border-border focus:border-foreground rounded-none px-0 py-3 text-base placeholder:text-muted-foreground/60 focus:outline-none focus:ring-0 transition-colors"
+      />
+      {error && (
+        <p
+          id={`${id}-error`}
+          className="mono text-[11px] tracking-wider uppercase text-destructive mt-2"
+        >
+          ! {error}
+        </p>
+      )}
+    </div>
   );
 }

@@ -1,17 +1,16 @@
 import type { Metadata } from "next";
 import { AppsShowcase } from "@/components/sections/apps-showcase";
 import { CTA } from "@/components/sections/cta";
-import { MotionDiv } from "@/components/motion-wrapper";
 
 export const metadata: Metadata = {
-  title: "Products & Apps",
+  title: "Catalogue",
   description:
-    "Explore our growing portfolio of mobile applications — AI, health, fintech, and productivity tools on the Google Play Store.",
+    "Every product in motion at the studio — mobile, web, and games. Updated as we ship.",
   alternates: { canonical: "/products" },
   openGraph: {
-    title: "Products & Apps | herdoydev",
+    title: "Catalogue · herdoydev",
     description:
-      "Explore our growing portfolio of mobile applications — AI, health, fintech, and productivity tools on the Google Play Store.",
+      "Every product in motion at the studio — mobile, web, and games.",
     url: "/products",
   },
 };
@@ -20,36 +19,43 @@ export default function ProductsPage() {
   return (
     <>
       {/* Hero */}
-      <section className="pt-32 pb-8 md:pt-40 md:pb-12">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="max-w-3xl mx-auto text-center">
-            <MotionDiv animation="fade-up">
-              <p className="text-sm font-semibold text-primary uppercase tracking-wider mb-3">
-                Our Products
-              </p>
-              <h1 className="text-4xl sm:text-5xl font-bold tracking-tight">
-                Apps built for{" "}
-                <span className="gradient-text">real people</span>
+      <section className="relative pt-32 md:pt-44 pb-12 overflow-hidden">
+        <div aria-hidden className="absolute inset-0 -z-10 bg-grid pointer-events-none" />
+        <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12">
+          <div className="hidden md:flex items-center justify-between mb-12 pb-3 hairline-b">
+            <p className="edge-label">003 — Catalogue</p>
+            <p className="edge-label">In motion · 15 entries</p>
+            <p className="edge-label">Last revision · {new Date().getFullYear()}</p>
+          </div>
+
+          <div className="grid grid-cols-12 gap-6 md:gap-10">
+            <div className="col-span-12 md:col-span-3">
+              <p className="eyebrow">— Catalogue</p>
+            </div>
+            <div className="col-span-12 md:col-span-9">
+              <h1 className="serif text-[clamp(3rem,9vw,8rem)] leading-[0.92] tracking-tight">
+                Everything we&apos;re <br />
+                <span className="serif-italic">making.</span>
               </h1>
-              <p className="mt-6 text-lg text-muted-foreground leading-relaxed">
-                From AI-powered assistants to health trackers, we build
-                applications that make everyday life better. Available on
-                the Google Play Store.
+              <p className="mt-6 max-w-2xl text-base md:text-lg text-muted-foreground leading-relaxed">
+                Mobile apps, games, and web tools — products that solve a
+                real, specific problem for a real, specific person. Tap a row
+                to read the brief.
               </p>
-            </MotionDiv>
+            </div>
           </div>
         </div>
       </section>
 
       <AppsShowcase
         all
-        eyebrow="Catalogue"
+        eyebrow="— 003 / All entries"
         heading={
           <>
-            Everything we&apos;re <span className="gradient-text">building</span>
+            The full <span className="serif-italic">register.</span>
           </>
         }
-        subheading="Mobile apps, games, and web experiences — a snapshot of the full lab."
+        subheading="Sorted by recent activity. Status changes as products move from draft to beta to live."
       />
       <CTA />
     </>

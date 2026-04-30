@@ -1,20 +1,31 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono, Inter } from "next/font/google";
+import { IBM_Plex_Sans, IBM_Plex_Mono, Instrument_Serif } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const plexSans = IBM_Plex_Sans({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  variable: "--font-sans",
+  display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const plexMono = IBM_Plex_Mono({
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-mono",
+  display: "swap",
+});
+
+const instrumentSerif = Instrument_Serif({
+  subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+  variable: "--font-display",
+  display: "swap",
 });
 
 const siteUrl = "https://herdoydev.com";
@@ -22,26 +33,22 @@ const siteUrl = "https://herdoydev.com";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: "herdoydev — Code. Ship. Impact.",
-    template: "%s | herdoydev",
+    default: "herdoydev — Independent software studio",
+    template: "%s · herdoydev",
   },
   description:
-    "herdoydev builds mobile applications that solve real-world problems — AI, health, fintech, productivity, and more.",
+    "herdoydev is an independent software studio designing and shipping mobile and web products — quietly, deliberately.",
   keywords: [
+    "software studio",
+    "independent studio",
     "mobile apps",
     "app development",
     "herdoydev",
-    "android apps",
-    "AI apps",
-    "fintech apps",
-    "health apps",
-    "custom app development",
-    "mobile app developer",
     "react native developer",
-    "full stack developer",
-    "app development company",
-    "google play store apps",
-    "productivity apps",
+    "next.js developer",
+    "fullstack developer",
+    "product studio",
+    "design and engineering",
   ],
   authors: [{ name: "Herdoy Almamun", url: siteUrl }],
   creator: "herdoydev",
@@ -64,15 +71,15 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: siteUrl,
     siteName: "herdoydev",
-    title: "herdoydev — Code. Ship. Impact.",
+    title: "herdoydev — Independent software studio",
     description:
-      "We build mobile applications that solve real-world problems — AI, health, fintech, productivity, and more.",
+      "An independent software studio designing and shipping mobile and web products.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "herdoydev — Code. Ship. Impact.",
+    title: "herdoydev — Independent software studio",
     description:
-      "We build mobile applications that solve real-world problems — AI, health, fintech, productivity, and more.",
+      "An independent software studio designing and shipping mobile and web products.",
     creator: "@herdoydev",
   },
   robots: {
@@ -98,13 +105,13 @@ export default function RootLayout({
       lang="en"
       className={cn(
         "h-full antialiased",
-        geistSans.variable,
-        geistMono.variable,
-        inter.variable,
+        plexSans.variable,
+        plexMono.variable,
+        instrumentSerif.variable,
         "font-sans"
       )}
     >
-      <body className="min-h-full flex flex-col">
+      <body className="min-h-full flex flex-col selection:bg-foreground selection:text-background">
         <Navbar />
         <main className="flex-1">{children}</main>
         <Footer />

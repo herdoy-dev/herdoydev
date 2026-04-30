@@ -2,76 +2,67 @@
 
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Download } from "lucide-react";
-import { Button } from "@/components/ui/button";
-import { MotionDiv } from "@/components/motion-wrapper";
+import { ArrowUpRight } from "lucide-react";
 
 export function CTA() {
   return (
-    <section className="py-20 md:py-28">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <MotionDiv animation="scale-in">
-          <div className="relative overflow-hidden rounded-3xl gradient-bg px-6 py-16 md:px-16 md:py-24 text-center">
-            {/* Background decorations */}
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
-            <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
+    <section className="relative py-24 md:py-36 hairline-t bg-foreground text-background overflow-hidden">
+      <div aria-hidden className="absolute inset-0 bg-grain opacity-25 pointer-events-none" />
 
-            <div className="relative z-10">
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="text-3xl sm:text-4xl md:text-5xl font-bold text-white tracking-tight"
-              >
-                Ready to build something
-                <br />
-                amazing together?
-              </motion.h2>
-
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.1 }}
-                className="mt-5 text-lg text-white/80 max-w-xl mx-auto"
-              >
-                Whether you need a custom app or want to try one of our products,
-                we&apos;d love to hear from you.
-              </motion.p>
-
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: 0.2 }}
-                className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4"
-              >
-                <Button
-                  asChild
-                  size="lg"
-                  className="bg-white text-primary hover:bg-white/90 text-base px-8 h-12 w-full sm:w-auto border-0"
-                >
-                  <Link href="/contact">
-                    Contact Us
-                    <ArrowRight className="ml-2 size-4" />
-                  </Link>
-                </Button>
-                <Button
-                  asChild
-                  size="lg"
-                  variant="outline"
-                  className="bg-transparent border-white/40 text-white hover:bg-white/10 hover:text-white text-base px-8 h-12 w-full sm:w-auto"
-                >
-                  <Link href="/products">
-                    <Download className="mr-2 size-4" />
-                    Download Apps
-                  </Link>
-                </Button>
-              </motion.div>
-            </div>
+      <div className="relative mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12">
+        <div className="grid grid-cols-12 gap-6 md:gap-10">
+          <div className="col-span-12 md:col-span-3">
+            <p
+              className="eyebrow"
+              style={{ color: "color-mix(in oklch, currentColor 60%, transparent)" }}
+            >
+              — 099 / Open for work
+            </p>
           </div>
-        </MotionDiv>
+          <div className="col-span-12 md:col-span-9">
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="serif text-[clamp(3rem,9vw,8rem)] leading-[0.92] tracking-tight"
+            >
+              Have a project? <br />
+              <span className="serif-italic opacity-80">
+                Let&apos;s talk.
+              </span>
+            </motion.h2>
+
+            <motion.div
+              initial={{ opacity: 0, y: 8 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, amount: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
+              className="mt-12 flex flex-col sm:flex-row sm:items-end justify-between gap-8 pt-8 border-t border-background/15"
+            >
+              <p className="text-base md:text-lg text-background/70 max-w-md leading-relaxed">
+                A short note works. Tell us about the product, the audience, and
+                where you are today — we reply within two working days.
+              </p>
+
+              <div className="flex flex-wrap items-center gap-3">
+                <Link
+                  href="/contact"
+                  className="group inline-flex items-center gap-1.5 px-6 h-12 bg-background text-foreground text-sm font-medium rounded-sm hover:bg-background/90 transition-colors"
+                >
+                  Start a conversation
+                  <ArrowUpRight className="size-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </Link>
+                <a
+                  href="mailto:contact@herdoydev.com"
+                  className="inline-flex items-center gap-1.5 px-6 h-12 border border-background/20 text-background text-sm font-medium rounded-sm hover:bg-background/5 transition-colors"
+                >
+                  contact@herdoydev.com
+                </a>
+              </div>
+            </motion.div>
+          </div>
+        </div>
       </div>
     </section>
   );

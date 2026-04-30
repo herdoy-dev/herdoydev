@@ -2,12 +2,8 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
+import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { CTA } from "@/components/sections/cta";
-import { MotionDiv } from "@/components/motion-wrapper";
 import { getAdjacentProjects, getProject, projects } from "@/lib/projects";
 
 type Params = { slug: string };
@@ -23,20 +19,27 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const project = getProject(slug);
-  if (!project) return { title: "Project not found" };
+  if (!project) return { title: "Not found" };
 
   return {
     title: `${project.name} — ${project.tagline}`,
     description: project.description,
     alternates: { canonical: `/products/${project.slug}` },
     openGraph: {
-      title: `${project.name} | herdoydev`,
+      title: `${project.name} · herdoydev`,
       description: project.description,
       url: `/products/${project.slug}`,
       images: project.logo ? [project.logo] : undefined,
     },
   };
 }
+
+const statusDot: Record<string, string> = {
+  Live: "bg-emerald-500",
+  Beta: "bg-amber-500",
+  "In Development": "bg-blue-500",
+  "Coming Soon": "bg-muted-foreground",
+};
 
 export default async function ProjectDetailPage({
   params,
@@ -48,160 +51,193 @@ export default async function ProjectDetailPage({
   if (!project) notFound();
 
   const { prev, next } = getAdjacentProjects(slug);
+  const index = projects.findIndex((p) => p.slug === slug) + 1;
 
   return (
     <>
-      <section className="pt-32 pb-12 md:pt-40 md:pb-16">
-        <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-          <MotionDiv animation="fade-up">
+      <section className="relative pt-32 md:pt-44 pb-16 overflow-hidden">
+        <div aria-hidden className="absolute inset-0 -z-10 bg-grid pointer-events-none" />
+
+        <div className="mx-auto max-w-[1400px] px-5 sm:px-8 lg:px-12">
+          {/* Edge label */}
+          <div className="hidden md:flex items-center justify-between mb-12 pb-3 hairline-b">
             <Link
               href="/products"
-              className="inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors mb-8"
+              className="edge-label inline-flex items-center gap-1.5 hover:text-foreground transition-colors"
             >
-              <ArrowLeft className="size-4" />
-              All products
+              <ArrowLeft className="size-3" />
+              Catalogue
             </Link>
+            <p className="edge-label">
+              No.{String(index).padStart(3, "0")} / {projects.length} —{" "}
+              {project.name}
+            </p>
+            <p className="edge-label inline-flex items-center gap-1.5">
+              <span className={`size-1.5 rounded-full ${statusDot[project.status] ?? "bg-muted-foreground"}`} />
+              {project.status}
+            </p>
+          </div>
 
-            <div className="flex flex-col sm:flex-row items-start gap-6 mb-8">
-              {project.logo ? (
-                <div className="size-20 sm:size-24 rounded-2xl overflow-hidden bg-muted shrink-0">
+          {/* Mobile back */}
+          <Link
+            href="/products"
+            className="md:hidden inline-flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground mb-8"
+          >
+            <ArrowLeft className="size-4" />
+            Catalogue
+          </Link>
+
+          {/* Title spread */}
+          <div className="grid grid-cols-12 gap-6 md:gap-10 mb-16 md:mb-24">
+            <div className="col-span-12 md:col-span-3">
+              <p className="eyebrow">— {project.category}</p>
+              <p className="mono num text-[11px] tracking-widest text-muted-foreground mt-2">
+                Slug · {project.slug}
+              </p>
+            </div>
+            <div className="col-span-12 md:col-span-9">
+              <h1 className="serif text-[clamp(3rem,10vw,9rem)] leading-[0.88] tracking-tight">
+                {project.name}
+              </h1>
+              <p className="mt-6 max-w-2xl text-xl md:text-2xl text-foreground/80 leading-snug serif-italic">
+                {project.tagline}
+              </p>
+            </div>
+          </div>
+
+          {/* Body grid */}
+          <div className="grid grid-cols-12 gap-6 md:gap-10">
+            {/* Visual */}
+            <div className="col-span-12 md:col-span-5">
+              <div className="aspect-square w-full hairline rounded-sm overflow-hidden bg-muted/30 flex items-center justify-center">
+                {project.logo ? (
                   <Image
                     src={project.logo}
-                    alt={`${project.name} logo`}
-                    width={96}
-                    height={96}
+                    alt={`${project.name} mark`}
+                    width={640}
+                    height={640}
                     className="size-full object-cover"
                   />
-                </div>
-              ) : (
-                <div
-                  className={`size-20 sm:size-24 rounded-2xl bg-gradient-to-br ${project.color} flex items-center justify-center shrink-0`}
-                >
-                  <span className="text-3xl font-bold text-white">
+                ) : (
+                  <span className="serif-italic text-7xl text-foreground/20">
                     {project.name[0]}
                   </span>
+                )}
+              </div>
+
+              {/* Meta table */}
+              <dl className="mt-6 hairline rounded-sm divide-y divide-border">
+                <Row label="Category" value={project.category} />
+                <Row label="Status" value={project.status} dot={statusDot[project.status]} />
+                <Row label="Stack" value={project.stack.join(" · ")} />
+              </dl>
+            </div>
+
+            {/* Description */}
+            <div className="col-span-12 md:col-span-7 md:pl-2">
+              <p className="eyebrow mb-4">/ Brief</p>
+              <p className="serif text-2xl md:text-3xl leading-[1.25] tracking-tight max-w-[55ch]">
+                {project.description}
+              </p>
+
+              {/* Stack chips */}
+              <div className="mt-10">
+                <p className="eyebrow mb-4">/ Toolkit</p>
+                <ul className="flex flex-wrap gap-1.5">
+                  {project.stack.map((s) => (
+                    <li
+                      key={s}
+                      className="mono text-[11px] tracking-wider uppercase px-2 py-1 hairline rounded-sm text-foreground/80"
+                    >
+                      {s}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Links if present */}
+              {project.links && project.links.length > 0 && (
+                <div className="mt-10">
+                  <p className="eyebrow mb-4">/ External</p>
+                  <ul className="space-y-2">
+                    {project.links.map((l) => (
+                      <li key={l.href}>
+                        <a
+                          href={l.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="group inline-flex items-center gap-1.5 text-sm font-medium link-line"
+                        >
+                          {l.label}
+                          <ArrowUpRight className="size-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               )}
-
-              <div className="flex-1">
-                <div className="flex flex-wrap items-center gap-2 mb-3">
-                  <Badge variant="secondary" className="text-xs">
-                    {project.category}
-                  </Badge>
-                  <Badge
-                    variant={project.status === "Live" ? "default" : "secondary"}
-                    className={
-                      project.status === "Live"
-                        ? "gradient-bg border-0 text-white text-xs"
-                        : "text-xs"
-                    }
-                  >
-                    {project.status}
-                  </Badge>
-                </div>
-                <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight">
-                  {project.name}
-                </h1>
-                <p className="mt-3 text-lg text-muted-foreground">
-                  {project.tagline}
-                </p>
-              </div>
             </div>
-          </MotionDiv>
+          </div>
 
-          <MotionDiv animation="fade-up" className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <Card className="md:col-span-2 border-border/50">
-              <CardContent className="p-6 md:p-8">
-                <h2 className="text-sm font-semibold text-primary uppercase tracking-wider mb-4">
-                  About this project
-                </h2>
-                <p className="text-base text-foreground/90 leading-relaxed">
-                  {project.description}
-                </p>
-
-                {project.links && project.links.length > 0 && (
-                  <div className="mt-6 flex flex-wrap gap-3">
-                    {project.links.map((link) => (
-                      <Button key={link.href} asChild size="sm" variant="outline">
-                        <a href={link.href} target="_blank" rel="noreferrer">
-                          {link.label}
-                          <ArrowRight className="ml-1.5 size-3.5" />
-                        </a>
-                      </Button>
-                    ))}
-                  </div>
-                )}
-              </CardContent>
-            </Card>
-
-            <Card className="border-border/50 h-fit">
-              <CardContent className="p-6 space-y-5">
-                <div>
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-                    Stack
-                  </p>
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.stack.map((s) => (
-                      <span
-                        key={s}
-                        className="text-xs px-2 py-1 rounded-md bg-muted/60 text-foreground/80"
-                      >
-                        {s}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-                    Category
-                  </p>
-                  <p className="text-sm">{project.category}</p>
-                </div>
-                <div>
-                  <p className="text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
-                    Status
-                  </p>
-                  <p className="text-sm">{project.status}</p>
-                </div>
-              </CardContent>
-            </Card>
-          </MotionDiv>
-
+          {/* Prev / next */}
           {(prev || next) && (
-            <MotionDiv
-              animation="fade-up"
-              className="mt-12 grid grid-cols-1 sm:grid-cols-2 gap-4"
-            >
-              {prev && (
+            <nav className="mt-24 md:mt-32 hairline-t pt-8 grid grid-cols-2 gap-4">
+              {prev ? (
                 <Link
                   href={`/products/${prev.slug}`}
-                  className="group flex items-center gap-3 p-5 rounded-xl border border-border/50 bg-card/50 hover:border-primary/30 hover:bg-card transition-all"
+                  className="group block hairline rounded-sm p-5 hover:bg-muted/40 transition-colors"
                 >
-                  <ArrowLeft className="size-4 text-muted-foreground group-hover:text-foreground" />
-                  <div>
-                    <p className="text-xs text-muted-foreground">Previous</p>
-                    <p className="text-sm font-semibold">{prev.name}</p>
-                  </div>
+                  <p className="eyebrow mb-2">← Previous</p>
+                  <p className="serif text-2xl tracking-tight">{prev.name}</p>
+                  <p className="text-xs text-muted-foreground mt-1 truncate">
+                    {prev.tagline}
+                  </p>
                 </Link>
+              ) : (
+                <div />
               )}
-              {next && (
+              {next ? (
                 <Link
                   href={`/products/${next.slug}`}
-                  className="group flex items-center justify-end gap-3 p-5 rounded-xl border border-border/50 bg-card/50 hover:border-primary/30 hover:bg-card transition-all sm:text-right"
+                  className="group block hairline rounded-sm p-5 hover:bg-muted/40 transition-colors text-right"
                 >
-                  <div>
-                    <p className="text-xs text-muted-foreground">Next</p>
-                    <p className="text-sm font-semibold">{next.name}</p>
-                  </div>
-                  <ArrowRight className="size-4 text-muted-foreground group-hover:text-foreground" />
+                  <p className="eyebrow mb-2">Next →</p>
+                  <p className="serif text-2xl tracking-tight">{next.name}</p>
+                  <p className="text-xs text-muted-foreground mt-1 truncate">
+                    {next.tagline}
+                  </p>
                 </Link>
+              ) : (
+                <div />
               )}
-            </MotionDiv>
+            </nav>
           )}
         </div>
       </section>
 
       <CTA />
     </>
+  );
+}
+
+function Row({
+  label,
+  value,
+  dot,
+}: {
+  label: string;
+  value: string;
+  dot?: string;
+}) {
+  return (
+    <div className="grid grid-cols-3 gap-4 px-4 py-3">
+      <dt className="mono text-[11px] tracking-widest uppercase text-muted-foreground self-center">
+        {label}
+      </dt>
+      <dd className="col-span-2 text-sm self-center inline-flex items-center gap-2">
+        {dot && <span className={`size-1.5 rounded-full ${dot}`} />}
+        {value}
+      </dd>
+    </div>
   );
 }
