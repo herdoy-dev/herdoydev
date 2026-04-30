@@ -41,7 +41,16 @@ export default function ProductsPage() {
         </div>
       </section>
 
-      <AppsShowcase />
+      <AppsShowcase
+        all
+        eyebrow="Catalogue"
+        heading={
+          <>
+            Everything we&apos;re <span className="gradient-text">building</span>
+          </>
+        }
+        subheading="Mobile apps, games, and web experiences — a snapshot of the full lab."
+      />
       <CTA />
     </>
   );

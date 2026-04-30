@@ -1,8 +1,16 @@
 import type { MetadataRoute } from "next";
+import { projects } from "@/lib/projects";
 
 const baseUrl = "https://herdoydev.com";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const projectEntries: MetadataRoute.Sitemap = projects.map((p) => ({
+    url: `${baseUrl}/products/${p.slug}`,
+    lastModified: new Date(),
+    changeFrequency: "monthly",
+    priority: 0.6,
+  }));
+
   return [
     {
       url: baseUrl,
@@ -46,5 +54,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "yearly",
       priority: 0.3,
     },
+    ...projectEntries,
   ];
 }
