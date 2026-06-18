@@ -14,7 +14,7 @@ import { pageMetadata, personSchema, breadcrumbSchema } from "@/lib/seo";
 export const metadata: Metadata = pageMetadata({
   title: "About",
   description:
-    "Herdoy is a full-stack software engineer and agency founder with 5+ years building scalable web, mobile, and AI products. Learn the story, skills, and values.",
+    "Herdoy is a full-stack software engineer and agency founder with 10+ years building scalable web, mobile, and AI products. Learn the story, skills, and values.",
   path: "/about",
 });
 
@@ -44,7 +44,7 @@ export default function AboutPage() {
               <div className="mt-5 flex flex-col gap-4 text-pretty leading-relaxed text-muted">
                 <p>
                   I started writing code because I loved building things people
-                  could actually use. Over the last 5+ years that obsession turned
+                  could actually use. Over the last 10+ years that obsession turned
                   into a craft — shipping production software across SaaS, fintech,
                   e-commerce, and AI.
                 </p>

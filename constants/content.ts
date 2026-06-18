@@ -10,7 +10,7 @@ import type {
 
 export const stats: Stat[] = [
   { label: "Projects Completed", value: 50, suffix: "+" },
-  { label: "Years Experience", value: 5, suffix: "+" },
+  { label: "Years Experience", value: 10, suffix: "+" },
   { label: "Technologies Mastered", value: 20, suffix: "+" },
   { label: "Happy Clients", value: 30, suffix: "+" },
 ];
@@ -119,7 +119,7 @@ export const experience: ExperienceItem[] = [
     ],
   },
   {
-    period: "2019 — 2021",
+    period: "2018 — 2021",
     role: "Full Stack Developer",
     company: "Agency",
     description:
@@ -128,6 +128,18 @@ export const experience: ExperienceItem[] = [
       "Shipped 15+ client projects end-to-end",
       "Introduced TypeScript and CI/CD across the team",
       "Specialized in performance and accessibility",
+    ],
+  },
+  {
+    period: "2016 — 2018",
+    role: "Software Engineer",
+    company: "Early Career",
+    description:
+      "Cut my teeth shipping production features across the stack and learning what it takes to build software that lasts.",
+    highlights: [
+      "Shipped features used by thousands of users",
+      "Went deep on JavaScript, APIs, and databases",
+      "Built the fundamentals that still anchor my work today",
     ],
   },
 ];
