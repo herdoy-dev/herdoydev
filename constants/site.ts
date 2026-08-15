@@ -37,7 +37,7 @@ export const navItems: NavItem[] = [
 export type SocialLink = { label: string; href: string; icon: IconComponent };
 
 export const socialLinks: SocialLink[] = [
-  { label: "GitHub", href: "https://github.com/herdoydev", icon: GithubIcon },
+  { label: "GitHub", href: "https://github.com/herdoy-dev", icon: GithubIcon },
   { label: "LinkedIn", href: "https://linkedin.com/in/herdoydev", icon: LinkedinIcon },
   { label: "Twitter", href: "https://twitter.com/herdoydev", icon: XIcon },
   { label: "Email", href: "mailto:contact@herdoydev.com", icon: Mail },
