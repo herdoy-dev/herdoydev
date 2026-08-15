@@ -17,6 +17,12 @@ export interface Service {
   accent: string; // tailwind gradient classes
 }
 
+export interface ProjectShot {
+  src: string; // path under /public
+  alt: string;
+  caption: string;
+}
+
 export interface Project {
   slug: string;
   title: string;
@@ -26,6 +32,7 @@ export interface Project {
   summary: string;
   description: string;
   thumbnail: string; // gradient token used for placeholder art
+  image?: string; // real cover screenshot; falls back to `thumbnail` gradient
   technologies: string[];
   liveUrl?: string;
   githubUrl?: string;
@@ -35,6 +42,7 @@ export interface Project {
   challenges: string[];
   results: { label: string; value: string }[];
   gallery: string[]; // gradient tokens for screenshot placeholders
+  screenshots?: ProjectShot[]; // real screenshots; falls back to `gallery` gradients
 }
 
 export interface Stat {

@@ -8,7 +8,7 @@ type RevealProps = {
   className?: string;
   variants?: Variants;
   delay?: number;
-  as?: "div" | "section" | "li" | "span";
+  as?: "div" | "section" | "li" | "span" | "figure";
   once?: boolean;
 };
 

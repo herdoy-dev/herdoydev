@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { ExternalLink, ArrowUpRight } from "lucide-react";
 import { GithubIcon } from "@/components/icons/brand";
 import { cn } from "@/lib/utils";
@@ -14,14 +15,31 @@ export function ProjectCard({ project }: { project: Project }) {
     >
       {/* thumbnail art */}
       <div className="relative aspect-[16/10] overflow-hidden">
-        <div
-          className={cn(
-            "absolute inset-0 bg-gradient-to-br opacity-90 transition-transform duration-500 group-hover:scale-105",
-            gradientArt[project.thumbnail]
-          )}
-        />
-        <div className="absolute inset-0 grid-bg opacity-30" />
-        <div className="absolute inset-0 bg-ink-950/30" />
+        {project.image ? (
+          <Image
+            src={project.image}
+            alt={`${project.title} — ${project.summary}`}
+            fill
+            sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
+            className="object-cover object-top transition-transform duration-500 group-hover:scale-105"
+          />
+        ) : (
+          <div
+            className={cn(
+              "absolute inset-0 bg-gradient-to-br opacity-90 transition-transform duration-500 group-hover:scale-105",
+              gradientArt[project.thumbnail]
+            )}
+          />
+        )}
+        {project.image ? (
+          /* scrim so the corner badges stay legible over the screenshot */
+          <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-ink-950/70 to-transparent" />
+        ) : (
+          <>
+            <div className="absolute inset-0 grid-bg opacity-30" />
+            <div className="absolute inset-0 bg-ink-950/30" />
+          </>
+        )}
         <span className="absolute left-4 top-4 rounded-full bg-ink-950/60 px-3 py-1 text-xs font-medium text-white backdrop-blur">
           {project.category}
         </span>

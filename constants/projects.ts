@@ -24,6 +24,163 @@ export const gradientArt: Record<string, string> = {
 
 export const projects: Project[] = [
   {
+    slug: "mystic-arcana",
+    title: "Mystic Arcana",
+    client: "Mystic Arcana",
+    category: "SaaS",
+    year: "2025",
+    summary:
+      "A tarot platform pairing a free daily draw with AI-guided premium spreads, live reader consultations, and a storefront.",
+    description:
+      "A four-surface tarot product — free readings, paid AI spreads, live one-to-one consultations, and an e-commerce emporium — under a single midnight-sky design system.",
+    thumbnail: "nebula",
+    image: "/projects/mystic-arcana/cover.jpg",
+    technologies: [
+      "Next.js",
+      "React 19",
+      "TypeScript",
+      "Tailwind v4",
+      "shadcn/ui",
+      "TanStack Query",
+      "Node.js",
+      "REST API",
+    ],
+    liveUrl: "https://peaceful-salamander-36b338.netlify.app/",
+    featured: true,
+    overview:
+      "Mystic Arcana turns a 78-card Rider–Waite deck into a full product. A visitor can pull a free card with no account at all, step up to an AI-interpreted three-card or Celtic Cross spread, book a live chat consultation billed by the minute, or buy decks and ritual tools from the emporium. I built the App Router frontend and wired it to a separate Node REST API — auth, readings, readers, cart, and orders — and designed the whole occult-luxe visual language: midnight gradients, drifting starfield, gold leaf accents, and a serif display face that makes the interface feel like an object rather than a dashboard.",
+    features: [
+      "Free single-card draw with no sign-up required",
+      "AI-guided three-card and Celtic Cross spreads ($4.99 / $14.99)",
+      "Live one-to-one reader consultations, billed by the minute",
+      "Tarot emporium with cart and order history",
+      "Authenticated dashboard for readings, consultations, and orders",
+      "Animated starfield hero with layered, parallaxed tarot cards",
+    ],
+    challenges: [
+      "Four very different surfaces — free draw, paid spreads, live chat, storefront — had to feel like one product. A single token layer (Tailwind v4 + oklch) and a shared card/section vocabulary keep the ritual tone intact from the hero all the way to checkout.",
+      "The free draw is the top of the funnel, so it cannot be gated. Readings are anonymous until a visitor chooses to sign in, and the premium spreads swap their CTA to a sign-in prompt instead of hiding behind a wall.",
+      "Client-side data comes from a separate Node API on another origin. TanStack Query handles caching, loading skeletons, and retries, and every list renders a designed empty state so the page still reads well when the API is cold.",
+    ],
+    results: [
+      { label: "Card deck", value: "78" },
+      { label: "Reading modes", value: "3" },
+      { label: "Product surfaces", value: "4" },
+    ],
+    gallery: ["nebula", "aurora", "violet"],
+    screenshots: [
+      {
+        src: "/projects/mystic-arcana/cover.jpg",
+        alt: "Mystic Arcana homepage hero with floating tarot cards over a starfield",
+        caption: "Hero — layered tarot cards over an animated starfield",
+      },
+      {
+        src: "/projects/mystic-arcana/free-draw.jpg",
+        alt: "Free single-card draw screen with an optional question field",
+        caption: "Free draw — no account, one question, one card",
+      },
+      {
+        src: "/projects/mystic-arcana/spreads.jpg",
+        alt: "Spread selection screen showing Single Card, Three Card and Celtic Cross tiers",
+        caption: "Spread picker — free tier beside two premium spreads",
+      },
+      {
+        src: "/projects/mystic-arcana/pricing.jpg",
+        alt: "Pricing cards for the single card, three card and Celtic Cross readings",
+        caption: "Pricing — depth as the upgrade axis, not features",
+      },
+      {
+        src: "/projects/mystic-arcana/features.jpg",
+        alt: "Feature grid describing the free draw, AI spreads, live consultations and store",
+        caption: "The four surfaces of the product, in one grid",
+      },
+      {
+        src: "/projects/mystic-arcana/testimonials.jpg",
+        alt: "Testimonial cards and a closing call to action offering a free card",
+        caption: "Social proof into the free-card CTA",
+      },
+    ],
+  },
+  {
+    slug: "complyremit",
+    title: "ComplyRemit",
+    client: "ComplyRemit",
+    category: "AI",
+    year: "2026",
+    summary:
+      "A cross-border payments platform with an AI support agent that reads the customer's own account and hands off to a human mid-conversation.",
+    description:
+      "A regulated remittance platform — customer app, operator console, marketing site and mobile app over one Express API — with a tool-calling AI assistant on both sides of the support desk.",
+    thumbnail: "cyan",
+    image: "/projects/complyremit/cover.jpg",
+    technologies: [
+      "Next.js",
+      "React 19",
+      "TypeScript",
+      "Express 5",
+      "Prisma",
+      "PostgreSQL",
+      "OpenAI",
+      "TanStack Query",
+      "Tailwind v4",
+      "React Native",
+      "Stripe",
+      "DigitalOcean",
+    ],
+    liveUrl: "https://complyremit.com/",
+    featured: true,
+    overview:
+      "ComplyRemit moves money across borders, so almost every screen sits on top of KYC, an approval gate, or a payment rail. I built it as a single npm workspace: an Express 5 API on Node 24 with Prisma over PostgreSQL, three Next.js front ends (customer app, operator console, marketing site), a Stripe storefront, and an Expo mobile app covering the same customer journey. Thirteen API domains share that one server — auth, onboarding, recipients, bank accounts, KYC, payments, support, admin and webhooks. The piece I'm proudest of is the support layer: an AI assistant that can actually see the caller's own transfers, and that knows when to stop talking and fetch a person.",
+    features: [
+      "AI support assistant with scoped, read-only tool calling over the caller's own account",
+      "Live human handoff — the bot goes silent the moment a conversation is queued",
+      "Operator console with a multi-conversation support dock, approval queue and compliance 360",
+      "Separate identity systems: hosted auth for customers, first-party JWT for operators",
+      "KYC, bank-linked funding and multi-currency payouts behind one API",
+      "Expo/React Native app covering the same journey as the web client",
+      "Application-level encryption for personal data, including support transcripts",
+    ],
+    challenges: [
+      "An assistant that can read account data is an IDOR waiting to happen — a customer can talk a model into looking up someone else. So no tool takes a subject at all: every lookup closes over the authenticated session, and a test asserts that no tool parameter is ever named for a user. Prompt wording alone was never going to hold that line.",
+      "Two voices answering one customer is what makes people distrust a support widget. The assistant answers only while the conversation is in its bot state and stops completely once a human is queued — and because transcripts are persisted rather than held in React state, the agent who picks it up inherits the whole conversation instead of asking the customer to repeat themselves.",
+      "The first cut of live chat polled hard enough to trip production rate limits. Reworking it — one round trip per tick instead of three, and an interval that backs off 2s → 15s as polls come back empty — took an agent with three panels open from roughly 204 requests a minute to about 12 at rest, without adding sockets to a two-instance deployment.",
+      "The assistant's prompt is a product claim, and it drifted: an earlier version offered corridors that were never built and described a login flow that had been replaced. Nothing errored — every answer just read fluently and wrong. It's now asserted in tests against the same source of truth the API validates against.",
+    ],
+    results: [
+      { label: "Support poll load", value: "−94%" },
+      { label: "Apps, one workspace", value: "6" },
+      { label: "API domains", value: "13" },
+    ],
+    gallery: ["cyan", "violet", "aurora"],
+    screenshots: [
+      {
+        src: "/projects/complyremit/cover.jpg",
+        alt: "ComplyRemit homepage hero advertising cross-border payments at a 0.3% flat fee",
+        caption: "Marketing site — one promise, stated plainly",
+      },
+      {
+        src: "/projects/complyremit/products.jpg",
+        alt: "Three product cards covering payments, treasury management and invoice lending",
+        caption: "Three products, one login — payments, treasury, lending",
+      },
+      {
+        src: "/projects/complyremit/pricing.jpg",
+        alt: "Side-by-side comparison of traditional bank fees against ComplyRemit pricing",
+        caption: "Pricing framed as a comparison, not a table",
+      },
+      {
+        src: "/projects/complyremit/security.jpg",
+        alt: "Security section covering insurance, audits, monitoring and licensing",
+        caption: "Compliance posture, up front — this is a regulated product",
+      },
+      {
+        src: "/projects/complyremit/early-access.jpg",
+        alt: "Get in touch section with an early access request form",
+        caption: "Early-access capture at the end of the page",
+      },
+    ],
+  },
+  {
     slug: "nexus-saas-analytics",
     title: "Nexus Analytics",
     client: "Nexus Labs",

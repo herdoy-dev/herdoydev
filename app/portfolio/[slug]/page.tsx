@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowLeft, ArrowUpRight, Check, ExternalLink, Zap } from "lucide-react";
 import { Container, Section } from "@/components/ui/section";
 import { Badge } from "@/components/ui/badge";
@@ -111,15 +112,29 @@ export default async function ProjectPage({
       {/* hero art */}
       <Container>
         <Reveal>
-          <div
-            className={cn(
-              "relative aspect-[16/8] w-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br",
-              gradientArt[project.thumbnail]
-            )}
-          >
-            <div className="absolute inset-0 grid-bg opacity-30" />
-            <div className="absolute inset-0 bg-ink-950/20" />
-          </div>
+          {project.image ? (
+            <div className="relative aspect-[16/8] w-full overflow-hidden rounded-3xl border border-white/10 bg-ink-950">
+              <Image
+                src={project.image}
+                alt={`${project.title} homepage`}
+                fill
+                sizes="(min-width: 1280px) 1152px, 100vw"
+                className="object-cover object-top"
+                loading="eager"
+                fetchPriority="high"
+              />
+            </div>
+          ) : (
+            <div
+              className={cn(
+                "relative aspect-[16/8] w-full overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br",
+                gradientArt[project.thumbnail]
+              )}
+            >
+              <div className="absolute inset-0 grid-bg opacity-30" />
+              <div className="absolute inset-0 bg-ink-950/20" />
+            </div>
+          )}
         </Reveal>
       </Container>
 
@@ -221,21 +236,42 @@ export default async function ProjectPage({
           <Reveal>
             <h2 className="font-display text-2xl font-semibold tracking-tight">Screenshots</h2>
           </Reveal>
-          <RevealGroup className="mt-6 grid gap-5 sm:grid-cols-3">
-            {project.gallery.map((g, i) => (
-              <Reveal as="div" key={i}>
-                <div
-                  className={cn(
-                    "relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br",
-                    gradientArt[g]
-                  )}
-                >
-                  <div className="absolute inset-0 grid-bg opacity-25" />
-                  <div className="absolute inset-0 bg-ink-950/25" />
-                </div>
-              </Reveal>
-            ))}
-          </RevealGroup>
+          {project.screenshots ? (
+            <RevealGroup className="mt-6 grid gap-6 sm:grid-cols-2">
+              {project.screenshots.map((shot) => (
+                <Reveal as="figure" key={shot.src}>
+                  <div className="relative aspect-[16/10] overflow-hidden rounded-2xl border border-white/10 bg-ink-950">
+                    <Image
+                      src={shot.src}
+                      alt={shot.alt}
+                      fill
+                      sizes="(min-width: 640px) 50vw, 100vw"
+                      className="object-cover object-top"
+                    />
+                  </div>
+                  <figcaption className="mt-3 text-sm text-muted">
+                    {shot.caption}
+                  </figcaption>
+                </Reveal>
+              ))}
+            </RevealGroup>
+          ) : (
+            <RevealGroup className="mt-6 grid gap-5 sm:grid-cols-3">
+              {project.gallery.map((g, i) => (
+                <Reveal as="div" key={i}>
+                  <div
+                    className={cn(
+                      "relative aspect-[4/3] overflow-hidden rounded-2xl border border-white/10 bg-gradient-to-br",
+                      gradientArt[g]
+                    )}
+                  >
+                    <div className="absolute inset-0 grid-bg opacity-25" />
+                    <div className="absolute inset-0 bg-ink-950/25" />
+                  </div>
+                </Reveal>
+              ))}
+            </RevealGroup>
+          )}
         </Container>
       </Section>
 
