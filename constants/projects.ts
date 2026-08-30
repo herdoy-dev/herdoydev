@@ -24,6 +24,89 @@ export const gradientArt: Record<string, string> = {
 
 export const projects: Project[] = [
   {
+    slug: "stockseo-studio",
+    title: "StockSEO Studio",
+    client: "StockSEO Studio",
+    category: "SaaS",
+    year: "2026",
+    summary:
+      "Eleven browser-side AI tools that carry a microstock contributor from keyword research to a marketplace-ready upload — on their own API key.",
+    description:
+      "A tool suite for stock photographers and illustrators: research, generate, check, keyword, package and track, with every model call made from the browser against the user's own key.",
+    thumbnail: "aurora",
+    image: "/projects/stockseo-studio/cover.jpg",
+    technologies: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind v4",
+      "Firebase Auth",
+      "Firestore",
+      "IndexedDB",
+      "Gemini",
+      "OpenAI",
+      "Claude",
+      "OpenRouter",
+    ],
+    liveUrl: "https://seo.herdoydev.com/",
+    featured: true,
+    overview:
+      "Microstock contributors lose their day to metadata: a folder of images has to become titles, ranked keywords, descriptions and categories in whatever CSV shape each marketplace accepts. StockSEO Studio is eleven tools covering that whole loop — Keyword Research, Gap Finder and Season Planner to decide what to shoot; Prompt Studio and the Image Generator to make it; Reject Check and File Prep to get it past review; Image SEO to keyword it; Submissions and Earnings to see what it earned. The architectural decision the whole product rests on is that nothing runs on our server. Images and API keys stay in the browser, every model call goes straight from the user's tab to Gemini, OpenAI, Claude or OpenRouter with their own key, and the subscription unlocks tools rather than reselling inference. Firebase holds only auth, subscription state and the durable records — submissions, earnings and the asset library.",
+    features: [
+      "Eleven tools behind one subscription, driven by a single registry",
+      "Bring-your-own-key across four AI providers — nothing routes through us",
+      "Batch a whole folder into titles, ranked keywords, descriptions and categories",
+      "CSV and JSON export shaped for Adobe Stock, Shutterstock, Freepik, Dreamstime, 123RF and Vecteezy",
+      "Tools hand work to each other over an IndexedDB asset tray and prompt queue",
+      "Pipelines runs the entire chain unattended on a folder and returns one ZIP",
+      "Earnings pairs a sales report back to the keywords each file went out with",
+    ],
+    challenges: [
+      "The tools had to be a pipeline, not a menu. Two client-side carriers do it: an IndexedDB asset tray that moves generated images between tools with their metadata attached, and a one-shot prompt queue from Prompt Studio into the Image Generator. Pipelines then owns no logic of its own — it imports the other tools' libraries and calls them in order, so a pipeline run and a manual run can never disagree about what a good title looks like.",
+      "Nobody publishes what image buyers actually search for. Rather than invent a number, every research signal names its source and carries a direct-vs-proxy flag, and proxies are rendered with the caveat attached. Two findings came out of measuring rather than assuming: Openverse clamps result counts to 240 for anonymous callers, so every term looks identically crowded, and Commons queries must be phrase-quoted — unquoted, “remote work” reports four million hits where the quoted form reports 254.",
+      "Eleven tools would normally mean eleven places to update. A single registry file is the source of truth: the landing grid, /tools/[slug], the footer, the dashboard nav and hub, and the admin free-run settings all read from it, so shipping a tool means a folder, a registry entry and a page.",
+      "Access control runs in the browser, which means it is a UX gate and not a security boundary. Firestore rules are what actually protect data, and metering is deliberately bypassable — generation runs on the user's own key, so gating it harder would cost us nothing to enforce and everything in friction.",
+    ],
+    results: [
+      { label: "Tools", value: "11" },
+      { label: "AI providers", value: "4" },
+      { label: "Marketplace formats", value: "6" },
+    ],
+    gallery: ["aurora", "violet", "cyan"],
+    screenshots: [
+      {
+        src: "/projects/stockseo-studio/cover.jpg",
+        alt: "StockSEO Studio landing hero reading 'Metadata that gets your stock work found'",
+        caption: "The promise up front, with the privacy claim above it",
+      },
+      {
+        src: "/projects/stockseo-studio/toolkit.jpg",
+        alt: "Landing page toolkit grid showing Keyword Research, Gap Finder, Season Planner, Image SEO, Image Generator, Prompt Studio and more",
+        caption: "The toolkit grid — one registry renders every surface",
+      },
+      {
+        src: "/projects/stockseo-studio/image-seo.jpg",
+        alt: "Image SEO tool with provider picker, marketplace and character-limit settings, and a batch upload zone",
+        caption: "Image SEO — provider, marketplace and limits beside the drop zone",
+      },
+      {
+        src: "/projects/stockseo-studio/keyword-research.jpg",
+        alt: "Keyword Research tool listing Wikipedia interest and Wikimedia Commons as sources with marketplace credential fields",
+        caption: "Research — every source named, proxies labelled as proxies",
+      },
+      {
+        src: "/projects/stockseo-studio/pipelines.jpg",
+        alt: "Pipelines tool with selectable generate, reject check, keyword and prepare stages and a run button",
+        caption: "Pipelines — the whole loop as toggleable stages",
+      },
+      {
+        src: "/projects/stockseo-studio/dashboard.jpg",
+        alt: "Signed-in dashboard hub showing the eleven tools as cards under a welcome header",
+        caption: "The dashboard hub, grouped by where a tool sits in the day",
+      },
+    ],
+  },
+  {
     slug: "mystic-arcana",
     title: "Mystic Arcana",
     client: "Mystic Arcana",
