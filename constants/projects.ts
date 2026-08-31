@@ -24,6 +24,106 @@ export const gradientArt: Record<string, string> = {
 
 export const projects: Project[] = [
   {
+    slug: "chatapp",
+    title: "ChatApp",
+    client: "ChatApp",
+    category: "AI",
+    year: "2026",
+    summary:
+      "A messaging platform where the people you talk to and the AI you talk to share one inbox \u2014 across a web app, a React Native app and one real-time backend.",
+    description:
+      "Direct and group messaging, four AI assistants, eleven character bots, WebRTC calls, LiveKit meetings and a personal AI drive, served to web and mobile from a single Bun API.",
+    thumbnail: "cyan",
+    image: "/projects/chatapp/cover.jpg",
+    technologies: [
+      "Next.js 16",
+      "React 19",
+      "TypeScript",
+      "Tailwind v4",
+      "Zustand",
+      "TanStack Query",
+      "Bun",
+      "Prisma",
+      "PostgreSQL",
+      "WebSockets",
+      "WebRTC",
+      "LiveKit",
+      "Expo",
+      "React Native",
+      "OpenAI",
+      "Gemini",
+      "OpenRouter",
+    ],
+    liveUrl: "https://chat.herdoydev.com/",
+    featured: true,
+    overview:
+      "Most chat products treat AI as a bolt-on: a separate tab, a separate app, a separate mental model. ChatApp puts a conversation with a person and a conversation with a model in the same list, opened the same way, backed by the same message table. Five conversation types \u2014 direct, group, assistant, character and multi-bot \u2014 flow through one schema, so read receipts, typing indicators, replies, mentions and media behave identically whether the other side is a friend or GPT-4o-mini. Around that sit voice and video calls over WebRTC, LiveKit-backed meetings with waiting rooms and breakout rooms, and a personal AI drive that saves any answer worth keeping. The backend is plain Bun.serve \u2014 no Express \u2014 with a strict handlers \u2192 services \u2192 repositories layering over Prisma, and it serves the Next.js web client and an Expo React Native client from the same contract.",
+    features: [
+      "Direct, group, assistant, character and multi-bot conversations in one inbox",
+      "Four AI assistants (OpenAI, Gemini, DeepSeek, Grok) and eleven character bots with their own personalities",
+      "One WebSocket carries messages, presence, typing, call signalling and meeting events",
+      "WebRTC voice and video calls, with call history written back into the thread",
+      "LiveKit meetings with invite codes, waiting rooms, breakout rooms and hand raise",
+      "AI drive that saves any model response as a durable, searchable record",
+      "Message enhancement \u2014 rewrite a draft as professional, casual, funny or grammar-fixed before sending",
+      "Seven colour themes, in light and dark, shared by the marketing site and the app",
+    ],
+    challenges: [
+      "Three clients had to agree on one contract. The web app and the React Native app both mirror the server\u2019s response shapes by hand, so a change to a payload is a change in three repositories \u2014 the discipline that keeps it honest is that the server owns one shared Prisma field list, and every endpoint that exposes a user selects from it rather than hand-picking columns.",
+      "AI providers do not agree on anything. A single dispatch keyed on the conversation\u2019s provider slug routes to OpenAI, Gemini or OpenRouter, and the eleven characters reuse the OpenAI path with a personality prompt instead of getting a code path each \u2014 an unknown slug falls through to the character branch rather than erroring, so adding a character is a data change, not a deployment.",
+      "A chat pane is a fixed shell wrapped around exactly one scrolling region, and the browser is happy to break that. The message list, the composer and the header live in a grid whose column is explicitly minmax(0, 1fr): left implicit, the column tracks the header\u2019s nowrap width and quietly pushes the send button off a phone screen while everything still measures fine on a desktop.",
+      "Real-time state is easy to fragment into a socket per feature. Everything \u2014 new messages, presence, typing, incoming calls, participants joining a meeting \u2014 travels over one authenticated WebSocket with a typed event union, so a client subscribes once and the reconnect story is written once.",
+    ],
+    results: [
+      { label: "AI personas", value: "15" },
+      { label: "API routes", value: "93" },
+      { label: "Data models", value: "24" },
+    ],
+    gallery: ["cyan", "aurora", "emerald"],
+    screenshots: [
+      {
+        src: "/projects/chatapp/cover.jpg",
+        alt: "ChatApp landing hero reading 'One app for every conversation'",
+        caption: "The pitch: people, AI, calls and storage in one app",
+      },
+      {
+        src: "/projects/chatapp/discovery.jpg",
+        alt: "Signed-in app showing the chat list beside a discovery pane listing four AI assistants and eleven characters",
+        caption: "An empty pane offers assistants and characters, not a placeholder",
+      },
+      {
+        src: "/projects/chatapp/character-chat.jpg",
+        alt: "Conversation with the Isaac Newton character bot answering a question about gravity in character",
+        caption: "Character bots \u2014 one provider path, eleven personalities",
+      },
+      {
+        src: "/projects/chatapp/assistant-chat.jpg",
+        alt: "Conversation with ChatGPT showing an OpenAI provider badge in the chat header",
+        caption: "Assistants carry a provider badge; characters deliberately do not",
+      },
+      {
+        src: "/projects/chatapp/ai-bots.jpg",
+        alt: "Landing page grid describing AI assistants, character bots, multi-bot conversations, group bot integration, message enhancement and in-call AI chat",
+        caption: "The AI surface, feature by feature",
+      },
+      {
+        src: "/projects/chatapp/meetings.jpg",
+        alt: "Landing page meetings section listing voice and video calls, invite codes, waiting rooms, breakout rooms and call history",
+        caption: "Calls over WebRTC, meetings over LiveKit",
+      },
+      {
+        src: "/projects/chatapp/platform-parity.jpg",
+        alt: "Feature parity table comparing which features are available on web and on mobile",
+        caption: "Parity published honestly \u2014 web-only features marked as such",
+      },
+      {
+        src: "/projects/chatapp/themes.jpg",
+        alt: "Appearance settings with light, dark and system modes and seven theme colours",
+        caption: "One theme system reskins the app and the marketing site together",
+      },
+    ],
+  },
+  {
     slug: "stockseo-studio",
     title: "StockSEO Studio",
     client: "StockSEO Studio",
